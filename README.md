@@ -2,6 +2,9 @@
 
 러스트로 작성된 디스코드 봇입니다.
 
+[초대 (관리자 권한 O)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=8&scope=bot)
+
+[초대 (관리자 권한 X)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=9&scope=bot)
 
 ## 실행
 
@@ -22,3 +25,16 @@ $ cargo run
 <br>
 
 > env 사용시, `src/main.rs` 수정 바람. 
+
+
+# 사용법
+
+접두사: `ferris`
+
+<br>
+
+`ferris ping`: API Latency를 표시합니다.
+
+`ferris help`: 도움말을 표시합니다.
+
+> (더 추가될 예정)

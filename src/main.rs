@@ -3,6 +3,7 @@ mod commands;
 use std::{collections::HashSet, sync::Arc};
 
 use commands::owner::*;
+use commands::util::*;
 use serenity::{
     async_trait,
     client::bridge::gateway::ShardManager,
@@ -11,8 +12,6 @@ use serenity::{
     model::{event::ResumedEvent, gateway::Ready},
     prelude::*,
 };
-use tracing::{error, info};
-use tracing_subscriber::{EnvFilter, FmtSubscriber};
 use std::io::Read;
 
 pub struct ShardManagerContainer;
@@ -26,30 +25,27 @@ struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, _: Context, ready: Ready) {
-        info!("Connected as {}", ready.user.name);
+        println!("Connected as {}", ready.user.name);
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
-        info!("Resumed");
+        println!("Resumed");
     }
 }
 
 #[group]
-#[commands(ping, eval)]
+#[commands(eval)]
 struct General;
+
+#[group]
+#[commands(ping)]
+struct Utility;
 
 #[tokio::main]
 async fn main() {
     let mut file = std::fs::File::open("token.txt").unwrap();
     let mut token = String::new();
     file.read_to_string(&mut token).unwrap();
-
-
-    let subscriber = FmtSubscriber::builder()
-        .with_env_filter(EnvFilter::from_default_env())
-        .finish();
-
-    tracing::subscriber::set_global_default(subscriber).expect("Failed to start the logger");
 
     let token = token;
 
@@ -67,8 +63,9 @@ async fn main() {
 
     // Create the framework
     let framework = StandardFramework::new()
-        .configure(|c| c.owners(owners).prefix("빵 "))
-        .group(&GENERAL_GROUP);
+        .configure(|c| c.owners(owners).prefix(">_"))
+        .group(&GENERAL_GROUP)
+        .group(&UTILITY_GROUP);
 
     let mut client = Client::builder(&token)
         .framework(framework)
@@ -91,6 +88,6 @@ async fn main() {
     });
 
     if let Err(e) = client.start().await {
-        error!("실패: {:?}", e);
+        println!("실패: {:?}", e);
     }
 }

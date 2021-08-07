@@ -4,13 +4,6 @@ use serenity::model::prelude::*;
 use serenity::prelude::*;
 
 #[command]
-async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, "Pong!").await?;
-
-    Ok(())
-}
-
-#[command]
 #[owners_only]
 async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let r = args
