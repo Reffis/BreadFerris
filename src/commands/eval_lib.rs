@@ -11,27 +11,6 @@ use std::path::Path;
 use std::process::Command;
 use tempdir::TempDir;
 
-const D_FUNC: &str = r#"
-
-#[allow(dead_code)]
-fn ignore<T>(_v: T) {}
-
-
-#[allow(dead_code)]
-fn p<T: std::fmt::Debug>(v: T) {
-    println!("{:?}", v);
-}
-
-
-#[allow(dead_code)]
-fn clear() {
-    for _ in 0..100 {
-        println!();
-    }
-}
-
-"#;
-
 /// Type of errors that can occur when calling `eval`.
 #[derive(Debug)]
 pub enum EvalError {
@@ -162,10 +141,8 @@ fn main() {{
     {};
 
 }}
-
-{}
     "##,
-        code, D_FUNC
+        code
     )?;
     f.sync_all()
 }
@@ -176,10 +153,8 @@ fn write_source_file_without_main(path: &Path, code: &str) -> io::Result<()> {
         &mut f,
         r##"
 {}
-
-{}
     "##,
-        code, D_FUNC
+        code
     )?;
     f.sync_all()
 }
