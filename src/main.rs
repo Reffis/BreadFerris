@@ -34,7 +34,7 @@ impl EventHandler for Handler {
 }
 
 #[group]
-#[commands(eval)]
+#[commands(eval, quit)]
 struct General;
 
 #[group]
@@ -63,7 +63,7 @@ async fn main() {
 
     // Create the framework
     let framework = StandardFramework::new()
-        .configure(|c| c.owners(owners).prefix(">_"))
+        .configure(|c| c.owners(owners).prefix("ferris "))
         .group(&GENERAL_GROUP)
         .group(&UTILITY_GROUP);
 

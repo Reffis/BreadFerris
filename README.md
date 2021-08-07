@@ -37,4 +37,5 @@ $ cargo run
 
 `ferris help`: 도움말을 표시합니다.
 
+`ferris quit`: 봇 종료
 > (더 추가될 예정)

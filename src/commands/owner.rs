@@ -2,6 +2,7 @@ use serenity::framework::standard::Args;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+use crate::ShardManagerContainer;
 
 #[command]
 #[owners_only]
@@ -27,6 +28,21 @@ async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         ),
     )
     .await?;
+
+    Ok(())
+}
+
+#[command]
+#[owners_only]
+async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
+    let data = ctx.data.read().await;
+
+    if let Some(manager) = data.get::<ShardManagerContainer>() {
+        manager.lock().await.shutdown_all().await;
+    } else {
+        msg.reply(ctx, "Err").await?;
+        return Ok(());
+    }
 
     Ok(())
 }
