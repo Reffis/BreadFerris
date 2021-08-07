@@ -6,8 +6,6 @@ license = "MIT"
 edition = "2018"
 
 [dependencies]
-tracing = "0.1.23"
-tracing-subscriber = "0.2"
 tempdir = "*"
 
 [dependencies.tokio]
