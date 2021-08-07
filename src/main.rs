@@ -38,7 +38,7 @@ impl EventHandler for Handler {
 struct General;
 
 #[group]
-#[commands(ping)]
+#[commands(ping, help)]
 struct Utility;
 
 #[tokio::main]

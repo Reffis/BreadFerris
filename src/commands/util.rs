@@ -16,3 +16,22 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 
     Ok(())
 }
+
+#[command]
+async fn help(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(0x00ff00)
+                    .title("도움말 ㅇㅁㅇ")
+                    .description("곧 만들겁니다 ㅇㅁㅇ")
+                    .footer(|f| {
+                        f.text("https://github.com/Reffis/breadferris");
+                        f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=60&v=4")
+                    })
+            })
+        })
+        .await?;
+
+    Ok(())
+}
