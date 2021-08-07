@@ -2,6 +2,7 @@
 name = "breadferris"
 version = "0.1.0"
 authors = ["fn79"]
+license = "MIT"
 edition = "2018"
 
 [dependencies]

@@ -2,7 +2,7 @@ mod commands;
 
 use std::{collections::HashSet, sync::Arc};
 
-use commands::asdf::*;
+use commands::owner::*;
 use serenity::{
     async_trait,
     client::bridge::gateway::ShardManager,

@@ -5,7 +5,7 @@ use serenity::prelude::*;
 
 #[command]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, "쿠쿠루삥뽕").await?;
+    msg.channel_id.say(&ctx.http, "Pong!").await?;
 
     Ok(())
 }
