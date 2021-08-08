@@ -63,7 +63,7 @@ async fn main() {
 
     // Create the framework
     let framework = StandardFramework::new()
-        .configure(|c| c.owners(owners).prefix("ferris "))
+        .configure(|c| c.owners(owners).prefixes(["ferris ", "페리스 "]))
         .group(&GENERAL_GROUP)
         .group(&UTILITY_GROUP);
 
