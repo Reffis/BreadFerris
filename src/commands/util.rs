@@ -34,7 +34,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     .field(
                         "Utility",
                         r#"
-> `help` `ping` `support [Message]`
+> `help` `ping` `support [Message]` `dev`
                     "#,
                         true,
                     )
@@ -49,6 +49,41 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         "Image",
                         r#"
 > `fox` `shiba` `cat` `meme`
+                    "#,
+                        true,
+                    )
+                    .footer(|f| {
+                        f.text("OpenSource: https://github.com/Reffis/breadferris");
+                        f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=60&v=4")
+                    })
+            })
+        })
+        .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
+
+#[command]
+#[aliases("개발자", "제작자", "developer")]
+async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(0xCC33CC)
+                    .title("Help")
+                    .description("`! Bread Cat#0002` (760688241447141395)")
+                    .url("https://github.com/fn79")
+                    .thumbnail("https://cdn.discordapp.com/avatars/760688241447141395/a_3a5a1997eb58c5360d9d0395e32f3417.gif?size=1024")
+                    .field(
+                        "개발환경",
+                        r#"
+> cargo 1.54.0 (2021-06-22)
+
+> IntelliJ
+
+> Windows 10 - 20H2 (OS Build 19042.1110)
+
+> Powershell (or CMD)
                     "#,
                         true,
                     )

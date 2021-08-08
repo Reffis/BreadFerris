@@ -49,6 +49,8 @@ $ cargo run
 
 `ferris status [Message]`: 봇 게임 상태를 지정합니다.
 
+`ferris dev`: 개발자의 정보 / 개발 환경을 표시합니다.
+
 **Image**
 
 `ferris fox`: 여우들의 사진을 보여줍니다.

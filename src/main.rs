@@ -47,7 +47,7 @@ impl EventHandler for Handler {
 struct General;
 
 #[group]
-#[commands(ping, help, support)]
+#[commands(ping, help, support, dev)]
 struct Utility;
 
 #[group]
