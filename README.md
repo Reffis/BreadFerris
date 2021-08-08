@@ -39,6 +39,8 @@ $ cargo run
 
 `ferris help`: 도움말을 표시합니다.
 
+`ferris github [User Name]`: ~~깃허브 프로필 정보를 표시합니다.~~ **[취소됨]**
+
 `ferris support [Arg]`: 문의
 
 **Owner**

@@ -33,9 +33,10 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     .field(
                         "Utility",
                         r#"
-```
+```diff
 help
 ping
+- github [User Name]
 support [Args]
 ```
                     "#,
@@ -44,7 +45,7 @@ support [Args]
                     .field(
                         "Owner",
                         r#"
-```
+```diff
 eval [Arg]
 ```
                     "#,
@@ -53,7 +54,7 @@ eval [Arg]
                     .field(
                         "Image",
                         r#"
-```
+```diff
 fox
 shiba
 cat
