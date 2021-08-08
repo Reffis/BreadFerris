@@ -51,7 +51,7 @@ struct General;
 struct Utility;
 
 #[group]
-#[commands(fox, shiba, cat)]
+#[commands(shiba, fox, cat, meme)]
 struct Image;
 
 #[tokio::main]

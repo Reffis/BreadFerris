@@ -47,7 +47,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     .field(
                         "Image",
                         r#"
-> `fox` `shiba` `cat`
+> `fox` `shiba` `cat` `meme`
                     "#,
                         true,
                     )

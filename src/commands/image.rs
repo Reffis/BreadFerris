@@ -3,6 +3,7 @@ use reqwest;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+use json::JsonValue;
 
 #[command]
 #[aliases("여우")]
@@ -35,17 +36,17 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
 #[command]
 #[aliases("시바견")]
 async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
-    let r = reqwest::get("http://shibe.online/libs/shibes?urls=true&httpsUrls=true")
+    let r = reqwest::get("http://shibe.online/api/shibes?urls=true&httpsUrls=true")
         .await?
         .text()
         .await?;
-    let image = &json::parse(r.as_str())?[0];
+    let image = &json::parse(r.as_str()).unwrap()[0];
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
                 e.colour(0xBBFFFF)
-                    .title("Shiba Inu")
-                    .url("http://shibe.online/libs/shibes?urls=true&httpsUrls=true")
+                    .title("Shiba")
+                    .url("http://shibe.online/api/shibes?urls=true&httpsUrls=true")
                     .image(image)
                     .footer(|f| {
                         f.text(format!("{}", msg.author.name));
@@ -60,7 +61,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
 #[command]
 #[aliases("고양이", "야옹이", "애옹")]
 async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
-    let r = reqwest::get("https://libs.thecatapi.com/v1/images/search")
+    let r = reqwest::get("https://api.thecatapi.com/v1/images/search")
         .await?
         .text()
         .await?;
@@ -70,7 +71,7 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
             m.embed(|e| {
                 e.colour(0xBBFFFF)
                     .title("Cat")
-                    .url("https://libs.thecatapi.com/v1/images/search")
+                    .url("https://api.thecatapi.com/v1/images/search")
                     .image(image)
                     .footer(|f| {
                         f.text(format!("{}", msg.author.name));
@@ -79,5 +80,37 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
+    Ok(())
+}
+
+#[command]
+#[aliases("밈")]
+async fn meme(ctx: &Context, msg: &Message) -> CommandResult {
+    let r = reqwest::get("https://meme-api.herokuapp.com/gimme")
+        .await?
+        .text()
+        .await?;
+    let data = &json::parse(r.as_str())?;
+    let title = &data["title"];
+    let url = &data["url"];
+    let postlink = &data["postLink"];
+    if &data["nsfw"] == &JsonValue::Boolean(true) {
+        // TODO
+    } else {
+        msg.channel_id
+            .send_message(&ctx.http, |m| {
+                m.embed(|e| {
+                    e.colour(0xBBFFFF)
+                        .title(title)
+                        .url(postlink)
+                        .image(url)
+                        .footer(|f| {
+                            f.text(format!("{}", msg.author.name));
+                            f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                        })
+                })
+            })
+            .await?;
+    }
     Ok(())
 }
