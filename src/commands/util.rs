@@ -1,9 +1,9 @@
 //use super::image_lib::*;
+use breadferris::cmdlog;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
-use breadferris::cmdlog;
 
 ///use image::imageops::FilterType;
 

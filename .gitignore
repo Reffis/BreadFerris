@@ -1,6 +1,6 @@
 /target
 /.idea
 /discord_bot.iml
-/token.txt
+/config/config.json
 /test.png
 /temp.png

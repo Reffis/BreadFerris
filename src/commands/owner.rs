@@ -1,10 +1,10 @@
-use serenity::framework::standard::{CommandResult, macros::command};
 use serenity::framework::standard::Args;
+use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 
-use breadferris::{log, cmdlog};
 use breadferris::LogType::Info;
+use breadferris::{cmdlog, log};
 
 use crate::libs::eval_lib;
 use crate::ShardManagerContainer;

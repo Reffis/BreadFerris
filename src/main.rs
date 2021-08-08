@@ -2,7 +2,7 @@ mod commands;
 mod libs;
 use std::{collections::HashSet, sync::Arc};
 
-use breadferris::{log, LogType::*};
+use breadferris::{loadconfig, log, LogType::*};
 use commands::image::*;
 use commands::owner::*;
 use commands::util::*;
@@ -15,7 +15,6 @@ use serenity::{
     model::{event::ResumedEvent, gateway::Ready},
     prelude::*,
 };
-use std::io::Read;
 use std::process::exit;
 
 pub struct ShardManagerContainer;
@@ -56,11 +55,7 @@ struct Image;
 
 #[tokio::main]
 async fn main() {
-    let mut file = std::fs::File::open("token.txt").unwrap();
-    let mut token = String::new();
-    file.read_to_string(&mut token).unwrap();
-
-    let token = token;
+    let token = loadconfig("token".to_string());
 
     let http = Http::new_with_token(&token);
 
@@ -82,7 +77,12 @@ async fn main() {
 
     // Create the framework
     let framework = StandardFramework::new()
-        .configure(|c| c.owners(owners).prefixes(["ferris ", "페리스 "]))
+        .configure(|c| {
+            c.owners(owners).prefixes([
+                loadconfig("prefix".to_string()),
+                loadconfig("prefix2".to_string()),
+            ])
+        })
         .group(&GENERAL_GROUP)
         .group(&UTILITY_GROUP)
         .group(&IMAGE_GROUP);
