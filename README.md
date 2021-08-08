@@ -44,4 +44,6 @@ $ cargo run
 `ferris eval [Arg]`: 러스트 코드 실행 (봇 주인만 가능)
 
 `ferris fox`: 여우들의 사진을 보여줍니다.
+
+`ferris shiba`: 시바견의 사진을 보여줍니다.
 > (더 추가될 예정)

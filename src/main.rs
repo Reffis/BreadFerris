@@ -43,7 +43,7 @@ struct General;
 struct Utility;
 
 #[group]
-#[commands(fox)]
+#[commands(fox, shiba)]
 struct Image;
 
 #[tokio::main]

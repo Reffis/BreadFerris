@@ -55,6 +55,7 @@ eval [Arg]
                         r#"
 ```
 fox
+shiba
 ```
                     "#,
                         true,
