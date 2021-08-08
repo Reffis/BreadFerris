@@ -2,9 +2,11 @@ mod commands;
 
 use std::{collections::HashSet, sync::Arc};
 
+use breadferris::{log, LogType::*};
 use commands::image::*;
 use commands::owner::*;
 use commands::util::*;
+use serenity::model::gateway::Activity;
 use serenity::{
     async_trait,
     client::bridge::gateway::ShardManager,
@@ -14,9 +16,7 @@ use serenity::{
     prelude::*,
 };
 use std::io::Read;
-use breadferris::{log, LogType::*};
 use std::process::exit;
-use serenity::model::gateway::Activity;
 
 pub struct ShardManagerContainer;
 
@@ -30,7 +30,11 @@ struct Handler;
 impl EventHandler for Handler {
     async fn ready(&self, ctx: Context, ready: Ready) {
         log(Info, format!("Connected as {}", ready.user.name));
-        ctx.set_activity(Activity::playing(format!("ferris help / {} Servers", ready.guilds.len()))).await;
+        ctx.set_activity(Activity::playing(format!(
+            "ferris help / {} Servers",
+            ready.guilds.len()
+        )))
+        .await;
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
@@ -43,7 +47,7 @@ impl EventHandler for Handler {
 struct General;
 
 #[group]
-#[commands(ping, help, image, support)]
+#[commands(ping, help, support)]
 struct Utility;
 
 #[group]
@@ -68,7 +72,10 @@ async fn main() {
             (owners, info.id)
         }
         Err(why) => {
-            log(Error, format!("Could not access application info: {:?}", why));
+            log(
+                Error,
+                format!("Could not access application info: {:?}", why),
+            );
             exit(1);
         }
     };

@@ -54,7 +54,6 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
     Ok(())
 }
 
-
 #[command]
 #[aliases("고양이", "야옹이", "애옹")]
 async fn cat(ctx: &Context, msg: &Message) -> CommandResult {

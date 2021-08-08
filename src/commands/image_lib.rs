@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub async fn fetch_url(
     url: String,
     file_name: String,

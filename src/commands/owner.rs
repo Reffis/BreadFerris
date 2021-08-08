@@ -1,10 +1,10 @@
 use crate::ShardManagerContainer;
+use breadferris::log;
+use breadferris::LogType::Info;
 use serenity::framework::standard::Args;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use breadferris::log;
-use breadferris::LogType::Info;
 
 #[command]
 #[aliases("실행", "코드실행")]
@@ -58,6 +58,7 @@ async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
 #[owners_only]
 async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     ctx.set_activity(Activity::playing(args.rest())).await;
-    msg.reply(ctx, format!("```diff\n+ Text: {}\n```", args.rest())).await?;
+    msg.reply(ctx, format!("```diff\n+ Text: {}\n```", args.rest()))
+        .await?;
     Ok(())
 }

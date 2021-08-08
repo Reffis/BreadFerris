@@ -1,10 +1,10 @@
-use super::image_lib::*;
+//use super::image_lib::*;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
 
-use image::imageops::FilterType;
+///use image::imageops::FilterType;
 
 #[command]
 #[aliases("핑")]
@@ -74,6 +74,7 @@ cat
     Ok(())
 }
 
+/*
 // TODO
 #[command]
 async fn image(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
@@ -89,7 +90,7 @@ async fn image(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         .await?;
 
     Ok(())
-}
+}*/
 
 #[command]
 #[aliases("문의", "지원")]

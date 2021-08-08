@@ -1,10 +1,10 @@
-use LogType::*;
 use chrono::prelude::*;
+use LogType::*;
 
 pub enum LogType {
     Info,
     Warn,
-    Error
+    Error,
 }
 
 /// log(LogType, format!("Text"))
@@ -12,13 +12,25 @@ pub enum LogType {
 pub fn log(logtype: LogType, text: String) {
     match logtype {
         Info => {
-            println!("[Info] [{}]: {}", Local::now().format("%Y-%m-%d %H:%M:%S").to_string(), text);
-        },
+            println!(
+                "[Info] [{}]: {}",
+                Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
+                text
+            );
+        }
         Warn => {
-            println!("[Warn] [{}]: {}", Local::now().format("%Y-%m-%d %H:%M:%S").to_string(), text);
-        },
+            println!(
+                "[Warn] [{}]: {}",
+                Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
+                text
+            );
+        }
         Error => {
-            println!("[Error] [{}]: {}", Local::now().format("%Y-%m-%d %H:%M:%S").to_string(), text);
+            println!(
+                "[Error] [{}]: {}",
+                Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
+                text
+            );
         }
     }
 }
