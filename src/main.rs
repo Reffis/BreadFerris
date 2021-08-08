@@ -2,6 +2,7 @@ mod commands;
 
 use std::{collections::HashSet, sync::Arc};
 
+use commands::image::*;
 use commands::owner::*;
 use commands::util::*;
 use serenity::{
@@ -41,6 +42,10 @@ struct General;
 #[commands(ping, help, image, support)]
 struct Utility;
 
+#[group]
+#[commands(fox)]
+struct Image;
+
 #[tokio::main]
 async fn main() {
     let mut file = std::fs::File::open("token.txt").unwrap();
@@ -65,7 +70,8 @@ async fn main() {
     let framework = StandardFramework::new()
         .configure(|c| c.owners(owners).prefixes(["ferris ", "페리스 "]))
         .group(&GENERAL_GROUP)
-        .group(&UTILITY_GROUP);
+        .group(&UTILITY_GROUP)
+        .group(&IMAGE_GROUP);
 
     let mut client = Client::builder(&token)
         .framework(framework)
