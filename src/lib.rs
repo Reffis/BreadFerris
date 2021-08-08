@@ -4,7 +4,7 @@ use LogType::*;
 pub enum LogType {
     Info,
     Warn,
-    Error,
+    Error
 }
 
 /// log(LogType, format!("Text"))
@@ -33,4 +33,13 @@ pub fn log(logtype: LogType, text: String) {
             );
         }
     }
+}
+
+pub fn cmdlog(author: String, cmd: String) {
+    println!(
+        "[Command] [{}] [{}]: {}",
+        Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
+        author,
+        cmd
+    );
 }

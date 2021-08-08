@@ -3,6 +3,7 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
+use breadferris::cmdlog;
 
 ///use image::imageops::FilterType;
 
@@ -17,7 +18,7 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 
     msg.reply(ctx, format!("Pong! 🏓\nAPI Latency: {}ms", api_latency))
         .await?;
-
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -58,7 +59,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -118,6 +119,6 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
                 .await?;
         }
     }
-
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }

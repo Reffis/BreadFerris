@@ -4,6 +4,7 @@ use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use json::JsonValue;
+use breadferris::cmdlog;
 
 #[command]
 #[aliases("여우")]
@@ -30,6 +31,7 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -55,6 +57,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -80,6 +83,7 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -112,5 +116,6 @@ async fn meme(ctx: &Context, msg: &Message) -> CommandResult {
             })
             .await?;
     }
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }

@@ -3,7 +3,7 @@ use serenity::framework::standard::Args;
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 
-use breadferris::log;
+use breadferris::{log, cmdlog};
 use breadferris::LogType::Info;
 
 use crate::libs::eval_lib;
@@ -34,7 +34,7 @@ async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         ),
     )
     .await?;
-
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -52,7 +52,7 @@ async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
     }
 
     log(Info, format!("Shutdown. . ."));
-
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -63,5 +63,6 @@ async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     ctx.set_activity(Activity::playing(args.rest())).await;
     msg.reply(ctx, format!("```diff\n+ Text: {}\n```", args.rest()))
         .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
