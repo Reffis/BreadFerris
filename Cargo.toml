@@ -12,6 +12,12 @@ image = "*"
 json = "*"
 chrono = "*"
 
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+
 [dependencies.tokio]
 version = "1.0"
 features = ["macros", "signal", "rt-multi-thread"]
