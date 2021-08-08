@@ -3,6 +3,8 @@ use serenity::framework::standard::Args;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+use breadferris::log;
+use breadferris::LogType::Info;
 
 #[command]
 #[aliases("실행", "코드실행")]
@@ -45,6 +47,8 @@ async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
         msg.reply(ctx, "Err").await?;
         return Ok(());
     }
+
+    log(Info, format!("Shutdown. . ."));
 
     Ok(())
 }

@@ -78,6 +78,7 @@ dependencies = [
 name = "breadferris"
 version = "0.1.0"
 dependencies = [
+ "chrono",
  "image",
  "json",
  "reqwest",

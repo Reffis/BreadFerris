@@ -10,6 +10,7 @@ reqwest = "*"
 tempdir = "*"
 image = "*"
 json = "*"
+chrono = "*"
 
 [dependencies.tokio]
 version = "1.0"

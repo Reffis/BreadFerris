@@ -14,6 +14,8 @@ use serenity::{
     prelude::*,
 };
 use std::io::Read;
+use breadferris::{log, LogType::*};
+use std::process::exit;
 
 pub struct ShardManagerContainer;
 
@@ -26,11 +28,11 @@ struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, _: Context, ready: Ready) {
-        println!("Connected as {}", ready.user.name);
+        log(Info, format!("Connected as {}", ready.user.name));
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
-        println!("Resumed");
+        log(Info, format!("Resumed"));
     }
 }
 
@@ -63,7 +65,10 @@ async fn main() {
 
             (owners, info.id)
         }
-        Err(why) => panic!("Could not access application info: {:?}", why),
+        Err(why) => {
+            log(Error, format!("Could not access application info: {:?}", why));
+            exit(1);
+        }
     };
 
     // Create the framework
