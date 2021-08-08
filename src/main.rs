@@ -16,6 +16,7 @@ use serenity::{
 use std::io::Read;
 use breadferris::{log, LogType::*};
 use std::process::exit;
+use serenity::model::gateway::Activity;
 
 pub struct ShardManagerContainer;
 
@@ -27,8 +28,9 @@ struct Handler;
 
 #[async_trait]
 impl EventHandler for Handler {
-    async fn ready(&self, _: Context, ready: Ready) {
+    async fn ready(&self, ctx: Context, ready: Ready) {
         log(Info, format!("Connected as {}", ready.user.name));
+        ctx.set_activity(Activity::playing(format!("ferris help / {} Servers", ready.guilds.len()))).await;
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
