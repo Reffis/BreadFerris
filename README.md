@@ -39,8 +39,6 @@ $ cargo run
 
 `ferris help`: 도움말을 표시합니다.
 
-`ferris github [User Name]`: ~~깃허브 프로필 정보를 표시합니다.~~ **[취소됨]**
-
 `ferris support [Arg]`: 문의
 
 **Owner**
@@ -48,6 +46,8 @@ $ cargo run
 `ferris quit`: 봇 종료
 
 `ferris eval [Arg]`: 러스트 코드 실행 (봇 주인만 가능)
+
+`ferris status [Message]`: 봇 게임 상태를 지정합니다.
 
 **Image**
 

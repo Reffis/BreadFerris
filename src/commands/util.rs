@@ -36,8 +36,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
 ```diff
 help
 ping
-- github [User Name]
-support [Args]
+support [Message]
 ```
                     "#,
                         true,
@@ -46,7 +45,9 @@ support [Args]
                         "Owner",
                         r#"
 ```diff
-eval [Arg]
+eval [Code]
+quit
+status [Message]
 ```
                     "#,
                         true,

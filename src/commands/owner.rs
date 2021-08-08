@@ -52,3 +52,12 @@ async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
 
     Ok(())
 }
+
+#[command]
+#[aliases("상태", "상메", "상태메세지", "게임상태")]
+#[owners_only]
+async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    ctx.set_activity(Activity::playing(args.rest())).await;
+    msg.reply(ctx, format!("```diff\n+ Text: {}\n```", args.rest())).await?;
+    Ok(())
+}
