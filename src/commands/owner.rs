@@ -5,6 +5,7 @@ use serenity::prelude::*;
 use crate::ShardManagerContainer;
 
 #[command]
+#[aliases("실행", "코드실행")]
 #[owners_only]
 async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let r = args
@@ -33,6 +34,7 @@ async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 }
 
 #[command]
+#[aliases("종료", "shutdown", "exit")]
 #[owners_only]
 async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
     let data = ctx.data.read().await;

@@ -7,6 +7,7 @@ use super::image::*;
 use image::imageops::FilterType;
 
 #[command]
+#[aliases("핑")]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
     let api_latency = {
         let instant = Instant::now();
@@ -21,6 +22,7 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 }
 
 #[command]
+#[aliases("도움", "도움말")]
 async fn help(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
@@ -69,6 +71,7 @@ async fn image(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 }
 
 #[command]
+#[aliases("문의", "지원")]
 async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     match args.rest() {
         "" | " " => { msg.reply(ctx, "**문의 내용**을 입력해주세요.").await?; },
