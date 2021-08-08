@@ -15,7 +15,7 @@ $ git clone https://github.com/fn79/BreadFerris.git
 $ cd BreadFerris
 ```
 
-`token.txt`를 생성한다음, 봇의 토큰을 입력합니다.
+`config/config.json`를 생성한다음, `config/config.json.example`을 참고하여 설정을 완료합니다.
 
 
 ```shell
