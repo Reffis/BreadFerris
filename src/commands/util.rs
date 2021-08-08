@@ -33,33 +33,21 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     .field(
                         "Utility",
                         r#"
-```diff
-help
-ping
-support [Message]
-```
+> `help` `ping` `support [Message]`
                     "#,
                         true,
                     )
                     .field(
                         "Owner",
                         r#"
-```diff
-eval [Code]
-quit
-status [Message]
-```
+> `eval [Code]` `quit` `status [Message]`
                     "#,
                         true,
                     )
                     .field(
                         "Image",
                         r#"
-```diff
-fox
-shiba
-cat
-```
+> `fox` `shiba` `cat`
                     "#,
                         true,
                     )
