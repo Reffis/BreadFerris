@@ -56,6 +56,7 @@ eval [Arg]
 ```
 fox
 shiba
+cat
 ```
                     "#,
                         true,

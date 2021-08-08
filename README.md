@@ -46,4 +46,6 @@ $ cargo run
 `ferris fox`: 여우들의 사진을 보여줍니다.
 
 `ferris shiba`: 시바견의 사진을 보여줍니다.
+
+`ferris cat`: 고양이의 사진을 보여줍니다.
 > (더 추가될 예정)
