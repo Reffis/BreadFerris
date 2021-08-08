@@ -7,18 +7,21 @@ use serenity::prelude::*;
 #[command]
 #[aliases("여우")]
 async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
-    let r = reqwest::get("https://randomfox.ca/floof/")
-        .await?
-        .text()
-        .await?;
-    let image = &json::parse(r.as_str())?["image"];
+    let r = json::parse(
+        reqwest::get("https://randomfox.ca/floof/")
+            .await?
+            .text()
+            .await?
+            .as_str(),
+    )?["image"]
+        .to_string();
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
                 e.colour(0xBBFFFF)
                     .title("Fox")
                     .url("https://randomfox.ca/floof/")
-                    .image(image)
+                    .image(r.as_str())
                     .footer(|f| {
                         f.text(format!("{}", msg.author.name));
                         f.icon_url(msg.author.avatar_url().unwrap_or_default())
@@ -32,7 +35,7 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
 #[command]
 #[aliases("시바견")]
 async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
-    let r = reqwest::get("http://shibe.online/api/shibes?urls=true&httpsUrls=true")
+    let r = reqwest::get("http://shibe.online/libs/shibes?urls=true&httpsUrls=true")
         .await?
         .text()
         .await?;
@@ -42,7 +45,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
             m.embed(|e| {
                 e.colour(0xBBFFFF)
                     .title("Shiba Inu")
-                    .url("http://shibe.online/api/shibes?urls=true&httpsUrls=true")
+                    .url("http://shibe.online/libs/shibes?urls=true&httpsUrls=true")
                     .image(image)
                     .footer(|f| {
                         f.text(format!("{}", msg.author.name));
@@ -57,7 +60,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
 #[command]
 #[aliases("고양이", "야옹이", "애옹")]
 async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
-    let r = reqwest::get("https://api.thecatapi.com/v1/images/search")
+    let r = reqwest::get("https://libs.thecatapi.com/v1/images/search")
         .await?
         .text()
         .await?;
@@ -67,7 +70,7 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
             m.embed(|e| {
                 e.colour(0xBBFFFF)
                     .title("Cat")
-                    .url("https://api.thecatapi.com/v1/images/search")
+                    .url("https://libs.thecatapi.com/v1/images/search")
                     .image(image)
                     .footer(|f| {
                         f.text(format!("{}", msg.author.name));

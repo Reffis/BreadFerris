@@ -1,5 +1,5 @@
 #[allow(dead_code)]
-pub async fn fetch_url(
+pub async fn download_file(
     url: String,
     file_name: String,
 ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {

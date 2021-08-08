@@ -1,10 +1,13 @@
-use crate::ShardManagerContainer;
-use breadferris::log;
-use breadferris::LogType::Info;
+use serenity::framework::standard::{CommandResult, macros::command};
 use serenity::framework::standard::Args;
-use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+
+use breadferris::log;
+use breadferris::LogType::Info;
+
+use crate::libs::eval_lib;
+use crate::ShardManagerContainer;
 
 #[command]
 #[aliases("실행", "코드실행")]
@@ -23,7 +26,7 @@ async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         ctx,
         format!(
             "```rs\n{}\n```",
-            result = match super::eval_lib::eval(r.as_str(), true) {
+            result = match eval_lib::eval(r.as_str(), true) {
                 Ok(e) => e,
                 Err(e) => format!("Error: {}", e),
             }
