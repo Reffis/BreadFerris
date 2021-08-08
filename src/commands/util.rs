@@ -32,6 +32,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
 ```
 help
 ping
+support [Args]
 ```
                     "#, true)
                     .field("Owner", r#"
@@ -63,6 +64,32 @@ async fn image(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             m.add_file("temp.png")
         })
         .await?;
+
+    Ok(())
+}
+
+#[command]
+async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    match args.rest() {
+        "" | " " => { msg.reply(ctx, "**문의 내용**을 입력해주세요.").await?; },
+        _ => {
+            let channel = ctx.http.get_channel(873747323266666497).await?;
+            channel.id().send_message(&ctx.http, |m| { m.content(format!("**문의 - {} ({})**\n\n```\n{}\n```", msg.author.name, msg.author.id,args.rest())) }).await?;
+            msg.channel_id
+            .send_message(&ctx.http, |m| {
+                m.embed(|e| {
+                    e.colour(0x00ff00)
+                        .title("문의가 전송되었습니다.")
+                        .description(format!("내용:\n```\n{}\n```", args.rest()))
+                        .footer(|f| {
+                            f.text(format!("{} - 장난식으로 문의하면 가만히 안둡니다! 흐헤헤", msg.author.name));
+                            f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                        })
+                })
+            })
+            .await?;
+        }
+    }
 
     Ok(())
 }

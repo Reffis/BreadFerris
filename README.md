@@ -38,4 +38,8 @@ $ cargo run
 `ferris help`: 도움말을 표시합니다.
 
 `ferris quit`: 봇 종료
+
+`ferris support [Arg]`: 문의
+
+`ferris eval [Arg]`: 러스트 코드 실행 (봇 주인만 가능)
 > (더 추가될 예정)
