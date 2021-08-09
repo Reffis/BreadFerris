@@ -1,5 +1,3 @@
-
-
 use breadferris::{log, LogType::*};
 use serenity::model::gateway::Activity;
 use serenity::{
@@ -7,7 +5,6 @@ use serenity::{
     model::{event::ResumedEvent, gateway::Ready},
     prelude::*,
 };
-
 
 pub struct Handler;
 
@@ -19,7 +16,7 @@ impl EventHandler for Handler {
             "ferris help / {} Servers",
             ready.guilds.len()
         )))
-            .await;
+        .await;
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {

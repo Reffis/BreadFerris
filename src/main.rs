@@ -1,6 +1,6 @@
 mod commands;
-mod libs;
 mod event_handler;
+mod libs;
 
 use std::{collections::HashSet, sync::Arc};
 
