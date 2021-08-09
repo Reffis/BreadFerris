@@ -2,14 +2,17 @@ use chrono::prelude::*;
 use std::io::Read;
 use LogType::*;
 
+/*
+로그 / 설정 가져오기 / 명령어 로그 등을 관리하는 lib.rs입니다.
+*/
+
 pub enum LogType {
-    Info,
-    Warn,
-    Error,
+    Info, // 일반 모드
+    Warn, // 경고
+    Error, // 오류
 }
 
 /// log(LogType, format!("Text"))
-///
 pub fn log(logtype: LogType, text: String) {
     match logtype {
         Info => {
