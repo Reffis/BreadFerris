@@ -8,6 +8,7 @@ use breadferris::{loadconfig, log, LogType::*};
 use commands::image::*;
 use commands::owner::*;
 use commands::util::*;
+use commands::other::*;
 
 use serenity::{
     client::bridge::gateway::ShardManager,
@@ -34,6 +35,10 @@ struct Utility;
 #[group]
 #[commands(shiba, fox, cat, meme)]
 struct Image;
+
+#[group]
+#[commands(sans)]
+struct Other;
 
 #[tokio::main]
 async fn main() {
@@ -67,6 +72,7 @@ async fn main() {
         })
         .group(&GENERAL_GROUP)
         .group(&UTILITY_GROUP)
+        .group(&OTHER_GROUP)
         .group(&IMAGE_GROUP);
 
     let mut client = Client::builder(&token)
