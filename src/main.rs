@@ -6,9 +6,9 @@ use std::{collections::HashSet, sync::Arc};
 
 use breadferris::{loadconfig, log, LogType::*};
 use commands::image::*;
+use commands::other::*;
 use commands::owner::*;
 use commands::util::*;
-use commands::other::*;
 
 use serenity::{
     client::bridge::gateway::ShardManager,

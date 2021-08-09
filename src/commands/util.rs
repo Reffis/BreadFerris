@@ -6,8 +6,6 @@ use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
 
-///use image::imageops::FilterType;
-
 #[command]
 #[aliases("핑")]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
@@ -99,7 +97,6 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
     Ok(())
 }
 
-
 #[command]
 #[aliases("문의", "지원")]
 async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
@@ -108,7 +105,10 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             msg.reply(ctx, "**문의 내용**을 입력해주세요.").await?;
         }
         _ => {
-            let channel = ctx.http.get_channel(loadconfig("support_channel".to_string()).parse::<u64>()?).await?;
+            let channel = ctx
+                .http
+                .get_channel(loadconfig("support_channel".to_string()).parse::<u64>()?)
+                .await?;
             channel
                 .id()
                 .send_message(&ctx.http, |m| {
