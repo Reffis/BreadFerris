@@ -1,5 +1,5 @@
 //use super::image_lib::*;
-use breadferris::cmdlog;
+use breadferris::{cmdlog, loadconfig};
 use json::JsonValue;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
@@ -125,7 +125,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             msg.reply(ctx, "**문의 내용**을 입력해주세요.").await?;
         }
         _ => {
-            let channel = ctx.http.get_channel(873747323266666497).await?;
+            let channel = ctx.http.get_channel(loadconfig("support_channel".to_string()).parse::<u64>()?).await?;
             channel
                 .id()
                 .send_message(&ctx.http, |m| {
@@ -200,6 +200,8 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             .await?;
     }
     message.delete(ctx).await?;
+
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
 
     Ok(())
 }

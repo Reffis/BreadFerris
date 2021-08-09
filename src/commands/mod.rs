@@ -1,4 +1,4 @@
-pub use breadferris::{log, LogType::*};
+pub use breadferris::{log, LogType::*, loadconfig};
 
 pub mod image;
 pub mod owner;
