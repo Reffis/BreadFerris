@@ -80,7 +80,7 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
                         r#"
 > cargo 1.54.0 (2021-06-22)
 
-> IntelliJ
+> IntelliJ (or VSCode)
 
 > Windows 10 - 20H2 (OS Build 19042.1110)
 
@@ -99,23 +99,6 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
     Ok(())
 }
 
-/*
-// TODO
-#[command]
-async fn image(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
-    println!("{}", msg.author.avatar_url().unwrap_or_default());
-    fetch_url(args.rest().to_string(), "test.png".to_string()).await?;
-    use image::open;
-    let img = open("test.png").unwrap();
-    img.resize(200, 200, FilterType::Nearest)
-        .save("temp.png")
-        .unwrap();
-    msg.channel_id
-        .send_message(&ctx.http, |m| m.add_file("temp.png"))
-        .await?;
-
-    Ok(())
-}*/
 
 #[command]
 #[aliases("문의", "지원")]
