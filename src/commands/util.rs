@@ -40,16 +40,16 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         true,
                     )
                     .field(
-                        "Owner",
+                        "Image",
                         r#"
-> `eval [Code]` `quit` `status [Message]`
+> `fox` `shiba` `cat` `meme`
                     "#,
                         true,
                     )
                     .field(
-                        "Image",
+                        "Owner",
                         r#"
-> `fox` `shiba` `cat` `meme`
+> `eval [Code]` `quit` `status [Message]`
                     "#,
                         true,
                     )
