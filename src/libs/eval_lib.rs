@@ -1,4 +1,4 @@
-// Copyright (C) 2017 Stephane Raux. Distributed under the MIT license.
+// Copyright (C) 2017 Stephane Raux. Distributed under the MIT LICENSE.
 // https://github.com/stephaneyfx/everust
 
 extern crate tempdir;
