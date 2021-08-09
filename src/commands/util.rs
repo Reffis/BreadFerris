@@ -162,6 +162,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 #[command]
 #[aliases("실행")]
 async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    let message = msg.reply(ctx, "잠시만 기다려주세요 . . .").await?;
     let r = args
         .rest()
         .split("\n")
@@ -190,6 +191,7 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     } else {
         msg.reply(ctx, format!("```rs\n{}\n```", json["stderr"])).await?;
     }
+    message.delete(ctx).await?;
 
     Ok(())
 
