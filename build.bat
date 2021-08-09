@@ -20,6 +20,6 @@
 ::릴리즈 빌드
 ::::: cargo build --release
 
-::참고: https://doc.rust-lang.org/book/ch14-01-release-profiles.html
+:: 참고: https://doc.rust-lang.org/book/ch14-01-release-profiles.html
 
 cargo build --release
