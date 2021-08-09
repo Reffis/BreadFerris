@@ -19,6 +19,10 @@ $ cd BreadFerris
 
 
 ```shell
+$ ./build.bat
+
+or
+
 $ cargo run
 ```
 
