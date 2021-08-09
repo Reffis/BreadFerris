@@ -41,6 +41,8 @@ $ cargo run
 
 `ferris support [Arg]`: 문의
 
+`ferris run [Code]`: 코드를 실행합니다. 오너 카테고리에 있는 `eval`은 로컬에서 실행되는 반면, 해당 명령어는 러스트 플레이그라운드에서 실행됩니다.
+
 **Owner**
 
 `ferris quit`: 봇 종료

@@ -10,7 +10,6 @@ use crate::libs::eval_lib;
 use crate::ShardManagerContainer;
 
 #[command]
-#[aliases("실행", "코드실행")]
 #[owners_only]
 async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let r = args
