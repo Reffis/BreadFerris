@@ -1,18 +1,18 @@
 mod commands;
 mod libs;
+mod event_handler;
+
 use std::{collections::HashSet, sync::Arc};
 
 use breadferris::{loadconfig, log, LogType::*};
 use commands::image::*;
 use commands::owner::*;
 use commands::util::*;
-use serenity::model::gateway::Activity;
+
 use serenity::{
-    async_trait,
     client::bridge::gateway::ShardManager,
     framework::{standard::macros::group, StandardFramework},
     http::Http,
-    model::{event::ResumedEvent, gateway::Ready},
     prelude::*,
 };
 use std::process::exit;
@@ -21,24 +21,6 @@ pub struct ShardManagerContainer;
 
 impl TypeMapKey for ShardManagerContainer {
     type Value = Arc<Mutex<ShardManager>>;
-}
-
-struct Handler;
-
-#[async_trait]
-impl EventHandler for Handler {
-    async fn ready(&self, ctx: Context, ready: Ready) {
-        log(Info, format!("Connected as {}", ready.user.name));
-        ctx.set_activity(Activity::playing(format!(
-            "ferris help / {} Servers",
-            ready.guilds.len()
-        )))
-        .await;
-    }
-
-    async fn resume(&self, _: Context, _: ResumedEvent) {
-        log(Info, format!("Resumed"));
-    }
 }
 
 #[group]
@@ -89,7 +71,7 @@ async fn main() {
 
     let mut client = Client::builder(&token)
         .framework(framework)
-        .event_handler(Handler)
+        .event_handler(event_handler::Handler)
         .await
         .expect("Err creating client");
 
