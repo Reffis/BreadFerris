@@ -1,10 +1,10 @@
 //use super::image_lib::*;
 use breadferris::cmdlog;
+use json::JsonValue;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
-use json::JsonValue;
 
 ///use image::imageops::FilterType;
 
@@ -171,28 +171,35 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             _ => true,
         })
         .map(|x| x.to_string() + " ")
-        .collect::<String>().replace("\"", "\\\"");
+        .collect::<String>()
+        .replace("\"", "\\\"");
     let a = reqwest::Client::new();
-    let format = format!("
+    let format = format!(
+        "
         {}\"channel\":\"stable\",
         \"mode\":\"debug\",
         \"edition\":\"2018\",
         \"crateType\":\"bin\",
         \"tests\":false,
         \"code\":\"{}\",
-        \"backtrace\":false{}", "{\n", r, "\n}");
-    let res = a.post("https://play.rust-lang.org/execute")
+        \"backtrace\":false{}",
+        "{\n", r, "\n}"
+    );
+    let res = a
+        .post("https://play.rust-lang.org/execute")
         .header("content-type", "application/json")
         .body(format.clone())
-    .send().await?;
+        .send()
+        .await?;
     let json = &json::parse(res.text().await?.as_str())?;
     if json["success"] == JsonValue::Boolean(true) {
-        msg.reply(ctx, format!("```rs\n{}\n```" ,json["stdout"])).await?;
+        msg.reply(ctx, format!("```rs\n{}\n```", json["stdout"]))
+            .await?;
     } else {
-        msg.reply(ctx, format!("```rs\n{}\n```", json["stderr"])).await?;
+        msg.reply(ctx, format!("```rs\n{}\n```", json["stderr"]))
+            .await?;
     }
     message.delete(ctx).await?;
 
     Ok(())
-
 }
