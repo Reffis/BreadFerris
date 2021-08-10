@@ -200,8 +200,10 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         )
         .await?;
 
-    let user_nick = user.nick_in(&ctx.http, msg.guild_id.unwrap_or_default()).await
-        .unwrap_or_else(|| { "None".to_string() });
+    let user_nick = user
+        .nick_in(&ctx.http, msg.guild_id.unwrap_or_default())
+        .await
+        .unwrap_or_else(|| "None".to_string());
     let full_name = format!("{}#{}", user.name, user.discriminator);
     msg.channel_id
         .send_message(&ctx.http, |m| {
