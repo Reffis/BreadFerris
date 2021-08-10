@@ -36,7 +36,7 @@ pub const HELP_IMAGE: &str = r#"
 "#;
 
 pub const HELP_OWNER: &str = r#"
-> `eval [Code]` `quit` `status [Message]`
+> `eval [Code]` `quit` `status [Message]` `nick [Name]`
 "#;
 
 pub const HELP_MODER: &str = r#"
@@ -44,7 +44,7 @@ pub const HELP_MODER: &str = r#"
 "#;
 
 pub const HELP_FUN: &str = r#"
-> `nitro` `choice [item, item, . . .]` `bce [Text]` `thinking`
+> `nitro` `choice [item, item, . . .]` `bce [Text]`
 "#;
 
 /*

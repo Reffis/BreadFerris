@@ -47,6 +47,8 @@ $ cargo run
 
 `ferris run [Code]`: 코드를 실행합니다. 오너 카테고리에 있는 `eval`은 로컬에서 실행되는 반면, 해당 명령어는 러스트 플레이그라운드에서 실행됩니다.
 
+`ferris dev`: 개발자의 정보 / 개발 환경을 표시합니다.
+
 **Owner**
 
 `ferris quit`: 봇 종료
@@ -55,7 +57,7 @@ $ cargo run
 
 `ferris status [Message]`: 봇 게임 상태를 지정합니다.
 
-`ferris dev`: 개발자의 정보 / 개발 환경을 표시합니다.
+`ferris nick [Name]`: 서버에 있는 봇의 이름을 변경합니다.
 
 **Image**
 

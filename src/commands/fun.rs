@@ -48,11 +48,3 @@ async fn bce(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     msg.reply(ctx, to_bce::new(args.rest())).await?;
     Ok(())
 }
-
-#[command]
-#[aliases("띵킹")]
-async fn thinking(ctx: &Context, msg: &Message) -> CommandResult {
-    //TODO
-
-    Ok(())
-}
