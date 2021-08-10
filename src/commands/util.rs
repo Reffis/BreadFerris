@@ -173,3 +173,10 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 
     Ok(())
 }
+
+#[command]
+#[aliases("오픈소스")]
+async fn opensource(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.reply(ctx, "**https://github.com/Reffis/BreadFerris**\n\n**Pull requests**는 언제나 환영입니다.").await?;
+    Ok(())
+}
