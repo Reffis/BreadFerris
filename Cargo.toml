@@ -15,7 +15,7 @@ chrono = "*"
 [profile.dev]
 opt-level = 0
 
-[profile.release]
+[profile.release] # 릴리즈 빌드
 opt-level = 3
 
 [dependencies.tokio]
