@@ -42,7 +42,7 @@ struct Image;
 struct Other;
 
 #[group]
-#[commands(ban)]
+#[commands(ban, kick, unban)]
 struct Moderator;
 
 #[tokio::main]
