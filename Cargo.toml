@@ -11,6 +11,7 @@ tempdir = "*"
 image = "*"
 json = "*"
 chrono = "*"
+rand = "0.8"
 
 [profile.dev]
 opt-level = 0

@@ -81,6 +81,7 @@ dependencies = [
  "chrono",
  "image",
  "json",
+ "rand 0.8.4",
  "reqwest",
  "serenity",
  "tempdir",

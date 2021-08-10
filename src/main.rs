@@ -10,6 +10,7 @@ use commands::moderator::*;
 use commands::other::*;
 use commands::owner::*;
 use commands::util::*;
+use commands::fun::*;
 
 use serenity::{
     client::bridge::gateway::ShardManager,
@@ -45,6 +46,10 @@ struct Other;
 #[commands(ban, kick, unban)]
 struct Moderator;
 
+#[group]
+#[commands(choice, nitro)]
+struct Fun;
+
 #[tokio::main]
 async fn main() {
     let token = loadconfig("token".to_string());
@@ -79,7 +84,8 @@ async fn main() {
         .group(&UTILITY_GROUP)
         .group(&OTHER_GROUP)
         .group(&IMAGE_GROUP)
-        .group(&MODERATOR_GROUP);
+        .group(&MODERATOR_GROUP)
+        .group(&FUN_GROUP);
 
     let mut client = Client::builder(&token)
         .framework(framework)
