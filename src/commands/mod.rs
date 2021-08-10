@@ -36,11 +36,11 @@ pub const HELP_IMAGE: &str = r#"
 "#;
 
 pub const HELP_OWNER: &str = r#"
-> `eval [Code]`, `quit`, `status [Message]`, `nick [Name]`
+> `eval [Code]`, `quit`, `status [Message]`, `nick [Name]`, `msg_del [message id]`
 "#;
 
 pub const HELP_MODER: &str = r#"
-> `ban [mention or id] [reason]`, `kick [mention or id] [reason]`, `unban [mention or id]`, `msg_del [message id]`
+> `ban [mention or id] [reason]`, `kick [mention or id] [reason]`, `unban [mention or id]`
 "#;
 
 pub const HELP_FUN: &str = r#"
