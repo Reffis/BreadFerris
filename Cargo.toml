@@ -8,11 +8,10 @@ repository = "https://github.com/reffis/breadferris"
 description = "Rust Discord Bot - 러스트로 작성된 디스코드 봇입니다."
 
 [dependencies]
-reqwest = "*"
-tempdir = "*"
-image = "*"
-json = "*"
-chrono = "*"
+reqwest = "0.11"
+tempdir = "0.3"
+json = "0.12.4"
+chrono = "0.4"
 rand = "0.8"
 bbangcat_encryption = "0.1.1"
 
