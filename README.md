@@ -51,7 +51,7 @@ $ cargo run
 
 `ferris quit`: 봇 종료
 
-`ferris eval [Arg]`: 러스트 코드 실행
+`ferris eval [Arg]`: 로컬에서 러스트 코드 실행
 
 `ferris status [Message]`: 봇 게임 상태를 지정합니다.
 
