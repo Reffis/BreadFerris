@@ -54,9 +54,8 @@ struct Fun;
 async fn main() {
     let token = loadconfig("token".to_string());
 
-    let http = Http::new_with_token(&token);
 
-    let (owners, _bot_id) = match http.get_current_application_info().await {
+    let (owners, _bot_id) = match Http::new_with_token(&token).get_current_application_info().await {
         Ok(info) => {
             let mut owners = HashSet::new();
             owners.insert(info.owner.id);
@@ -107,7 +106,5 @@ async fn main() {
         shard_manager.lock().await.shutdown_all().await;
     });
 
-    if let Err(e) = client.start().await {
-        println!("실패: {:?}", e);
-    }
+    client.start().await.unwrap();
 }
