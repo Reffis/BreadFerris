@@ -47,7 +47,7 @@ struct Other;
 struct Moderator;
 
 #[group]
-#[commands(choice, nitro, bce, thinking)]
+#[commands(choice, nitro, bce)]
 struct Fun;
 
 #[tokio::main]
