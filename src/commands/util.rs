@@ -5,6 +5,8 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
+use crate::commands::{HELP_UTIL, HELP_IMAGE, HELP_OWNER, HELP_FUN};
+use crate::Moderator;
 
 #[command]
 #[aliases("핑")]
@@ -32,30 +34,27 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     .description("prefix: `ferris`")
                     .field(
                         "Utility",
-                        r#"
-> `help` `ping` `support [Message]` `dev` `run [Code]`
-                    "#,
+                        HELP_UTIL,
                         true,
                     )
                     .field(
                         "Image",
-                        r#"
-> `fox` `shiba` `cat` `meme`
-                    "#,
+                        HELP_IMAGE,
                         true,
                     )
                     .field(
                         "Moderator",
-                        r#"
-> `ban [mention or id] [reason]` `kick [mention or id] [reason]` `unban [mention or id]`
-                    "#,
+                        Moderator,
                         true,
                     )
                     .field(
                         "Owner",
-                        r#"
-> `eval [Code]` `quit` `status [Message]`
-                    "#,
+                        HELP_OWNER,
+                        true,
+                    )
+                    .field(
+                        "Fun",
+                        HELP_FUN,
                         true,
                     )
                     .footer(|f| {

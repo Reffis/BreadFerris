@@ -75,6 +75,12 @@ $ cargo run
 
 `ferris unban [id 또는 멘션]`: 차단된 유저를 차단 해제합니다.
 
+**Fun**
+
+`ferris nitro`: 랜덤적으로 니트로 코드를 출력합니다. (fake)
+
+`ferris choice [item, item, . . .]`: 아이템을 고릅니다. (`,` 으로 분간)
+
 > (더 추가될 예정)
 
 <br><br>
