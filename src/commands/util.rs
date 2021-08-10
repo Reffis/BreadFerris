@@ -6,7 +6,6 @@ use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
 use crate::commands::{HELP_UTIL, HELP_IMAGE, HELP_OWNER, HELP_FUN, HELP_MODER};
-use crate::Moderator;
 
 #[command]
 #[aliases("핑")]
