@@ -180,10 +180,3 @@ async fn opensource(ctx: &Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, "**https://github.com/Reffis/BreadFerris**\n\n**Pull requests**는 언제나 환영입니다.").await?;
     Ok(())
 }
-
-#[command]
-#[aliases("nickname", "닉네임", "닉")]
-async fn nick(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
-    msg.guild_id.unwrap().edit_nickname(&ctx.http, Some(args.rest())).await?;
-    Ok(())
-}

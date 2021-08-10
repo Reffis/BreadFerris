@@ -27,11 +27,11 @@ impl TypeMapKey for ShardManagerContainer {
 }
 
 #[group]
-#[commands(eval, quit, status)]
+#[commands(eval, quit, status, nick)]
 struct General;
 
 #[group]
-#[commands(ping, help, support, dev, run, opensource, nick)]
+#[commands(ping, help, support, dev, run, opensource)]
 struct Utility;
 
 #[group]
