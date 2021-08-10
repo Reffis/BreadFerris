@@ -28,7 +28,7 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
                 .unwrap_or_else(|| &' '),
         );
     });
-    msg.reply(ctx, format!("`{}`", v)).await?;
+    msg.reply(ctx, format!("`discord.gift/{}`", v)).await?;
 
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
