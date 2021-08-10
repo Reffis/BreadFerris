@@ -69,7 +69,11 @@ $ cargo run
 
 **Moderator** (특정 권한 또는 관리자만 사용가능)
 
-`ferris ban [id 또는 멘션]`: 유저를 차단합니다. 
+`ferris ban [id 또는 멘션] [사유]`: 유저를 차단합니다.
+
+`ferris kick [id 또는 멘션] [사유]`: 유저를 추방합니다.
+
+`ferris unban [id 또는 멘션]`: 차단된 유저를 차단 해제합니다.
 
 > (더 추가될 예정)
 

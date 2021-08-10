@@ -47,7 +47,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     .field(
                         "Moderator",
                         r#"
-> `ban [mention or id] [reason]`
+> `ban [mention or id] [reason]` `kick [mention or id] [reason]` `unban [mention or id]`
                     "#,
                         true,
                     )
