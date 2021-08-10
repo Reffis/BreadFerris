@@ -45,6 +45,13 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         true,
                     )
                     .field(
+                        "Moderator",
+                        r#"
+> `ban [mention or id] [reason]`
+                    "#,
+                        true,
+                    )
+                    .field(
                         "Owner",
                         r#"
 > `eval [Code]` `quit` `status [Message]`

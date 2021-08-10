@@ -67,6 +67,10 @@ $ cargo run
 
 `ferris meme`: 밈을 보여줍니다.
 
+**Moderator** (특정 권한 또는 관리자만 사용가능)
+
+`ferris ban [id 또는 멘션]`: 유저를 차단합니다. 
+
 > (더 추가될 예정)
 
 <br><br>

@@ -7,8 +7,8 @@ use LogType::*;
 */
 
 pub enum LogType {
-    Info, // 일반 모드
-    Warn, // 경고
+    Info,  // 일반 모드
+    Warn,  // 경고
     Error, // 오류
 }
 

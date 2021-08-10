@@ -6,6 +6,7 @@ use std::{collections::HashSet, sync::Arc};
 
 use breadferris::{loadconfig, log, LogType::*};
 use commands::image::*;
+use commands::moderator::*;
 use commands::other::*;
 use commands::owner::*;
 use commands::util::*;
@@ -40,6 +41,10 @@ struct Image;
 #[commands(sans)]
 struct Other;
 
+#[group]
+#[commands(ban)]
+struct Moderator;
+
 #[tokio::main]
 async fn main() {
     let token = loadconfig("token".to_string());
@@ -73,7 +78,8 @@ async fn main() {
         .group(&GENERAL_GROUP)
         .group(&UTILITY_GROUP)
         .group(&OTHER_GROUP)
-        .group(&IMAGE_GROUP);
+        .group(&IMAGE_GROUP)
+        .group(&MODERATOR_GROUP);
 
     let mut client = Client::builder(&token)
         .framework(framework)
