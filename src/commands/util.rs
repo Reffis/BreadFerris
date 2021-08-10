@@ -210,7 +210,7 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
                     .title(format!("{} 님의 정보입니다.", full_name))
                     .footer(|f| {
                         f.text(msg.author.id)
-                            .icon_url(msg.author.avatar_url().unwrap_or_default())
+                            .icon_url(user.avatar_url().unwrap_or_default())
                     })
                     .field(
                         "기본 정보",
@@ -229,6 +229,7 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
                         ),
                         false,
                     )
+                    .thumbnail(user.avatar_url().unwrap_or_default())
             })
         })
         .await?;
