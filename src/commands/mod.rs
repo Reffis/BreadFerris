@@ -28,7 +28,7 @@ eval은 로컬에서 코드가 실행됩니다. 그렇기때문에, 컴퓨터에
  */
 
 pub const HELP_UTIL: &str = r#"
-> `help` `ping` `support [Message]` `dev` `run [Code]`
+> `help` `ping` `support [Message]` `dev` `run [Code]` `userinfo [mention or id]`
 "#;
 
 pub const HELP_IMAGE: &str = r#"
