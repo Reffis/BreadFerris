@@ -182,7 +182,7 @@ async fn opensource(ctx: &Context, msg: &Message) -> CommandResult {
 }
 
 #[command]
-#[aliases("nickname", "닉네임")]
+#[aliases("nickname", "닉네임", "닉")]
 async fn nick(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     msg.guild_id.unwrap().edit_nickname(&ctx.http, Some(args.rest())).await?;
     Ok(())
