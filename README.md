@@ -51,6 +51,8 @@ $ cargo run
 
 `ferris userinfo [멘션 또는 id]`: 유저의 정보를 표시합니다.
 
+`ferris server_emoji`: 서버에 있는 이모지를 가져옵니다. (주의: 이모지가 너무 많으면 출력되지 않을수도 있습니다.)
+
 **Owner**
 
 `ferris quit`: 봇 종료

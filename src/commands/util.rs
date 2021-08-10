@@ -247,12 +247,12 @@ async fn server_emoji(ctx: &Context, msg: &Message) -> CommandResult {
     let emoji = msg.guild_id.unwrap_or_default().emojis(ctx).await?;
     emoji.iter().enumerate().for_each(|i| {
         if i.1.animated {
-            emoji_list.push_str(format!("<a:{}:{}>\n",i.1.name, i.1.id).as_str());
+            emoji_list.push_str(format!("<a:{}:{}>\n", i.1.name, i.1.id).as_str());
         } else {
-            emoji_list.push_str(format!("<:{}:{}>\n",i.1.name, i.1.id).as_str());
+            emoji_list.push_str(format!("<:{}:{}>\n", i.1.name, i.1.id).as_str());
         }
     });
     emoji_list.push_str("```");
-    msg.reply(ctx, emoji_list).await.unwrap();
+    msg.reply(ctx, emoji_list).await?;
     Ok(())
 }
