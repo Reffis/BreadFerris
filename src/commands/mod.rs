@@ -28,23 +28,23 @@ eval은 로컬에서 코드가 실행됩니다. 그렇기때문에, 컴퓨터에
  */
 
 pub const HELP_UTIL: &str = r#"
-> `help` `ping` `support [Message]` `dev` `run [Code]` `userinfo [mention or id]` `server_emoji`
+> `help`, `ping`, `support [Message]`, `dev`, `run [Code]`, `userinfo [mention or id]`, `server_emoji`
 "#;
 
 pub const HELP_IMAGE: &str = r#"
-> `fox` `shiba` `cat` `meme`
+> `fox`, `shiba`, `cat`, `meme`
 "#;
 
 pub const HELP_OWNER: &str = r#"
-> `eval [Code]` `quit` `status [Message]` `nick [Name]`
+> `eval [Code]`, `quit`, `status [Message]`, `nick [Name]`
 "#;
 
 pub const HELP_MODER: &str = r#"
-> `ban [mention or id] [reason]` `kick [mention or id] [reason]` `unban [mention or id]`
+> `ban [mention or id] [reason]`, `kick [mention or id] [reason]`, `unban [mention or id]`
 "#;
 
 pub const HELP_FUN: &str = r#"
-> `nitro` `choice [item, item, . . .]` `bce [Text]` `say [Text]`
+> `nitro`, `choice [item, item, . . .]`, `bce [Text]` `say [Text]`
 "#;
 
 /*
