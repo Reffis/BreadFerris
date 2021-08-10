@@ -1,9 +1,9 @@
+use bbangcat_encryption::bce::*;
 use breadferris::cmdlog;
 use rand::prelude::SliceRandom;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use bbangcat_encryption::bce::*;
 
 #[command]
 #[aliases("랜덤", "골라", "random")]
@@ -53,13 +53,18 @@ async fn bce(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 #[command]
 #[aliases("say", "따라해")]
 async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
-    msg.channel_id.send_message(&ctx.http, |m| {
-        m.embed(|e| {
-            e.colour(0x04053F).title(format!("{}", args.rest())).footer(|f| {
-                f.text(msg.author.id).icon_url(msg.author.avatar_url().unwrap_or_default())
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(0x04053F)
+                    .title(format!("{}", args.rest()))
+                    .footer(|f| {
+                        f.text(msg.author.id)
+                            .icon_url(msg.author.avatar_url().unwrap_or_default())
+                    })
             })
         })
-    }).await?;
+        .await?;
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }

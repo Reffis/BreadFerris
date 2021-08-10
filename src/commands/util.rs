@@ -177,6 +177,63 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 #[command]
 #[aliases("오픈소스")]
 async fn opensource(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.reply(ctx, "**https://github.com/Reffis/BreadFerris**\n\n**Pull requests**는 언제나 환영입니다.").await?;
+    msg.reply(
+        ctx,
+        "**https://github.com/Reffis/BreadFerris**\n\n**Pull requests**는 언제나 환영입니다.",
+    )
+    .await?;
+    Ok(())
+}
+
+#[command]
+#[required_permissions(kick_members)]
+#[aliases("userinfo", "유저정보")]
+async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
+    let user = ctx
+        .http
+        .get_user(
+            args.single::<String>()?
+                .replace("<", "")
+                .replace(">", "")
+                .replace("@", "")
+                .replace("!", "")
+                .parse::<u64>()?,
+        )
+        .await?;
+
+    let user_nick = user.nick_in(&ctx.http, msg.guild_id.unwrap_or_default()).await
+        .unwrap_or_else(|| { "None".to_string() });
+    let full_name = format!("{}#{}", user.name, user.discriminator);
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(0x00ffc8)
+                    .title(format!("{} 님의 정보입니다.", full_name))
+                    .footer(|f| {
+                        f.text(msg.author.id)
+                            .icon_url(msg.author.avatar_url().unwrap_or_default())
+                    })
+                    .field(
+                        "기본 정보",
+                        format!(
+                            r#"
+**계정 이름: {}** ({})
+계정 id: {}
+**계정 생성일: {}**
+봇 여부: {}
+                        "#,
+                            full_name,
+                            user_nick,
+                            user.id,
+                            user.created_at(),
+                            user.bot
+                        ),
+                        false,
+                    )
+            })
+        })
+        .await?;
+
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }

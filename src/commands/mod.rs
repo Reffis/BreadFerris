@@ -44,7 +44,7 @@ pub const HELP_MODER: &str = r#"
 "#;
 
 pub const HELP_FUN: &str = r#"
-> `nitro` `choice [item, item, . . .]` `bce [Text]`
+> `nitro` `choice [item, item, . . .]` `bce [Text]` `say [Text]`
 "#;
 
 /*

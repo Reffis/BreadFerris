@@ -31,7 +31,7 @@ impl TypeMapKey for ShardManagerContainer {
 struct General;
 
 #[group]
-#[commands(ping, help, support, dev, run, opensource)]
+#[commands(ping, help, support, dev, run, opensource, info)]
 struct Utility;
 
 #[group]
@@ -54,8 +54,10 @@ struct Fun;
 async fn main() {
     let token = loadconfig("token".to_string());
 
-
-    let (owners, _bot_id) = match Http::new_with_token(&token).get_current_application_info().await {
+    let (owners, _bot_id) = match Http::new_with_token(&token)
+        .get_current_application_info()
+        .await
+    {
         Ok(info) => {
             let mut owners = HashSet::new();
             owners.insert(info.owner.id);
