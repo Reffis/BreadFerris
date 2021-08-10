@@ -63,6 +63,8 @@ $ cargo run
 
 `ferris nick [Name]`: 서버에 있는 봇의 이름을 변경합니다.
 
+`ferris msg_del [id]`: 해당 채널에 있는 봇의 메세지를 삭제합니다.
+
 **Image**
 
 `ferris fox`: 여우들의 사진을 보여줍니다.

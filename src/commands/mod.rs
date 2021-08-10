@@ -40,7 +40,7 @@ pub const HELP_OWNER: &str = r#"
 "#;
 
 pub const HELP_MODER: &str = r#"
-> `ban [mention or id] [reason]`, `kick [mention or id] [reason]`, `unban [mention or id]`
+> `ban [mention or id] [reason]`, `kick [mention or id] [reason]`, `unban [mention or id]`, `msg_del [message id]`
 "#;
 
 pub const HELP_FUN: &str = r#"
