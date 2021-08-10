@@ -1,11 +1,11 @@
 //use super::image_lib::*;
+use crate::commands::{HELP_FUN, HELP_IMAGE, HELP_MODER, HELP_OWNER, HELP_UTIL};
 use breadferris::{cmdlog, loadconfig};
 use json::JsonValue;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
-use crate::commands::{HELP_UTIL, HELP_IMAGE, HELP_OWNER, HELP_FUN, HELP_MODER};
 
 #[command]
 #[aliases("핑")]
@@ -31,31 +31,11 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 e.colour(0xCC33CC)
                     .title("Help")
                     .description("prefix: `ferris`")
-                    .field(
-                        "Utility",
-                        HELP_UTIL,
-                        true,
-                    )
-                    .field(
-                        "Image",
-                        HELP_IMAGE,
-                        true,
-                    )
-                    .field(
-                        "Moderator",
-                        HELP_MODER,
-                        true,
-                    )
-                    .field(
-                        "Owner",
-                        HELP_OWNER,
-                        true,
-                    )
-                    .field(
-                        "Fun",
-                        HELP_FUN,
-                        true,
-                    )
+                    .field("Utility", HELP_UTIL, true)
+                    .field("Image", HELP_IMAGE, true)
+                    .field("Moderator", HELP_MODER, true)
+                    .field("Owner", HELP_OWNER, true)
+                    .field("Fun", HELP_FUN, true)
                     .footer(|f| {
                         f.text("OpenSource: https://github.com/Reffis/breadferris");
                         f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=60&v=4")

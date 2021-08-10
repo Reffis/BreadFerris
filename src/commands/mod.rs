@@ -9,12 +9,12 @@ moderator: 서버의 관리자들이 사용할 수 있는 명령어(킥, 밴, �
 fun: 재미있는(?) 기능을 모아둔 카테고리입니다.
 */
 
+pub mod fun;
 pub mod image;
 pub mod moderator;
 pub mod other;
 pub mod owner;
 pub mod util;
-pub mod fun;
 
 /*
 owner 카테고리에 있는 eval과 util 카테고리에 있는 run 의 차이점:

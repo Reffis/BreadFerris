@@ -1,15 +1,22 @@
 use breadferris::cmdlog;
-use serenity::framework::standard::{macros::command, CommandResult, Args};
+use rand::prelude::SliceRandom;
+use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use rand::prelude::{SliceRandom};
 
 #[command]
 #[aliases("랜덤", "골라", "random")]
 async fn choice(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let r = args.rest().split(", ").collect::<Vec<_>>();
     cmdlog(msg.author.id.to_string(), msg.content.clone());
-    msg.reply(ctx, format!("`{}`", r.choose(&mut rand::thread_rng()).unwrap_or_else(|| &""))).await?;
+    msg.reply(
+        ctx,
+        format!(
+            "`{}`",
+            r.choose(&mut rand::thread_rng()).unwrap_or_else(|| &"")
+        ),
+    )
+    .await?;
     Ok(())
 }
 
@@ -24,8 +31,8 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
                 _v.append(&mut ('A'..='Z').collect::<Vec<_>>());
                 _v
             }
-                .choose(&mut rand::thread_rng()))
-                .unwrap_or_else(|| &' '),
+            .choose(&mut rand::thread_rng()))
+            .unwrap_or_else(|| &' '),
         );
     });
     msg.reply(ctx, format!("`discord.gift/{}`", v)).await?;

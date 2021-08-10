@@ -85,10 +85,7 @@ async fn unban(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         e.unban(ctx, user_id).await?;
         msg.reply(
             ctx,
-            format!(
-                "{}을(를) 차단해제 했습니다.",
-                user.clone().mention(),
-            ),
+            format!("{}을(를) 차단해제 했습니다.", user.clone().mention(),),
         )
         .await?;
     }

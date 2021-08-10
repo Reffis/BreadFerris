@@ -5,12 +5,12 @@ mod libs;
 use std::{collections::HashSet, sync::Arc};
 
 use breadferris::{loadconfig, log, LogType::*};
+use commands::fun::*;
 use commands::image::*;
 use commands::moderator::*;
 use commands::other::*;
 use commands::owner::*;
 use commands::util::*;
-use commands::fun::*;
 
 use serenity::{
     client::bridge::gateway::ShardManager,
