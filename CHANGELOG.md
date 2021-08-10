@@ -1,7 +1,7 @@
 v0.1.0
 ------
 
-기본적인 명령어 (`help`, `dev`, `support`, `eval`)등이 구현되어 있습니다.
+기본적인 명령어가 구현되어 있습니다.
 
 **crates:**
 `reqwest`
@@ -11,3 +11,5 @@ v0.1.0
 `chrono`
 `tokio`
 `serenity`
+
+> 명령어는 [README](README.md#사용법)를 참고해주세요.
