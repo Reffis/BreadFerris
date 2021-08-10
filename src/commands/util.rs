@@ -186,7 +186,6 @@ async fn opensource(ctx: &Context, msg: &Message) -> CommandResult {
 }
 
 #[command]
-#[required_permissions(kick_members)]
 #[aliases("userinfo", "유저정보")]
 async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     let user = ctx

@@ -51,6 +51,8 @@ $ cargo run
 
 `ferris userinfo [멘션 또는 id]`: 유저의 정보를 표시합니다.
 
+`ferris serverinfo`: 서버의 정보를 표시합니다.
+
 **Owner**
 
 `ferris quit`: 봇 종료
