@@ -4,6 +4,8 @@ version = "0.1.0"
 authors = ["fn79"]
 license = "MIT"
 edition = "2018"
+repository = "https://github.com/reffis/breadferris"
+description = "Rust Discord Bot - 러스트로 작성된 디스코드 봇입니다."
 
 [dependencies]
 reqwest = "*"
