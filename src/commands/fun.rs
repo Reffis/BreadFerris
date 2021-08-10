@@ -46,5 +46,20 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
 #[aliases("빵암호화", "빵켓암호화")]
 async fn bce(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     msg.reply(ctx, to_bce::new(args.rest())).await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
+
+#[command]
+#[aliases("say", "따라해")]
+async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    msg.channel_id.send_message(&ctx.http, |m| {
+        m.embed(|e| {
+            e.colour(0x04053F).title(format!("{}", args.rest())).footer(|f| {
+                f.text(msg.author.id).icon_url(msg.author.avatar_url().unwrap_or_default())
+            })
+        })
+    }).await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
