@@ -3,6 +3,7 @@ use rand::prelude::SliceRandom;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+use bbangcat_encryption::bce::*;
 
 #[command]
 #[aliases("랜덤", "골라", "random")]
@@ -38,5 +39,12 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, format!("`discord.gift/{}`", v)).await?;
 
     cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
+
+#[command]
+#[aliases("빵암호화", "빵켓암호화")]
+async fn bce(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    msg.reply(ctx, to_bce::new(args.rest())).await?;
     Ok(())
 }

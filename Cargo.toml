@@ -12,6 +12,7 @@ image = "*"
 json = "*"
 chrono = "*"
 rand = "0.8"
+bbangcat_encryption = "0.1.1"
 
 [profile.dev]
 opt-level = 0

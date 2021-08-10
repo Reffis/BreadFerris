@@ -60,6 +60,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
 
 [[package]]
+name = "bbangcat_encryption"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "db975891e5daff251609c9b30cb8f90b71c429646d24ce46c3e8dda4612f5170"
+
+[[package]]
 name = "bitflags"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -78,6 +84,7 @@ dependencies = [
 name = "breadferris"
 version = "0.1.0"
 dependencies = [
+ "bbangcat_encryption",
  "chrono",
  "image",
  "json",
