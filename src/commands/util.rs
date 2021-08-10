@@ -1,5 +1,5 @@
 //use super::image_lib::*;
-use crate::commands::{HELP_FUN, HELP_IMAGE, HELP_MODER, HELP_OWNER, HELP_UTIL};
+use crate::commands::*;
 use breadferris::{cmdlog, loadconfig};
 use json::JsonValue;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
@@ -31,14 +31,14 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 e.colour(0xCC33CC)
                     .title("Help")
                     .description("prefix: `ferris`")
-                    .field("Utility", HELP_UTIL, true)
-                    .field("Image", HELP_IMAGE, true)
-                    .field("Moderator", HELP_MODER, true)
-                    .field("Owner", HELP_OWNER, true)
-                    .field("Fun", HELP_FUN, true)
+                    .field("🎈 - Utility", HELP_UTIL, true)
+                    .field("🖼️ - Image", HELP_IMAGE, true)
+                    .field("🛠️ - Moderator", HELP_MODER, true)
+                    .field("🛡️ - Owner", HELP_OWNER, true)
+                    .field("🧊 - Fun", HELP_FUN, true)
                     .footer(|f| {
                         f.text("OpenSource: https://github.com/Reffis/breadferris");
-                        f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=60&v=4")
+                        f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
                     })
             })
         })
