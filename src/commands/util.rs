@@ -5,7 +5,7 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
-use crate::commands::{HELP_UTIL, HELP_IMAGE, HELP_OWNER, HELP_FUN};
+use crate::commands::{HELP_UTIL, HELP_IMAGE, HELP_OWNER, HELP_FUN, HELP_MODER};
 use crate::Moderator;
 
 #[command]
@@ -44,7 +44,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     )
                     .field(
                         "Moderator",
-                        Moderator,
+                        HELP_MODER,
                         true,
                     )
                     .field(
