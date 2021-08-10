@@ -46,3 +46,14 @@ pub const HELP_MODER: &str = r#"
 pub const HELP_FUN: &str = r#"
 > `nitro` `choice [item, item, . . .]` `bce [Text]`
 "#;
+
+/*
+
+#[command]
+#[aliases("name2", "name3")]
+async fn command_name(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    msg.reply(ctx, "Hello, World!").await?;
+    Ok(())
+}
+
+ */
