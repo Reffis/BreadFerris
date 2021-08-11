@@ -6,36 +6,7 @@ use serenity::prelude::*;
 use breadferris::LogType::Info;
 use breadferris::{cmdlog, log};
 
-use crate::libs::eval_lib;
 use crate::ShardManagerContainer;
-
-#[command]
-#[owners_only]
-async fn eval(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
-    let r = args
-        .rest()
-        .split("\n")
-        .filter(|x| match x {
-            &"```" | &"```rs" => false,
-            _ => true,
-        })
-        .map(|x| x.to_string() + "\n")
-        .collect::<String>();
-    msg.reply(
-        ctx,
-        format!(
-            "```rs\n{}\n```",
-            result = match eval_lib::eval(r.as_str(), true) {
-                Ok(e) => e,
-                Err(e) => format!("Error: {}", e),
-            }
-            .as_str()
-        ),
-    )
-    .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
-    Ok(())
-}
 
 #[command]
 #[aliases("종료", "shutdown", "exit")]

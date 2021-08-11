@@ -27,7 +27,7 @@ impl TypeMapKey for ShardManagerContainer {
 }
 
 #[group]
-#[commands(eval, quit, status, nick, msg_del)]
+#[commands(quit, status, nick, msg_del)]
 struct General; // owner
 
 #[group]
