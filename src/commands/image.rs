@@ -2,7 +2,7 @@ use breadferris::cmdlog;
 use json;
 use json::JsonValue;
 use reqwest;
-use serenity::framework::standard::{macros::command, CommandResult};
+use serenity::framework::standard::{macros::command, CommandResult, Args};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use super::embed_colors::*;
@@ -116,6 +116,57 @@ async fn meme(ctx: &Context, msg: &Message) -> CommandResult {
                 })
             })
             .await?;
+    }
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
+
+#[command]
+#[aliases("네코")]
+async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    if let Some(c) = msg.channel(&ctx.cache).await {
+        if c.is_nsfw() {
+            if args.rest() == "help" {
+                msg.reply(ctx, r#"
+`feet`, `yuri`, `trap`, `futanari`, `hololewd`, `lewdkemo`,
+`solog`, `feetg`, `cum`, `erokemo`, `les`, `wallpaper`, `lewdk`,
+`ngif`, `tickle`, `lewd`, `feed`, `gecg`, `eroyuri`, `eron`,
+`cum_jpg`, `bj`, `nsfw_neko_gif`, `solo`, `kemonomimi`, `nsfw_avatar`,
+`gasm`, `poke`, `anal`, `slap`, `hentai`, `avatar`, `erofeet`, `holo`,
+`keta`, `blowjob`, `pussy`, `tits`, `holoero`, `lizard`, `pussy_jpg`,
+`pwankg`, `classic`, `kuni`, `waifu`, `pat`, `8ball`, `kiss`, `femdom`,
+`neko`, `spank`, `cuddle`, `erok`, `fox_girl`, `boobs`, `random_hentai_gif`,
+`smallboobs`, `hug`, `ero`, `smug`, `goose`, `baka`, `woof`
+        "#).await?;
+            } else {
+                let r = reqwest::get(format!("https://nekos.life/api/v2/img/{}", args.rest()))
+                    .await?
+                    .text()
+                    .await?;
+                let d = &json::parse(r.as_str())?;
+                if d["msg"] == "404" {
+                    msg.reply(ctx, "알수없는 이름입니다. `ferris neko help`").await?;
+                } else {
+                    let url = &d["url"];
+                    msg.channel_id
+                        .send_message(&ctx.http, |m| {
+                            m.embed(|e| {
+                                e.colour(YELLOW)
+                                    .title("Neko")
+                                    .url(url)
+                                    .image(url)
+                                    .footer(|f| {
+                                        f.text(format!("{}", msg.author.name));
+                                        f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                                    })
+                            })
+                        })
+                        .await?;
+                }
+            }
+        } else {
+            msg.reply(ctx, "해당채널에서는 사용할 수 없는 명령어입니다.\n사용을 원한다면, `nsfw` 채널로 설정해주세요.").await?;
+        }
     }
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())

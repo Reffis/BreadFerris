@@ -35,7 +35,7 @@ struct General;
 struct Utility;
 
 #[group]
-#[commands(shiba, fox, cat, meme)]
+#[commands(shiba, fox, cat, meme, neko)]
 struct Image;
 
 #[group]
