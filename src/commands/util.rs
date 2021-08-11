@@ -62,13 +62,13 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
                     .field(
                         "개발환경",
                         r#"
-> cargo 1.54.0 (2021-06-22)
+> **Rust Version:** cargo 1.54.0 (2021-06-22)
 
-> IntelliJ (or VSCode)
+> **Editor:** IntelliJ (or VSCode)
 
-> Windows 10 - 20H2 (OS Build 19042.1110)
+> **OS:** Windows 10 - 20H2 (OS Build 19042.1110)
 
-> Powershell (or CMD)
+> **Terminal:** Powershell (or CMD)
                     "#,
                         true,
                     )
