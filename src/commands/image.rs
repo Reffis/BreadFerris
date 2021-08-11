@@ -5,6 +5,7 @@ use reqwest;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+use super::embed_colors::*;
 
 #[command]
 #[aliases("여우")]
@@ -20,7 +21,7 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(0xBBFFFF)
+                e.colour(BLUE)
                     .title("Fox")
                     .url("https://randomfox.ca/floof/")
                     .image(r.as_str())
@@ -46,7 +47,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(0xBBFFFF)
+                e.colour(RED)
                     .title("Shiba")
                     .url("http://shibe.online/api/shibes?urls=true&httpsUrls=true")
                     .image(image)
@@ -72,7 +73,7 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(0xBBFFFF)
+                e.colour(ORANGE)
                     .title("Cat")
                     .url("https://api.thecatapi.com/v1/images/search")
                     .image(image)
@@ -104,7 +105,7 @@ async fn meme(ctx: &Context, msg: &Message) -> CommandResult {
         msg.channel_id
             .send_message(&ctx.http, |m| {
                 m.embed(|e| {
-                    e.colour(0xBBFFFF)
+                    e.colour(GREEN)
                         .title(title)
                         .url(postlink)
                         .image(url)
