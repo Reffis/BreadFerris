@@ -4,6 +4,7 @@ use rand::prelude::SliceRandom;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+use super::embed_colors::*;
 
 #[command]
 #[aliases("랜덤", "골라", "random")]
@@ -56,7 +57,7 @@ async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(0x04053F)
+                e.colour(PURPLE)
                     .title(format!("{}", args.rest()))
                     .footer(|f| {
                         f.text(msg.author.id)
