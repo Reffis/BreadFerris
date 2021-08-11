@@ -57,3 +57,9 @@ async fn command_name(ctx: &Context, msg: &Message, args: Args) -> CommandResult
 }
 
  */
+
+
+/// 임베드에서 사용할수 있는 색깔을 모아둔 모듈입니다.
+pub mod embed_colors {
+
+}
