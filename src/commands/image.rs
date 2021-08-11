@@ -6,6 +6,7 @@ use serenity::framework::standard::{macros::command, CommandResult, Args};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use super::embed_colors::*;
+use crate::commands::NEKOTYPE;
 
 #[command]
 #[aliases("여우")]
@@ -127,17 +128,7 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     if let Some(c) = msg.channel(&ctx.cache).await {
         if c.is_nsfw() {
             if args.rest() == "help" {
-                msg.reply(ctx, r#"
-`feet`, `yuri`, `trap`, `futanari`, `hololewd`, `lewdkemo`,
-`solog`, `feetg`, `cum`, `erokemo`, `les`, `wallpaper`, `lewdk`,
-`ngif`, `tickle`, `lewd`, `feed`, `gecg`, `eroyuri`, `eron`,
-`cum_jpg`, `bj`, `nsfw_neko_gif`, `solo`, `kemonomimi`, `nsfw_avatar`,
-`gasm`, `poke`, `anal`, `slap`, `hentai`, `avatar`, `erofeet`, `holo`,
-`keta`, `blowjob`, `pussy`, `tits`, `holoero`, `lizard`, `pussy_jpg`,
-`pwankg`, `classic`, `kuni`, `waifu`, `pat`, `8ball`, `kiss`, `femdom`,
-`neko`, `spank`, `cuddle`, `erok`, `fox_girl`, `boobs`, `random_hentai_gif`,
-`smallboobs`, `hug`, `ero`, `smug`, `goose`, `baka`, `woof`
-        "#).await?;
+                msg.reply(ctx, NEKOTYPE).await?;
             } else {
                 let r = reqwest::get(format!("https://nekos.life/api/v2/img/{}", args.rest()))
                     .await?
