@@ -11,14 +11,15 @@ use std::time::Instant;
 #[command]
 #[aliases("핑")]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
-    let api_latency = {
-        let instant = Instant::now();
-        msg.channel_id.broadcast_typing(&ctx.http).await?;
-        instant.elapsed().as_millis() as f64
-    };
-
-    msg.reply(ctx, format!("Pong! 🏓\nAPI Latency: {}ms", api_latency))
-        .await?;
+    msg.reply(
+        ctx,
+        format!("Pong! 🏓\nAPI Latency: {}ms", {
+            let instant = Instant::now();
+            msg.channel_id.broadcast_typing(&ctx.http).await?;
+            instant.elapsed().as_millis() as f64
+        }),
+    )
+    .await?;
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
@@ -69,6 +70,8 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
 > **OS:** Windows 10 - 20H2 (OS Build 19042.1110)
 
 > **Terminal:** Powershell (or CMD)
+
+> **Rust Serenity**
                     "#,
                         true,
                     )
