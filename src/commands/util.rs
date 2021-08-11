@@ -132,7 +132,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 }
 
 #[command]
-#[aliases("실행")]
+#[aliases("실행", "eval")]
 async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let message = msg.reply(ctx, "잠시만 기다려주세요 . . .").await?;
     let r = args
