@@ -9,7 +9,6 @@ description = "Rust Discord Bot - 러스트로 작성된 디스코드 봇입니�
 
 [dependencies]
 reqwest = "0.11"
-tempdir = "0.3"
 json = "0.12.4"
 chrono = "0.4"
 rand = "0.8"
