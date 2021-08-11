@@ -37,7 +37,7 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
             .unwrap_or_else(|| &' '),
         );
     });
-    msg.reply(ctx, format!("`discord.gift/{}`", v)).await?;
+    msg.reply(ctx, format!("`discord.gift/{}`\n\n`주의!`: `해당 코드는 작동되지 않는 코드입니다. 그냥 재미로만 해주세요 :)`", v)).await?;
 
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
