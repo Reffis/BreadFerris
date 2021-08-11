@@ -53,6 +53,8 @@ $ cargo run
 
 `ferris server_emoji`: 서버에 있는 이모지를 가져옵니다. (주의: 이모지가 너무 많으면 출력되지 않을수도 있습니다.)
 
+`ferris invite`: 봇 초대링크를 표시합니다.
+
 **Owner**
 
 `ferris quit`: 봇 종료
