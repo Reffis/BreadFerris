@@ -77,6 +77,8 @@ $ cargo run
 
 `ferris meme`: 밈을 보여줍니다.
 
+`ferris neko [NekoType]`: `nekos.life`에서 이미지를 가져옵니다. `(nsfw)`, `NekoTypep`은 `neko help`를 통해 확인하세요.
+
 **Moderator** (특정 권한 또는 관리자만 사용가능)
 
 `ferris ban [id 또는 멘션] [사유]`: 유저를 차단합니다.
