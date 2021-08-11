@@ -1,4 +1,5 @@
 //use super::image_lib::*;
+use super::embed_colors::*;
 use crate::commands::*;
 use breadferris::{cmdlog, loadconfig};
 use json::JsonValue;
@@ -6,7 +7,6 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
-use super::embed_colors::*;
 
 #[command]
 #[aliases("핑")]

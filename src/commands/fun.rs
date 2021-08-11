@@ -1,10 +1,10 @@
+use super::embed_colors::*;
 use bbangcat_encryption::bce::*;
 use breadferris::cmdlog;
 use rand::prelude::SliceRandom;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use super::embed_colors::*;
 
 #[command]
 #[aliases("랜덤", "골라", "random")]

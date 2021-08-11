@@ -81,7 +81,10 @@ async fn nick(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 #[aliases("messsage_delete", "메세지삭제")]
 #[owners_only]
 async fn msg_del(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
-    let msg = ctx.http.get_message(msg.channel_id.0,args.single::<u64>()?).await?;
+    let msg = ctx
+        .http
+        .get_message(msg.channel_id.0, args.single::<u64>()?)
+        .await?;
     msg.delete(ctx).await?;
     Ok(())
 }

@@ -1,12 +1,12 @@
+use super::embed_colors::*;
+use crate::commands::NEKOTYPE;
 use breadferris::cmdlog;
 use json;
 use json::JsonValue;
 use reqwest;
-use serenity::framework::standard::{macros::command, CommandResult, Args};
+use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use super::embed_colors::*;
-use crate::commands::NEKOTYPE;
 
 #[command]
 #[aliases("여우")]
@@ -136,7 +136,8 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
                     .await?;
                 let d = &json::parse(r.as_str())?;
                 if d["msg"] == "404" {
-                    msg.reply(ctx, "알수없는 이름입니다. `ferris neko help`").await?;
+                    msg.reply(ctx, "알수없는 이름입니다. `ferris neko help`")
+                        .await?;
                 } else {
                     let url = &d["url"];
                     msg.channel_id

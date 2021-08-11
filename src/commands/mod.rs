@@ -58,7 +58,6 @@ async fn command_name(ctx: &Context, msg: &Message, args: Args) -> CommandResult
 
  */
 
-
 /// 임베드에서 사용할수 있는 색깔을 모아둔 모듈입니다.
 pub mod embed_colors {
     use rand::prelude::SliceRandom;
@@ -84,7 +83,9 @@ pub mod embed_colors {
     pub const WHITE: Color = 0xffffff;
 
     pub fn random_color<'a>() -> &'a Color {
-        &[RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE, BLACK].choose(&mut rand::thread_rng()).unwrap_or_else(|| &WHITE)
+        &[RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE, BLACK]
+            .choose(&mut rand::thread_rng())
+            .unwrap_or_else(|| &WHITE)
     }
 }
 
