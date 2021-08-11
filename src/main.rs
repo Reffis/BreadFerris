@@ -28,7 +28,7 @@ impl TypeMapKey for ShardManagerContainer {
 
 #[group]
 #[commands(eval, quit, status, nick, msg_del)]
-struct General;
+struct General; // owner
 
 #[group]
 #[commands(ping, help, support, dev, run, opensource, info, server_emoji, invite)]
@@ -47,7 +47,7 @@ struct Other;
 struct Moderator;
 
 #[group]
-#[commands(choice, nitro, bce, say)]
+#[commands(choice, nitro, bce, say, avatar)]
 struct Fun;
 
 #[tokio::main]

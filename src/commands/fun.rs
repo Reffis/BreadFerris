@@ -69,3 +69,28 @@ async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
+
+#[command]
+#[aliases("아바타", "profile", "프로필")]
+async fn avatar(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
+    let user_id = args
+        .single::<String>()?
+        .replace("<", "")
+        .replace(">", "")
+        .replace("@", "")
+        .replace("!", "")
+        .parse::<u64>()?;
+    let user = ctx.http.get_user(user_id).await?;
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(random_color())
+                    .title(format!("{}님의 아바타입니다.", format!("{}#{}", user.name, user.discriminator)))
+                    .url(user.avatar_url().unwrap_or_default())
+                    .image(user.avatar_url().unwrap_or_default().replace("128", "1024"))
+            })
+        })
+        .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}

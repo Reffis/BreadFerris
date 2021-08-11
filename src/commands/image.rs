@@ -143,7 +143,7 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
                     msg.channel_id
                         .send_message(&ctx.http, |m| {
                             m.embed(|e| {
-                                e.colour(serenity::utils::Colour(*random_color() as u32))
+                                e.colour(random_color())
                                     .title(args.rest())
                                     .url(url)
                                     .image(url)
