@@ -143,7 +143,7 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
                         .send_message(&ctx.http, |m| {
                             m.embed(|e| {
                                 e.colour(YELLOW)
-                                    .title("Neko")
+                                    .title(args.rest())
                                     .url(url)
                                     .image(url)
                                     .footer(|f| {
