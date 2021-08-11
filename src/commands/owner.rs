@@ -71,7 +71,7 @@ async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 #[owners_only]
 async fn nick(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     msg.guild_id
-        .unwrap()
+        .unwrap_or_default()
         .edit_nickname(&ctx.http, Some(args.rest()))
         .await?;
     Ok(())
