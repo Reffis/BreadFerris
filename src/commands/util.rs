@@ -6,6 +6,7 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
+use super::embed_colors::*;
 
 #[command]
 #[aliases("핑")]
@@ -28,7 +29,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(0xCC33CC)
+                e.colour(WHITE)
                     .title("Help")
                     .description("prefix: `ferris`")
                     .field("🎈 - Utility", HELP_UTIL, true)
@@ -53,7 +54,7 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(0xCC33CC)
+                e.colour(YELLOW)
                     .title("Help")
                     .description("`! Bread Cat#0002` (760688241447141395)")
                     .url("https://github.com/fn79")
@@ -108,7 +109,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             msg.channel_id
                 .send_message(&ctx.http, |m| {
                     m.embed(|e| {
-                        e.colour(0x0000CD)
+                        e.colour(GREEN)
                             .title("문의가 전송되었습니다.")
                             .description(format!("내용:\n```\n{}\n```", args.rest()))
                             .footer(|f| {
@@ -208,7 +209,7 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(0x00ffc8)
+                e.colour(BLUE)
                     .title(format!("{} 님의 정보입니다.", full_name))
                     .footer(|f| {
                         f.text(msg.author.id)
