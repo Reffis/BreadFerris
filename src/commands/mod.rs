@@ -90,7 +90,7 @@ pub mod embed_colors {
 }
 
 pub const NEKOTYPE: &str = r#"
-**Options:**
+**Options:** `ferris neko []`
 `feet`, `yuri`, `trap`, `futanari`, `hololewd`, `lewdkemo`,
 `solog`, `feetg`, `cum`, `erokemo`, `les`, `wallpaper`, `lewdk`,
 `ngif`, `tickle`, `lewd`, `feed`, `gecg`, `eroyuri`, `eron`,
