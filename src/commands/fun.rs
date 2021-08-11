@@ -85,7 +85,10 @@ async fn avatar(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
                 e.colour(random_color())
-                    .title(format!("{}님의 아바타입니다.", format!("{}#{}", user.name, user.discriminator)))
+                    .title(format!(
+                        "{}님의 아바타입니다.",
+                        format!("{}#{}", user.name, user.discriminator)
+                    ))
                     .url(user.avatar_url().unwrap_or_default())
                     .image(user.avatar_url().unwrap_or_default().replace("128", "1024"))
             })

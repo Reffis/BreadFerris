@@ -84,9 +84,11 @@ pub mod embed_colors {
     pub const WHITE: Color = 0xffffff;
 
     pub fn random_color<'a>() -> Colour {
-        serenity::utils::Colour(*[RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE, BLACK]
-            .choose(&mut rand::thread_rng())
-            .unwrap_or_else(|| &WHITE) as u32)
+        serenity::utils::Colour(
+            *[RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE, BLACK]
+                .choose(&mut rand::thread_rng())
+                .unwrap_or_else(|| &WHITE) as u32,
+        )
     }
 }
 
