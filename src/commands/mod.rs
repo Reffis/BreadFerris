@@ -44,7 +44,7 @@ pub const HELP_MODER: &str = r#"
 "#;
 
 pub const HELP_FUN: &str = r#"
-> `nitro`, `choice [item, item, . . .]`, `bce [Text]` `say [Text]`
+> `nitro`, `choice [item, item, ...]`, `bce [Text]` `say [Text]`
 "#;
 
 /*
@@ -90,6 +90,7 @@ pub mod embed_colors {
 }
 
 pub const NEKOTYPE: &str = r#"
+**Options:**
 `feet`, `yuri`, `trap`, `futanari`, `hololewd`, `lewdkemo`,
 `solog`, `feetg`, `cum`, `erokemo`, `les`, `wallpaper`, `lewdk`,
 `ngif`, `tickle`, `lewd`, `feed`, `gecg`, `eroyuri`, `eron`,
