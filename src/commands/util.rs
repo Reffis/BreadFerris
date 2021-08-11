@@ -257,3 +257,21 @@ async fn server_emoji(ctx: &Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, emoji_list).await?;
     Ok(())
 }
+
+#[command]
+#[aliases("초대", "봇초대")]
+async fn invite(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.send_message(&ctx.http, |m| {
+        m.embed(|e| {
+           e.colour(BLACK)
+               .title("봇 초대 & 오픈소스")
+               .description(r#"
+**봇 초대 (관리자) [(클릭)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=8&scope=bot)**
+**봇 초대 (권한 없음) [(클릭)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=0&scope=bot)**
+
+**오픈소스 [(클릭)](https://github.com/Reffis/BreadFerris)**
+               "#)
+        })
+    }).await?;
+    Ok(())
+}

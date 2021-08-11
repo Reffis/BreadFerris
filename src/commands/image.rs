@@ -21,7 +21,7 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
-                e.colour(BLUE)
+                e.colour(INDIGO)
                     .title("Fox")
                     .url("https://randomfox.ca/floof/")
                     .image(r.as_str())
