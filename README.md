@@ -88,6 +88,7 @@ $ cargo run
 `ferris unban [id 또는 멘션]`: 차단된 유저를 차단 해제합니다.
 
 **Fun** 카테고리는 입력하지 않을예정입니다.
+* 명령어를 확인하려면, `src/commandss/mod.rs`를 참고해주세요.
 
 > (더 추가될 예정)
 
