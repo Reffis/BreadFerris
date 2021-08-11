@@ -263,7 +263,7 @@ async fn server_emoji(ctx: &Context, msg: &Message) -> CommandResult {
 async fn invite(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id.send_message(&ctx.http, |m| {
         m.embed(|e| {
-           e.colour(BLACK)
+           e.colour(WHITE)
                .title("봇 초대 & 오픈소스")
                .description(r#"
 **봇 초대 (관리자) [(클릭)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=8&scope=bot)**
