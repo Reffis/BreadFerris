@@ -97,3 +97,29 @@ async fn avatar(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
+
+#[command]
+#[aliases("한강")]
+async fn hangang(ctx: &Context, msg: &Message) -> CommandResult {
+    let r = reqwest::get("https://api.hangang.msub.kr/")
+        .await?
+        .text()
+        .await?;
+    let v = &json::parse(r.as_str())?;
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(WHITE)
+                    .title("한강 수온")
+                    .url("https://hangang.msub.kr")
+                    .description(format!("**{}**", v["temp"]))
+                    .footer(|f| {
+                        f.text(format!("{} - {}", v["time"], v["station"]));
+                        f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                    })
+            })
+        })
+        .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
