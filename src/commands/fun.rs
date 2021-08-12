@@ -114,8 +114,7 @@ async fn hangang(ctx: &Context, msg: &Message) -> CommandResult {
                     .url("https://hangang.msub.kr")
                     .description(format!("**{}**", v["temp"]))
                     .footer(|f| {
-                        f.text(format!("{} - {}", v["time"], v["station"]));
-                        f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                        f.text(format!("{} - {}", v["time"], v["station"]))
                     })
             })
         })
