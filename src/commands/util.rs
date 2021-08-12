@@ -4,10 +4,10 @@ use crate::commands::*;
 use breadferris::{cmdlog, loadconfig};
 use json::JsonValue;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
+use serenity::model::interactions::message_component::ButtonStyle;
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
-use serenity::model::interactions::message_component::ButtonStyle;
 
 #[command]
 #[aliases("핑")]
@@ -98,57 +98,77 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
         {
             let t = interaction_data.data.custom_id.as_str();
             if t == "HELP_UTIL" {
-                m.edit(&ctx.http, |f| f.embed(|x| {
-                    x.title("🎈 - Utility")
-                        .description(HELP_UTIL)
-                        .colour(random_color())
-                        .footer(|f| {
-                            f.text("OpenSource: https://github.com/Reffis/breadferris");
-                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
-                        })
-                })).await?;
+                m.edit(&ctx.http, |f| {
+                    f.embed(|x| {
+                        x.title("🎈 - Utility")
+                            .description(HELP_UTIL)
+                            .colour(random_color())
+                            .footer(|f| {
+                                f.text("OpenSource: https://github.com/Reffis/breadferris");
+                                f.icon_url(
+                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
+                                )
+                            })
+                    })
+                })
+                .await?;
                 interaction_data
                     .create_interaction_response(ctx, |f| f)
                     .await
                     .unwrap_or_default();
             } else if t == "HELP_IMAGE" {
-                m.edit(&ctx.http, |f| f.embed(|x| {
-                    x.title("🖼️ - Image")
-                        .description(HELP_IMAGE)
-                        .colour(random_color())
-                        .footer(|f| {
-                            f.text("OpenSource: https://github.com/Reffis/breadferris");
-                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
-                        })
-                })).await?;
+                m.edit(&ctx.http, |f| {
+                    f.embed(|x| {
+                        x.title("🖼️ - Image")
+                            .description(HELP_IMAGE)
+                            .colour(random_color())
+                            .footer(|f| {
+                                f.text("OpenSource: https://github.com/Reffis/breadferris");
+                                f.icon_url(
+                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
+                                )
+                            })
+                    })
+                })
+                .await?;
                 interaction_data
                     .create_interaction_response(ctx, |f| f)
                     .await
                     .unwrap_or_default();
             } else if t == "HELP_MODER" {
-                m.edit(&ctx.http, |f| f.embed(|x| {
-                    x.title("🛠️ - Moderator")
-                        .description(HELP_MODER)
-                        .colour(random_color())
-                        .footer(|f| {
-                            f.text("OpenSource: https://github.com/Reffis/breadferris");
-                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
-                        })
-                })).await?;
+                m.edit(&ctx.http, |f| {
+                    f.embed(|x| {
+                        x.title("🛠️ - Moderator")
+                            .description(HELP_MODER)
+                            .colour(random_color())
+                            .footer(|f| {
+                                f.text("OpenSource: https://github.com/Reffis/breadferris");
+                                f.icon_url(
+                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
+                                )
+                            })
+                    })
+                })
+                .await?;
                 interaction_data
                     .create_interaction_response(ctx, |f| f)
                     .await
                     .unwrap_or_default();
             } else if t == "HELP_OWNER" {
-                m.edit(&ctx.http, |f| f.embed(|x| {
-                    x.title("🛡️ - Owner")
-                        .description(HELP_OWNER)
-                        .colour(random_color())
-                        .footer(|f| {
-                            f.text("OpenSource: https://github.com/Reffis/breadferris");
-                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
-                        })
-                })).await?;
+                m.edit(&ctx.http, |f| {
+                    f.embed(|x| {
+                        x.title("🛡️ - Owner")
+                            .description(HELP_OWNER)
+                            .colour(random_color())
+                            .footer(|f| {
+                                f.text("OpenSource: https://github.com/Reffis/breadferris");
+                                f.icon_url(
+                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
+                                )
+                            })
+                    })
+                })
+                .await?;
                 interaction_data
                     .create_interaction_response(ctx, |f| f)
                     .await
@@ -157,15 +177,20 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 m.delete(&ctx.http).await?;
                 break;
             } else if t == "HELP_FUN" {
-                m.edit(&ctx.http, |f| f.embed(|x| {
-                    x.title("🧊 - FUN")
-                        .description(HELP_FUN)
-                        .colour(random_color())
-                        .footer(|f| {
-                            f.text("OpenSource: https://github.com/Reffis/breadferris");
-                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
-                        })
-                })).await?;
+                m.edit(&ctx.http, |f| {
+                    f.embed(|x| {
+                        x.title("🧊 - FUN")
+                            .description(HELP_FUN)
+                            .colour(random_color())
+                            .footer(|f| {
+                                f.text("OpenSource: https://github.com/Reffis/breadferris");
+                                f.icon_url(
+                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
+                                )
+                            })
+                    })
+                })
+                .await?;
                 interaction_data
                     .create_interaction_response(ctx, |f| f)
                     .await
@@ -176,7 +201,6 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
-
 
 #[command]
 #[aliases("개발자", "제작자", "developer")]
