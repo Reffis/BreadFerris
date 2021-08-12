@@ -113,9 +113,7 @@ async fn hangang(ctx: &Context, msg: &Message) -> CommandResult {
                     .title("한강 수온")
                     .url("https://hangang.msub.kr")
                     .description(format!("**{}**", v["temp"]))
-                    .footer(|f| {
-                        f.text(format!("{} - {}", v["time"], v["station"]))
-                    })
+                    .footer(|f| f.text(format!("{} - {}", v["time"], v["station"])))
             })
         })
         .await?;
