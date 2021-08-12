@@ -39,7 +39,7 @@ struct Utility;
 struct Image;
 
 #[group]
-#[commands(sans)]
+#[commands(sans, button)]
 struct Other;
 
 #[group]
@@ -91,6 +91,7 @@ async fn main() {
     let mut client = Client::builder(&token)
         .framework(framework)
         .event_handler(event_handler::Handler)
+        .application_id(785702034388287518)
         .await
         .expect("Err creating client");
 
