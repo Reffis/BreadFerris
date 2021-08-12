@@ -39,59 +39,61 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                             .custom_id("HELP_UTIL")
                             .emoji(ReactionType::from('🎈'))
                     })
-                        .create_button(|b| {
-                            b.label("IMAGE")
-                                .style(ButtonStyle::Danger)
-                                .custom_id("HELP_IMAGE")
-                                .emoji(ReactionType::from('🖼'))
-                        })
-                        .create_button(|b| {
-                            b.label("Moderator")
-                                .style(ButtonStyle::Secondary)
-                                .custom_id("HELP_MODER")
-                                .emoji(ReactionType::from('🛠'))
-                        })
-                })
-                    .create_action_row(|bbb| {
-                        bbb.create_button(|b| {
-                            b.label("FUN")
-                                .style(ButtonStyle::Success)
-                                .custom_id("HELP_FUN")
-                                .emoji(ReactionType::from('🧊'))
-                        })
-                            .create_button(|b| {
-                                b.label("OWNER")
-                                    .style(ButtonStyle::Secondary)
-                                    .custom_id("HELP_OWNER")
-                                    .emoji(ReactionType::from('🛡'))
-                            })
-                            .create_button(|b| {
-                                b.label("Delete")
-                                    .style(ButtonStyle::Danger)
-                                    .custom_id("HELP_DEL")
-                                    .emoji(ReactionType::from('🗑'))
-                            })
-                            .create_button(|b| {
-                                b.label("OpenSource")
-                                    .style(ButtonStyle::Link)
-                                    .url("https://github.com/Reffis/BreadFerris")
-                            })
+                    .create_button(|b| {
+                        b.label("IMAGE")
+                            .style(ButtonStyle::Danger)
+                            .custom_id("HELP_IMAGE")
+                            .emoji(ReactionType::from('🖼'))
                     })
+                    .create_button(|b| {
+                        b.label("Moderator")
+                            .style(ButtonStyle::Secondary)
+                            .custom_id("HELP_MODER")
+                            .emoji(ReactionType::from('🛠'))
+                    })
+                })
+                .create_action_row(|bbb| {
+                    bbb.create_button(|b| {
+                        b.label("FUN")
+                            .style(ButtonStyle::Success)
+                            .custom_id("HELP_FUN")
+                            .emoji(ReactionType::from('🧊'))
+                    })
+                    .create_button(|b| {
+                        b.label("OWNER")
+                            .style(ButtonStyle::Secondary)
+                            .custom_id("HELP_OWNER")
+                            .emoji(ReactionType::from('🛡'))
+                    })
+                    .create_button(|b| {
+                        b.label("Delete")
+                            .style(ButtonStyle::Danger)
+                            .custom_id("HELP_DEL")
+                            .emoji(ReactionType::from('🗑'))
+                    })
+                    .create_button(|b| {
+                        b.label("OpenSource")
+                            .style(ButtonStyle::Link)
+                            .url("https://github.com/Reffis/BreadFerris")
+                    })
+                })
             })
-                .embed(|x| {
-                    x.title("Help")
-                        .description(r#"
+            .embed(|x| {
+                x.title("Help")
+                    .description(
+                        r#"
 아래의 버튼을 눌러 도움말을 확인하세요.
 버튼이 표시되지않나요? 저런.. 이슈를 넣어주세요.
 
 ⚠ **명령어 확인하시면 `Delete` 버튼 눌러주세요.**
-"#)
-                        .colour(random_color())
-                        .footer(|f| {
-                            f.text("OpenSource: https://github.com/Reffis/breadferris");
-                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
-                        })
-                })
+"#,
+                    )
+                    .colour(random_color())
+                    .footer(|f| {
+                        f.text("OpenSource: https://github.com/Reffis/breadferris");
+                        f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                    })
+            })
         })
         .await
         .unwrap();
