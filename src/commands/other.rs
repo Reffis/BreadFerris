@@ -17,11 +17,15 @@ async fn sans(ctx: &Context, msg: &Message) -> CommandResult {
 
 #[command]
 async fn button(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id
+    let m = msg
+        .channel_id
         .send_message(&ctx.http, |m| {
             m.components(|c| {
                 c.create_action_row(|a| {
                     a.create_button(|b| b.label("hi").style(ButtonStyle::Success).custom_id("asdf"))
+                        .create_button(|b| {
+                            b.label("bye").style(ButtonStyle::Success).custom_id("abc")
+                        })
                 })
             })
             .embed(|x| x.title("asdf"))
@@ -29,22 +33,26 @@ async fn button(ctx: &Context, msg: &Message) -> CommandResult {
         .await
         .unwrap();
 
-    msg.channel_id
-        .send_message(&ctx.http, |m| {
-            m.components(|c| {
-                c.create_action_row(|a| {
-                    a.create_select_menu(|m| {
-                        m.custom_id("asdfasdf").options(|o| {
-                            o.create_option(|xx| {
-                                xx.label("ㅁㄴㅇㄻㄴㅇㄹ").description("샍").value("헋")
-                            })
-                        })
-                    })
-                })
-            })
-            .embed(|x| x.title("asdf"))
-        })
+    if let Some(interaction_data) = m
+        .await_component_interaction(ctx)
+        .author_id(msg.author.id.0)
+        .timeout(std::time::Duration::from_secs(60))
         .await
-        .unwrap();
+    {
+        if interaction_data.data.custom_id == "asdf" {
+            msg.reply(ctx, "sans").await?;
+            interaction_data
+                .create_interaction_response(ctx, |x| x)
+                .await?;
+            interaction_data.delete_followup_message(ctx, m.id).await?;
+        } else if interaction_data.data.custom_id == "abc" {
+            msg.reply(ctx, "wa").await?;
+            interaction_data
+                .create_interaction_response(ctx, |x| x)
+                .await?;
+            interaction_data.delete_followup_message(ctx, m.id).await?;
+        }
+    }
+
     Ok(())
 }
