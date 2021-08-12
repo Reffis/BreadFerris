@@ -39,7 +39,7 @@ struct Utility;
 struct Image;
 
 #[group]
-#[commands(sans, button)]
+#[commands(sans)]
 struct Other;
 
 #[group]

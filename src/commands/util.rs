@@ -7,6 +7,7 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use std::time::Instant;
+use serenity::model::interactions::message_component::ButtonStyle;
 
 #[command]
 #[aliases("핑")]
@@ -25,29 +26,157 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 }
 
 #[command]
-#[aliases("도움", "도움말")]
+#[aliases("도움말", "도움")]
 async fn help(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id
+    let mut m = msg
+        .channel_id
         .send_message(&ctx.http, |m| {
-            m.embed(|e| {
-                e.colour(WHITE)
-                    .title("Help")
-                    .description("prefix: `ferris`")
-                    .field("🎈 - Utility", HELP_UTIL, true)
-                    .field("🖼️ - Image", HELP_IMAGE, true)
-                    .field("🛠️ - Moderator", HELP_MODER, true)
-                    .field("🛡️ - Owner", HELP_OWNER, true)
-                    .field("🧊 - Fun", HELP_FUN, true)
-                    .footer(|f| {
-                        f.text("OpenSource: https://github.com/Reffis/breadferris");
-                        f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+            m.components(|c| {
+                c.create_action_row(|a| {
+                    a.create_button(|b| {
+                        b.label("Utility")
+                            .style(ButtonStyle::Success)
+                            .custom_id("HELP_UTIL")
+                            .emoji(ReactionType::from('🎈'))
+                    })
+                        .create_button(|b| {
+                            b.label("IMAGE")
+                                .style(ButtonStyle::Danger)
+                                .custom_id("HELP_IMAGE")
+                                .emoji(ReactionType::from('🖼'))
+                        })
+                        .create_button(|b| {
+                            b.label("Moderator")
+                                .style(ButtonStyle::Secondary)
+                                .custom_id("HELP_MODER")
+                                .emoji(ReactionType::from('🛠'))
+                        })
+                })
+                    .create_action_row(|bbb| {
+                        bbb.create_button(|b| {
+                            b.label("FUN")
+                                .style(ButtonStyle::Success)
+                                .custom_id("HELP_FUN")
+                                .emoji(ReactionType::from('🧊'))
+                        })
+                            .create_button(|b| {
+                                b.label("OWNER")
+                                    .style(ButtonStyle::Secondary)
+                                    .custom_id("HELP_OWNER")
+                                    .emoji(ReactionType::from('🛡'))
+                            })
+                            .create_button(|b| {
+                                b.label("Delete")
+                                    .style(ButtonStyle::Danger)
+                                    .custom_id("HELP_DEL")
+                                    .emoji(ReactionType::from('🗑'))
+                            })
+                            .create_button(|b| {
+                                b.label("OpenSource")
+                                    .style(ButtonStyle::Link)
+                                    .url("https://github.com/Reffis/BreadFerris")
+                            })
                     })
             })
+                .embed(|x| {
+                    x.title("Help")
+                        .description("아래의 버튼을 눌러 도움말을 확인하세요.\n\n버튼이 표시되지않나요? 저런.. 이슈를 넣어주세요.")
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })
         })
-        .await?;
+        .await
+        .unwrap();
+    loop {
+        if let Some(interaction_data) = m
+            .await_component_interaction(ctx)
+            .author_id(msg.author.id.0)
+            .await
+        {
+            let t = interaction_data.data.custom_id.as_str();
+            if t == "HELP_UTIL" {
+                m.edit(&ctx.http, |f| f.embed(|x| {
+                    x.title("🎈 - Utility")
+                        .description(HELP_UTIL)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })).await?;
+                interaction_data
+                    .create_interaction_response(ctx, |f| f)
+                    .await
+                    .unwrap_or_default();
+            } else if t == "HELP_IMAGE" {
+                m.edit(&ctx.http, |f| f.embed(|x| {
+                    x.title("🖼️ - Image")
+                        .description(HELP_IMAGE)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })).await?;
+                interaction_data
+                    .create_interaction_response(ctx, |f| f)
+                    .await
+                    .unwrap_or_default();
+            } else if t == "HELP_MODER" {
+                m.edit(&ctx.http, |f| f.embed(|x| {
+                    x.title("🛠️ - Moderator")
+                        .description(HELP_MODER)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })).await?;
+                interaction_data
+                    .create_interaction_response(ctx, |f| f)
+                    .await
+                    .unwrap_or_default();
+            } else if t == "HELP_OWNER" {
+                m.edit(&ctx.http, |f| f.embed(|x| {
+                    x.title("🛡️ - Owner")
+                        .description(HELP_OWNER)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })).await?;
+                interaction_data
+                    .create_interaction_response(ctx, |f| f)
+                    .await
+                    .unwrap_or_default();
+            } else if t == "HELP_DEL" {
+                m.delete(&ctx.http).await?;
+                break;
+            } else if t == "HELP_FUN" {
+                m.edit(&ctx.http, |f| f.embed(|x| {
+                    x.title("🧊 - FUN")
+                        .description(HELP_FUN)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })).await?;
+                interaction_data
+                    .create_interaction_response(ctx, |f| f)
+                    .await
+                    .unwrap_or_default();
+            }
+        }
+    }
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
+
 
 #[command]
 #[aliases("개발자", "제작자", "developer")]
