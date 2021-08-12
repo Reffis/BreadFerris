@@ -8,16 +8,23 @@
 
 ## 실행
 
+---
 다음 명령어를 입력한후,
 
 ```shell
 $ git clone https://github.com/fn79/BreadFerris.git
 $ cd BreadFerris
 ```
+---
+`config/config.json`를 생성한다음, `config/config.json.example`을 참고하여 설정을 완료합니다. 
+```shell
+$ python create_config.py
 
-`config/config.json`를 생성한다음, `config/config.json.example`을 참고하여 설정을 완료합니다.
+# or
 
-
+$ python3 create_config.py
+```
+---
 ```shell
 $ ./build.bat
 
@@ -25,9 +32,7 @@ or
 
 $ cargo run
 ```
-
-<br>
-
+---
 > env 사용시, `src/main.rs` 수정 바람. 
 
 
@@ -38,6 +43,7 @@ $ cargo run
 <br>
 
 **Utility**
+---
 
 `ferris ping`: API Latency를 표시합니다.
 
@@ -56,6 +62,7 @@ $ cargo run
 `ferris invite`: 봇 초대링크를 표시합니다.
 
 **Owner**
+---
 
 `ferris quit`: 봇 종료
 
@@ -66,6 +73,7 @@ $ cargo run
 `ferris msg_del [id]`: 해당 채널에 있는 봇의 메세지를 삭제합니다.
 
 **Image**
+---
 
 `ferris fox`: 여우의 사진을 보여줍니다.
 
@@ -78,6 +86,7 @@ $ cargo run
 `ferris neko [NekoType]`: `nekos.life`에서 이미지를 가져옵니다. `(nsfw)`, `NekoTypep`은 `neko help`를 통해 확인하세요.
 
 **Moderator** (특정 권한 또는 관리자만 사용가능)
+---
 
 `ferris ban [id 또는 멘션] [사유]`: 유저를 차단합니다.
 
@@ -87,7 +96,7 @@ $ cargo run
 
 **Fun** 카테고리는 입력하지 않을예정입니다.
 * 명령어를 확인하려면, `src/commandss/mod.rs`를 참고해주세요.
-
+---
 > (더 추가될 예정)
 
 <br><br>
