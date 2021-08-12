@@ -17,7 +17,7 @@ async fn sans(ctx: &Context, msg: &Message) -> CommandResult {
 
 #[command]
 async fn button(ctx: &Context, msg: &Message) -> CommandResult {
-    let m = msg
+    let mut m = msg
         .channel_id
         .send_message(&ctx.http, |m| {
             m.components(|c| {
@@ -26,33 +26,40 @@ async fn button(ctx: &Context, msg: &Message) -> CommandResult {
                         .create_button(|b| {
                             b.label("bye").style(ButtonStyle::Success).custom_id("abc")
                         })
+                        .create_button(|b| {
+                            b.label("Delete")
+                                .style(ButtonStyle::Danger)
+                                .custom_id("del")
+                        })
                 })
             })
             .embed(|x| x.title("asdf"))
         })
         .await
         .unwrap();
-
-    if let Some(interaction_data) = m
-        .await_component_interaction(ctx)
-        .author_id(msg.author.id.0)
-        .timeout(std::time::Duration::from_secs(60))
-        .await
-    {
-        if interaction_data.data.custom_id == "asdf" {
-            msg.reply(ctx, "sans").await?;
-            interaction_data
-                .create_interaction_response(ctx, |x| x)
-                .await?;
-            interaction_data.delete_followup_message(ctx, m.id).await?;
-        } else if interaction_data.data.custom_id == "abc" {
-            msg.reply(ctx, "wa").await?;
-            interaction_data
-                .create_interaction_response(ctx, |x| x)
-                .await?;
-            interaction_data.delete_followup_message(ctx, m.id).await?;
+    loop {
+        if let Some(interaction_data) = m
+            .await_component_interaction(ctx)
+            .author_id(msg.author.id.0)
+            .await
+        {
+            if interaction_data.data.custom_id == "asdf" {
+                m.edit(&ctx.http, |f| f.embed(|x| x.title("헬로"))).await?;
+                interaction_data
+                    .create_interaction_response(ctx, |f| f)
+                    .await
+                    .unwrap_or_default();
+            } else if interaction_data.data.custom_id == "abc" {
+                m.edit(&ctx.http, |f| f.embed(|x| x.title("월드"))).await?;
+                interaction_data
+                    .create_interaction_response(ctx, |f| f)
+                    .await
+                    .unwrap_or_default();
+            } else if interaction_data.data.custom_id == "del" {
+                m.delete(&ctx.http).await?;
+                break;
+            }
         }
     }
-
     Ok(())
 }
