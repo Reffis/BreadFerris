@@ -90,7 +90,7 @@ async fn avatar(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
                         format!("{}#{}", user.name, user.discriminator)
                     ))
                     .url(user.avatar_url().unwrap_or_default())
-                    .image(user.avatar_url().unwrap_or_default().replace("128", "1024"))
+                    .image(user.avatar_url().unwrap_or_default())
             })
         })
         .await?;
