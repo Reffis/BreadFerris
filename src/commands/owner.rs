@@ -15,6 +15,7 @@ async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
     let data = ctx.data.read().await;
 
     if let Some(manager) = data.get::<ShardManagerContainer>() {
+        msg.reply(ctx, "미국으로 가는중. . .").await?;
         manager.lock().await.shutdown_all().await;
     } else {
         msg.reply(ctx, "Err").await?;
