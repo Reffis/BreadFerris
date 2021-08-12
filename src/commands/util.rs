@@ -80,7 +80,12 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
             })
                 .embed(|x| {
                     x.title("Help")
-                        .description("아래의 버튼을 눌러 도움말을 확인하세요.\n\n버튼이 표시되지않나요? 저런.. 이슈를 넣어주세요.")
+                        .description(r#"
+아래의 버튼을 눌러 도움말을 확인하세요.
+버튼이 표시되지않나요? 저런.. 이슈를 넣어주세요.
+
+⚠ **명령어 확인하시면 `Delete` 버튼 눌러주세요.**
+"#)
                         .colour(random_color())
                         .footer(|f| {
                             f.text("OpenSource: https://github.com/Reffis/breadferris");
