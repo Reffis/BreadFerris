@@ -423,7 +423,7 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
 }
 
 #[command]
-#[aliases("서버이모지")]
+#[aliases("서버이모지", "이모지")]
 async fn server_emoji(ctx: &Context, msg: &Message) -> CommandResult {
     let mut emoji_list = String::from("```\n");
     let emoji = msg.guild_id.unwrap_or_default().emojis(ctx).await?;
