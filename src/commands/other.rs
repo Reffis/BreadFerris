@@ -1,8 +1,7 @@
-use serenity::framework::standard::{macros::command, Args, CommandResult};
+use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 
-use crate::commands::embed_colors::WHITE;
 use breadferris::cmdlog;
 
 #[command]
