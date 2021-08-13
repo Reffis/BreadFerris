@@ -2,7 +2,6 @@
 use super::embed_colors::*;
 use crate::commands::*;
 use breadferris::{cmdlog, loadconfig};
-use json::JsonValue;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::interactions::message_component::ButtonStyle;
 use serenity::model::prelude::*;
@@ -324,13 +323,19 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         .send()
         .await?;
     let json = &json::parse(res.text().await?.as_str())?;
-    if json["success"] == JsonValue::Boolean(true) {
-        msg.reply(ctx, format!("```rs\n{}\n```", json["stdout"]))
-            .await?;
-    } else {
-        msg.reply(ctx, format!("```rs\n{}\n```", json["stderr"]))
-            .await?;
-    }
+
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(WHITE)
+                    .title("Rust Playground")
+                    .url("https://play.rust-lang.org/")
+                    .field("stderr", format!("```rs\n{}\n```", json["stderr"]), false)
+                    .field("stdout", format!("```rs\n{}\n```", json["stdout"]), false)
+            })
+        })
+        .await?;
+
     message.delete(ctx).await?;
 
     cmdlog(msg.author.id.to_string(), msg.content.clone());
