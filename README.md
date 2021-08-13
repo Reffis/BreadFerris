@@ -72,6 +72,8 @@ $ cargo run
 
 `ferris msg_del [id]`: 해당 채널에 있는 봇의 메세지를 삭제합니다.
 
+`ferris announcements [Message]`: 채널 주제가 `-페리스공지-` 라면, 해당 채널에 공지 메세지를 보냅니다. 
+
 **Image**
 ---
 
