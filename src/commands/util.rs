@@ -122,7 +122,9 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 })
                 .await?;
                 interaction_data
-                    .create_interaction_response(ctx, |f| f)
+                    .create_interaction_response(ctx, |f| {
+                        f.kind(InteractionResponseType::DeferredUpdateMessage)
+                    })
                     .await
                     .unwrap_or_default();
             } else if t == "HELP_IMAGE" {
@@ -141,7 +143,9 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 })
                 .await?;
                 interaction_data
-                    .create_interaction_response(ctx, |f| f)
+                    .create_interaction_response(ctx, |f| {
+                        f.kind(InteractionResponseType::DeferredUpdateMessage)
+                    })
                     .await
                     .unwrap_or_default();
             } else if t == "HELP_MODER" {
@@ -160,7 +164,9 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 })
                 .await?;
                 interaction_data
-                    .create_interaction_response(ctx, |f| f)
+                    .create_interaction_response(ctx, |f| {
+                        f.kind(InteractionResponseType::DeferredUpdateMessage)
+                    })
                     .await
                     .unwrap_or_default();
             } else if t == "HELP_OWNER" {
@@ -179,7 +185,9 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 })
                 .await?;
                 interaction_data
-                    .create_interaction_response(ctx, |f| f)
+                    .create_interaction_response(ctx, |f| {
+                        f.kind(InteractionResponseType::DeferredUpdateMessage)
+                    })
                     .await
                     .unwrap_or_default();
             } else if t == "HELP_DEL" {
@@ -201,7 +209,9 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 })
                 .await?;
                 interaction_data
-                    .create_interaction_response(ctx, |f| f)
+                    .create_interaction_response(ctx, |f| {
+                        f.kind(InteractionResponseType::DeferredUpdateMessage)
+                    })
                     .await
                     .unwrap_or_default();
             }

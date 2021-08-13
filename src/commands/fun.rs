@@ -120,3 +120,83 @@ async fn hangang(ctx: &Context, msg: &Message) -> CommandResult {
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
+
+#[command]
+#[aliases("빵켓")]
+async fn bbangcat(ctx: &Context, msg: &Message) -> CommandResult {
+    let m = msg
+        .channel_id
+        .send_message(&ctx.http, |m| {
+            m.components(|c| {
+                c.create_action_row(|af| {
+                    af.create_select_menu(|f| {
+                        f.placeholder("빵켓은 귀엽나요?")
+                            .custom_id("bbang_cute")
+                            .options(|o| {
+                                o.create_option(|ff| {
+                                    ff.label("귀엽습니다.")
+                                        .description("세상에서 가장 귀엽고 깜찍하죠 ><")
+                                        .value("bbang_cute")
+                                })
+                                    .create_option(|ff| {
+                                        ff.label("귀엽지 않습니다.")
+                                            .description("지가 귀엽다고 하는게 정말 역겹죠?")
+                                            .value("bbang_notcute")
+                                    })
+                                    .create_option(|ff| ff.label("꺼지세요").value("bbang_shutup"))
+                            })
+                    })
+                })
+            })
+                .content(format!("**빵켓이 어떤지 골라주세요!**\n\n**해당 메뉴는 {} 님만 사용할 수 있습니다.**", msg.author.mention()))
+        })
+        .await
+        .unwrap();
+    loop {
+        if let Some(interaction_data) = m
+            .await_component_interaction(ctx)
+            .author_id(msg.author.id.0)
+            .await
+        {
+            if let Some(e) = interaction_data.data.values.get(0) {
+                let t = e.as_str();
+                if t == "bbang_notcute" {
+                    msg.channel_id
+                        .send_message(&ctx.http, |m| {
+                            m.content(format!(
+                                "{}, **틀렸어요. `t ^^ t`**, 빵켓은 귀엽답니다.",
+                                msg.author.mention()
+                            ))
+                        })
+                        .await?;
+                    interaction_data
+                        .create_interaction_response(ctx, |f| {
+                            f.kind(InteractionResponseType::DeferredUpdateMessage)
+                        })
+                        .await
+                        .unwrap_or_default();
+                } else if t == "bbang_cute" {
+                    msg.channel_id
+                        .send_message(&ctx.http, |m| {
+                            m.content(format!(
+                                "{}, 정답입니다. 빵켓은 귀엽습니다.",
+                                msg.author.mention()
+                            ))
+                        })
+                        .await?;
+                    interaction_data
+                        .create_interaction_response(ctx, |f| {
+                            f.kind(InteractionResponseType::DeferredUpdateMessage)
+                        })
+                        .await
+                        .unwrap_or_default();
+                } else if t == "bbang_shutup" {
+                    m.delete(&ctx.http).await?;
+                    break;
+                }
+            }
+        }
+    }
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}

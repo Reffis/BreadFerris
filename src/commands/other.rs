@@ -6,8 +6,7 @@ use breadferris::cmdlog;
 
 #[command]
 #[aliases("샍", "샌즈", "샍즈", "샌주", "샍주")]
-async fn sans(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.reply(ctx, "헋 샍주 아시는구나!").await?;
+async fn sans(_ctx: &Context, msg: &Message) -> CommandResult {
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
