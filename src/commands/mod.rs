@@ -29,6 +29,12 @@ eval은 로컬에서 코드가 실행됩니다. 그렇기때문에, 컴퓨터에
 * * * 보안상의 문제로 삭제된 명령어입니다.
  */
 
+/*
+ 도움말 명령어가 불안정할 수 있습니다. (버튼사용)
+
+ 제가 잘 몰라서 loop 을 썼는데, 다른 효율적인 방법이 있다면 이슈나 PR 넣어주시면 감사하겠습니다 :)
+ */
+
 pub const HELP_UTIL: &str = r#"
 > `help`, `ping`, `support [Message]`, `dev`, `run [Code]`, `userinfo [mention or id]`, `server_emoji`, `invite`
 "#;
