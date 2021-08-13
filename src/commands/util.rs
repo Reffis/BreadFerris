@@ -6,7 +6,7 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::interactions::message_component::ButtonStyle;
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use std::time::{Instant, Duration};
+use std::time::{Duration, Instant};
 
 #[command]
 #[aliases("핑")]

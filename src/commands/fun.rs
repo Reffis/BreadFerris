@@ -183,7 +183,9 @@ async fn bbangcat(ctx: &Context, msg: &Message) -> CommandResult {
             } else if t == "bbang_cute" {
                 msg.reply(
                     ctx,
-                    format!("{}, 정답입니다. 빵켓은 귀엽습니다.", msg.author.mention())).await?;
+                    format!("{}, 정답입니다. 빵켓은 귀엽습니다.", msg.author.mention()),
+                )
+                .await?;
 
                 m.delete(&ctx.http).await?;
                 interaction_data
