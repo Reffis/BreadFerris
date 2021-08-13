@@ -8,7 +8,6 @@ use breadferris::LogType::Info;
 use breadferris::{cmdlog, log};
 
 use crate::ShardManagerContainer;
-use serenity::client::bridge::gateway::ShardId;
 
 #[command]
 #[aliases("종료", "shutdown", "exit")]
