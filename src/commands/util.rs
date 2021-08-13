@@ -85,9 +85,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
 
 채널 주제가 `-페리스공지-` 라면, 해당 채널에 공지 메세지가 올라옵니다.
 
-버튼이 표시되지않나요? 저런.. 이슈를 넣어주세요.
-
-⚠ **명령어 확인하시면 `Delete` 버튼 눌러주세요.**
+⚠ **명령어를 확인하셨으면, 반드시 `Delete` 버튼을 눌러주세요.**
 "#,
                     )
                     .colour(random_color())
