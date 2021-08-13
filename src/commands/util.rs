@@ -435,7 +435,13 @@ async fn server_emoji(ctx: &Context, msg: &Message) -> CommandResult {
         }
     });
     emoji_list.push_str("```");
-    msg.reply(ctx, emoji_list).await?;
+    if let Err(_) = msg.reply(ctx, emoji_list).await {
+        msg.reply(
+            ctx,
+            "으에에? 아무래도 이모지가 너무 많아서 출력을 못하는거 같아요..",
+        )
+        .await?;
+    }
     Ok(())
 }
 
