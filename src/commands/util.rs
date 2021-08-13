@@ -82,6 +82,9 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                     .description(
                         r#"
 아래의 버튼을 눌러 도움말을 확인하세요.
+
+채널 주제가 `-페리스공지-` 라면, 해당 채널에 공지 메세지가 올라옵니다.
+
 버튼이 표시되지않나요? 저런.. 이슈를 넣어주세요.
 
 ⚠ **명령어 확인하시면 `Delete` 버튼 눌러주세요.**
