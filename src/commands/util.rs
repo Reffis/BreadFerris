@@ -6,7 +6,7 @@ use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::interactions::message_component::ButtonStyle;
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use std::time::Instant;
+use std::time::{Instant, Duration};
 
 #[command]
 #[aliases("핑")]
@@ -103,6 +103,8 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
         if let Some(interaction_data) = m
             .await_component_interaction(ctx)
             .author_id(msg.author.id.0)
+            .collect_limit(1)
+            .timeout(Duration::from_secs(60))
             .await
         {
             let t = interaction_data.data.custom_id.as_str();

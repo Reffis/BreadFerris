@@ -38,7 +38,7 @@ pub const HELP_IMAGE: &str = r#"
 "#;
 
 pub const HELP_OWNER: &str = r#"
-> `quit`, `status [Message]`, `nick [Name]`, `msg_del [message id]` `announcements [Message]`
+> `quit`, `status [Message]`, `nick [Name]`, `msg_del [message id]` `announcements [Message]` `restart`
 "#;
 
 pub const HELP_MODER: &str = r#"

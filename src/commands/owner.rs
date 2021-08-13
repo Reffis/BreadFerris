@@ -8,6 +8,7 @@ use breadferris::LogType::Info;
 use breadferris::{cmdlog, log};
 
 use crate::ShardManagerContainer;
+use serenity::client::bridge::gateway::ShardId;
 
 #[command]
 #[aliases("종료", "shutdown", "exit")]
@@ -101,5 +102,18 @@ async fn announcements(ctx: &Context, msg: &Message, args: Args) -> CommandResul
         }
     }
     cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
+
+#[command]
+#[owners_only]
+#[aliases("리스타트", "다시시작")]
+async fn restart(ctx: &Context, _msg: &Message) -> CommandResult {
+    let data = ctx.data.read().await;
+
+    if let Some(manager) = data.get::<ShardManagerContainer>() {
+        manager.lock().await.restart(ShardId(0)).await;
+    }
+
     Ok(())
 }
