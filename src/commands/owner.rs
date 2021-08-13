@@ -3,6 +3,7 @@ use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 
+use super::embed_colors::*;
 use breadferris::LogType::Info;
 use breadferris::{cmdlog, log};
 
@@ -58,5 +59,47 @@ async fn msg_del(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
         .get_message(msg.channel_id.0, args.single::<u64>()?)
         .await?;
     msg.delete(ctx).await?;
+    Ok(())
+}
+
+#[command]
+#[aliases("공지")]
+#[owners_only]
+async fn announcements(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    for guild in ctx.cache.guilds().await {
+        for channel in guild.channels(&ctx.http).await? {
+            if channel.1.topic.unwrap_or_default() == "-페리스공지-" {
+                channel
+                    .0
+                    .send_message(&ctx.http, |m| {
+                        m.embed(|e| {
+                            e.colour(WHITE)
+                                .title("BreadFerris - 공지")
+                                .description(args.rest())
+                                .footer(|f| {
+                                    f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                                        .text(format!(
+                                            "{}#{}",
+                                            msg.author.name, msg.author.discriminator
+                                        ))
+                                })
+                        })
+                    })
+                    .await?;
+                msg.reply(
+                    ctx,
+                    format!(
+                        "Channel: {} ({}), Guild: {} ({})",
+                        channel.0.name(&ctx.cache).await.unwrap_or_default(),
+                        channel.0 .0,
+                        guild.name(&ctx.cache).await.unwrap_or_default(),
+                        guild.0
+                    ),
+                )
+                .await?;
+            }
+        }
+    }
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
