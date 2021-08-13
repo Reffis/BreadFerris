@@ -74,8 +74,6 @@ $ cargo run
 
 `ferris announcements [Message]`: 채널 주제가 `-페리스공지-` 라면, 해당 채널에 공지 메세지를 보냅니다.
 
-`ferris restart`: 봇을 다시시작합니다.
-
 **Image**
 ---
 
