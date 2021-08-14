@@ -155,9 +155,11 @@ async fn bbangcat(ctx: &Context, msg: &Message) -> CommandResult {
         })
         .await
         .unwrap();
-    if let Some(interaction_data) = m
+    while let Some(interaction_data) = m
         .await_component_interaction(ctx)
-        .author_id(msg.author.id.0)
+        .author_id(msg.author.id)
+        .channel_id(msg.channel_id)
+        .message_id(m.id)
         .collect_limit(1)
         .timeout(std::time::Duration::from_secs(10))
         .await
@@ -199,6 +201,7 @@ async fn bbangcat(ctx: &Context, msg: &Message) -> CommandResult {
             }
         }
     }
+    m.delete(&ctx.http).await?;
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
