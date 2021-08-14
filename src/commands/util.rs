@@ -97,124 +97,114 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
         })
         .await
         .unwrap();
-    loop {
-        if let Some(interaction_data) = m
-            .await_component_interaction(ctx)
-            .author_id(msg.author.id.0)
-            .collect_limit(1)
-            .timeout(Duration::from_secs(60))
-            .await
-        {
-            let t = interaction_data.data.custom_id.as_str();
-            if t == "HELP_UTIL" {
-                m.edit(&ctx.http, |f| {
-                    f.embed(|x| {
-                        x.title("🎈 - Utility")
-                            .description(HELP_UTIL)
-                            .colour(random_color())
-                            .footer(|f| {
-                                f.text("OpenSource: https://github.com/Reffis/breadferris");
-                                f.icon_url(
-                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
-                                )
-                            })
-                    })
+    while let Some(interaction_data) = m
+        .await_component_interaction(ctx)
+        .author_id(msg.author.id)
+        .channel_id(msg.channel_id)
+        .message_id(m.id)
+        .collect_limit(1)
+        .timeout(std::time::Duration::from_secs(10))
+        .await
+    {
+        let t = interaction_data.data.custom_id.as_str();
+        if t == "HELP_UTIL" {
+            m.edit(&ctx.http, |f| {
+                f.embed(|x| {
+                    x.title("🎈 - Utility")
+                        .description(HELP_UTIL)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
                 })
-                .await?;
-                interaction_data
-                    .create_interaction_response(ctx, |f| {
-                        f.kind(InteractionResponseType::DeferredUpdateMessage)
-                    })
-                    .await
-                    .unwrap_or_default();
-            } else if t == "HELP_IMAGE" {
-                m.edit(&ctx.http, |f| {
-                    f.embed(|x| {
-                        x.title("🖼️ - Image")
-                            .description(HELP_IMAGE)
-                            .colour(random_color())
-                            .footer(|f| {
-                                f.text("OpenSource: https://github.com/Reffis/breadferris");
-                                f.icon_url(
-                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
-                                )
-                            })
-                    })
+            })
+            .await?;
+            interaction_data
+                .create_interaction_response(ctx, |f| {
+                    f.kind(InteractionResponseType::DeferredUpdateMessage)
                 })
-                .await?;
-                interaction_data
-                    .create_interaction_response(ctx, |f| {
-                        f.kind(InteractionResponseType::DeferredUpdateMessage)
-                    })
-                    .await
-                    .unwrap_or_default();
-            } else if t == "HELP_MODER" {
-                m.edit(&ctx.http, |f| {
-                    f.embed(|x| {
-                        x.title("🛠️ - Moderator")
-                            .description(HELP_MODER)
-                            .colour(random_color())
-                            .footer(|f| {
-                                f.text("OpenSource: https://github.com/Reffis/breadferris");
-                                f.icon_url(
-                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
-                                )
-                            })
-                    })
+                .await
+                .unwrap_or_default();
+        } else if t == "HELP_IMAGE" {
+            m.edit(&ctx.http, |f| {
+                f.embed(|x| {
+                    x.title("🖼️ - Image")
+                        .description(HELP_IMAGE)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
                 })
-                .await?;
-                interaction_data
-                    .create_interaction_response(ctx, |f| {
-                        f.kind(InteractionResponseType::DeferredUpdateMessage)
-                    })
-                    .await
-                    .unwrap_or_default();
-            } else if t == "HELP_OWNER" {
-                m.edit(&ctx.http, |f| {
-                    f.embed(|x| {
-                        x.title("🛡️ - Owner")
-                            .description(HELP_OWNER)
-                            .colour(random_color())
-                            .footer(|f| {
-                                f.text("OpenSource: https://github.com/Reffis/breadferris");
-                                f.icon_url(
-                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
-                                )
-                            })
-                    })
+            })
+            .await?;
+            interaction_data
+                .create_interaction_response(ctx, |f| {
+                    f.kind(InteractionResponseType::DeferredUpdateMessage)
                 })
-                .await?;
-                interaction_data
-                    .create_interaction_response(ctx, |f| {
-                        f.kind(InteractionResponseType::DeferredUpdateMessage)
-                    })
-                    .await
-                    .unwrap_or_default();
-            } else if t == "HELP_DEL" {
-                m.delete(&ctx.http).await?;
-                break;
-            } else if t == "HELP_FUN" {
-                m.edit(&ctx.http, |f| {
-                    f.embed(|x| {
-                        x.title("🧊 - FUN")
-                            .description(HELP_FUN)
-                            .colour(random_color())
-                            .footer(|f| {
-                                f.text("OpenSource: https://github.com/Reffis/breadferris");
-                                f.icon_url(
-                                    "https://avatars.githubusercontent.com/u/88228766?s=200&v=4",
-                                )
-                            })
-                    })
+                .await
+                .unwrap_or_default();
+        } else if t == "HELP_MODER" {
+            m.edit(&ctx.http, |f| {
+                f.embed(|x| {
+                    x.title("🛠️ - Moderator")
+                        .description(HELP_MODER)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
                 })
-                .await?;
-                interaction_data
-                    .create_interaction_response(ctx, |f| {
-                        f.kind(InteractionResponseType::DeferredUpdateMessage)
-                    })
-                    .await
-                    .unwrap_or_default();
-            }
+            })
+            .await?;
+            interaction_data
+                .create_interaction_response(ctx, |f| {
+                    f.kind(InteractionResponseType::DeferredUpdateMessage)
+                })
+                .await
+                .unwrap_or_default();
+        } else if t == "HELP_OWNER" {
+            m.edit(&ctx.http, |f| {
+                f.embed(|x| {
+                    x.title("🛡️ - Owner")
+                        .description(HELP_OWNER)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })
+            })
+            .await?;
+            interaction_data
+                .create_interaction_response(ctx, |f| {
+                    f.kind(InteractionResponseType::DeferredUpdateMessage)
+                })
+                .await
+                .unwrap_or_default();
+        } else if t == "HELP_DEL" {
+            m.delete(&ctx.http).await?;
+            break;
+        } else if t == "HELP_FUN" {
+            m.edit(&ctx.http, |f| {
+                f.embed(|x| {
+                    x.title("🧊 - FUN")
+                        .description(HELP_FUN)
+                        .colour(random_color())
+                        .footer(|f| {
+                            f.text("OpenSource: https://github.com/Reffis/breadferris");
+                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                        })
+                })
+            })
+            .await?;
+            interaction_data
+                .create_interaction_response(ctx, |f| {
+                    f.kind(InteractionResponseType::DeferredUpdateMessage)
+                })
+                .await
+                .unwrap_or_default();
         }
     }
     cmdlog(msg.author.id.to_string(), msg.content.clone());
