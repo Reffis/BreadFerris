@@ -3,10 +3,10 @@ use super::embed_colors::*;
 use crate::commands::*;
 use breadferris::{cmdlog, loadconfig};
 use serenity::framework::standard::{macros::command, Args, CommandResult};
+use serenity::model::interactions::message_component::ButtonStyle;
 use serenity::model::prelude::*;
 use serenity::prelude::*;
-use std::time::{Instant};
-use serenity::model::interactions::message_component::ButtonStyle;
+use std::time::Instant;
 
 #[command]
 #[aliases("핑")]
@@ -38,62 +38,62 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                             .custom_id("HELP_UTIL")
                             .emoji(ReactionType::from('🎈'))
                     })
-                        .create_button(|b| {
-                            b.label("IMAGE")
-                                .style(ButtonStyle::Danger)
-                                .custom_id("HELP_IMAGE")
-                                .emoji(ReactionType::from('🖼'))
-                        })
-                        .create_button(|b| {
-                            b.label("Moderator")
-                                .style(ButtonStyle::Secondary)
-                                .custom_id("HELP_MODER")
-                                .emoji(ReactionType::from('🛠'))
-                        })
-                })
-                    .create_action_row(|bbb| {
-                        bbb.create_button(|b| {
-                            b.label("FUN")
-                                .style(ButtonStyle::Success)
-                                .custom_id("HELP_FUN")
-                                .emoji(ReactionType::from('🧊'))
-                        })
-                            .create_button(|b| {
-                                b.label("OWNER")
-                                    .style(ButtonStyle::Secondary)
-                                    .custom_id("HELP_OWNER")
-                                    .emoji(ReactionType::from('🛡'))
-                            })
-                            .create_button(|b| {
-                                b.label("Delete")
-                                    .style(ButtonStyle::Danger)
-                                    .custom_id("HELP_DEL")
-                                    .emoji(ReactionType::from('🗑'))
-                            })
-                            .create_button(|b| {
-                                b.label("OpenSource")
-                                    .style(ButtonStyle::Link)
-                                    .url("https://github.com/Reffis/BreadFerris")
-                            })
+                    .create_button(|b| {
+                        b.label("IMAGE")
+                            .style(ButtonStyle::Danger)
+                            .custom_id("HELP_IMAGE")
+                            .emoji(ReactionType::from('🖼'))
                     })
+                    .create_button(|b| {
+                        b.label("Moderator")
+                            .style(ButtonStyle::Secondary)
+                            .custom_id("HELP_MODER")
+                            .emoji(ReactionType::from('🛠'))
+                    })
+                })
+                .create_action_row(|bbb| {
+                    bbb.create_button(|b| {
+                        b.label("FUN")
+                            .style(ButtonStyle::Success)
+                            .custom_id("HELP_FUN")
+                            .emoji(ReactionType::from('🧊'))
+                    })
+                    .create_button(|b| {
+                        b.label("OWNER")
+                            .style(ButtonStyle::Secondary)
+                            .custom_id("HELP_OWNER")
+                            .emoji(ReactionType::from('🛡'))
+                    })
+                    .create_button(|b| {
+                        b.label("Delete")
+                            .style(ButtonStyle::Danger)
+                            .custom_id("HELP_DEL")
+                            .emoji(ReactionType::from('🗑'))
+                    })
+                    .create_button(|b| {
+                        b.label("OpenSource")
+                            .style(ButtonStyle::Link)
+                            .url("https://github.com/Reffis/BreadFerris")
+                    })
+                })
             })
-                .embed(|x| {
-                    x.title("Help")
-                        .description(
-                            r#"
+            .embed(|x| {
+                x.title("Help")
+                    .description(
+                        r#"
 아래의 버튼을 눌러 도움말을 확인하세요.
 
 채널 주제가 `-페리스공지-` 라면, 해당 채널에 공지 메세지가 올라옵니다.
 
 ⚠ **명령어를 확인하셨으면, 반드시 `Delete` 버튼을 눌러주세요.**
 "#,
-                        )
-                        .colour(random_color())
-                        .footer(|f| {
-                            f.text("OpenSource: https://github.com/Reffis/breadferris");
-                            f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
-                        })
-                })
+                    )
+                    .colour(random_color())
+                    .footer(|f| {
+                        f.text("OpenSource: https://github.com/Reffis/breadferris");
+                        f.icon_url("https://avatars.githubusercontent.com/u/88228766?s=200&v=4")
+                    })
+            })
         })
         .await
         .unwrap();
@@ -119,7 +119,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         })
                 })
             })
-                .await?;
+            .await?;
             interaction_data
                 .create_interaction_response(ctx, |f| {
                     f.kind(InteractionResponseType::DeferredUpdateMessage)
@@ -138,7 +138,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         })
                 })
             })
-                .await?;
+            .await?;
             interaction_data
                 .create_interaction_response(ctx, |f| {
                     f.kind(InteractionResponseType::DeferredUpdateMessage)
@@ -157,7 +157,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         })
                 })
             })
-                .await?;
+            .await?;
             interaction_data
                 .create_interaction_response(ctx, |f| {
                     f.kind(InteractionResponseType::DeferredUpdateMessage)
@@ -176,7 +176,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         })
                 })
             })
-                .await?;
+            .await?;
             interaction_data
                 .create_interaction_response(ctx, |f| {
                     f.kind(InteractionResponseType::DeferredUpdateMessage)
@@ -198,7 +198,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                         })
                 })
             })
-                .await?;
+            .await?;
             interaction_data
                 .create_interaction_response(ctx, |f| {
                     f.kind(InteractionResponseType::DeferredUpdateMessage)
