@@ -4,7 +4,7 @@
 
 [초대 (관리자 권한 O)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=8&scope=bot)
 
-[초대 (관리자 권한 X)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=9&scope=bot)
+[초대 (관리자 권한 X)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=0&scope=bot)
 
 ## 실행
 
@@ -12,7 +12,7 @@
 다음 명령어를 입력한후,
 
 ```shell
-$ git clone https://github.com/fn79/BreadFerris.git
+$ git clone https://github.com/Reffis/BreadFerris.git
 $ cd BreadFerris
 ```
 ---
