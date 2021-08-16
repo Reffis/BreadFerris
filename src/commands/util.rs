@@ -295,7 +295,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 }
 
 #[command]
-#[aliases("실행", "eval")]
+#[aliases("실행", "eval", "러스트", "rust")]
 async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let message = msg.reply(ctx, "잠시만 기다려주세요 . . .\n\n`기다려도 응답이 없나요?`\n`출력되는 글자수가 너무 많거나, 서버에 문제가 있을수도 있어요.`").await?;
     let r = args
