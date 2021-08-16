@@ -19,7 +19,11 @@ async fn ban(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
                 .parse::<u64>()?,
         )
         .await?;
-    let r = args.single::<String>()?;
+    let r = if args.len() > 1 {
+        args.single::<String>()?
+    } else {
+        "None".to_string()
+    };
     if let Some(e) = msg.guild_id {
         e.ban_with_reason(ctx, user.clone(), 0, r.clone()).await?;
         msg.reply(
@@ -52,7 +56,11 @@ async fn kick(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
                 .parse::<u64>()?,
         )
         .await?;
-    let r = args.single::<String>()?;
+    let r = if args.len() > 1 {
+        args.single::<String>()?
+    } else {
+        "None".to_string()
+    };
     if let Some(e) = msg.guild_id {
         e.kick_with_reason(ctx, user.clone(), r.clone().as_str())
             .await?;
