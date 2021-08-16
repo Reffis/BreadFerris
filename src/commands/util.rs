@@ -469,7 +469,7 @@ async fn go(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         .collect::<String>()
         .replace("\"", "\\\"");
     let a = reqwest::Client::new();
-    
+
     let format = format!(
         "
         {}\"version\":2,
@@ -491,7 +491,11 @@ async fn go(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
                     .title("Go Playground")
                     .url("https://play.golang.org/")
                     .field("Errors", format!("```go\n{}\n```", json["Errors"]), false)
-                    .field("Stdout", format!("```go\n{}\n```", json["Events"][0]["Message"]), false)
+                    .field(
+                        "Stdout",
+                        format!("```go\n{}\n```", json["Events"][0]["Message"]),
+                        false,
+                    )
             })
         })
         .await?;

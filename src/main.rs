@@ -31,7 +31,18 @@ impl TypeMapKey for ShardManagerContainer {
 struct General; // owner
 
 #[group]
-#[commands(ping, help, support, dev, run, opensource, info, server_emoji, invite,  go)]
+#[commands(
+    ping,
+    help,
+    support,
+    dev,
+    run,
+    opensource,
+    info,
+    server_emoji,
+    invite,
+    go
+)]
 struct Utility;
 
 #[group]
@@ -91,7 +102,11 @@ async fn main() {
     let mut client = Client::builder(&token)
         .framework(framework)
         .event_handler(event_handler::Handler)
-        .application_id(loadconfig("application_id".to_string()).parse::<u64>().unwrap())
+        .application_id(
+            loadconfig("application_id".to_string())
+                .parse::<u64>()
+                .unwrap(),
+        )
         .await
         .expect("Err creating client");
 
