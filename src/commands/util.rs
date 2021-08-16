@@ -219,7 +219,7 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
         .send_message(&ctx.http, |m| {
             m.embed(|e| {
                 e.colour(YELLOW)
-                    .title("Help")
+                    .title("Developer")
                     .description("`! Bread Cat#0002` (760688241447141395)")
                     .url("https://github.com/fn79")
                     .thumbnail("https://cdn.discordapp.com/avatars/760688241447141395/a_3a5a1997eb58c5360d9d0395e32f3417.gif?size=1024")
@@ -232,9 +232,9 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
 
 > **OS:** Windows 10 - 20H2 (OS Build 19042.1110)
 
-> **Terminal:** Powershell (or CMD)
+> **Terminal:** Wsl (Windows Subsystem for Linux) (Debian)
 
-> **Rust Serenity**
+> **Discord API:** Rust Serenity (v0.10.9)
                     "#,
                         true,
                     )
