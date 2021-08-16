@@ -51,7 +51,9 @@ $ cargo run
 
 `ferris support [Arg]`: 문의
 
-`ferris run [Code]`: 러스트 코드를 실행합니다.
+`ferris rust [Code]`: 러스트 코드를 실행합니다.
+
+`ferris go [Code]`: 고랭(go) 코드를 실행합니다.
 
 `ferris dev`: 개발자의 정보 / 개발 환경을 표시합니다.
 
