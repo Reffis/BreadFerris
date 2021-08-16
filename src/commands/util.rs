@@ -228,7 +228,7 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
                         r#"
 > **Rust Version:** cargo 1.54.0 (2021-06-22)
 
-> **Editor:** IntelliJ ~~(or VSCode)~~
+> **Editor:** Visual Studio Code
 
 > **OS:** Windows 10 - 20H2 (OS Build 19042.1110)
 
