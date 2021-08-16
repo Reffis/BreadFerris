@@ -25,8 +25,9 @@ async fn ban(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         msg.reply(
             ctx,
             format!(
-                "{}을(를) 차단했습니다.\n\n사유:\n```\n{}\n```",
+                "> **{} 님이 {} 님에게 차단당했습니다.**\n> \n> **사유:**\n```\n{}\n```",
                 user.clone().mention(),
+                msg.author.tag(),
                 r.clone()
             ),
         )
@@ -58,8 +59,9 @@ async fn kick(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         msg.reply(
             ctx,
             format!(
-                "{}을(를) 추방했습니다.\n\n사유:\n```\n{}\n```",
+                "> **{} 님이 {} 님에게 추방당했습니다.**\n> \n> **사유:**\n```\n{}\n```",
                 user.clone().mention(),
+                msg.author.tag(),
                 r.clone()
             ),
         )
