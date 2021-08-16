@@ -31,7 +31,7 @@ impl TypeMapKey for ShardManagerContainer {
 struct General; // owner
 
 #[group]
-#[commands(ping, help, support, dev, run, opensource, info, server_emoji, invite)]
+#[commands(ping, help, support, dev, run, opensource, info, server_emoji, invite,  go)]
 struct Utility;
 
 #[group]

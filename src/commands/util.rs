@@ -453,3 +453,52 @@ async fn invite(ctx: &Context, msg: &Message) -> CommandResult {
     }).await?;
     Ok(())
 }
+
+#[command]
+#[aliases("고", "고랭")]
+async fn go(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    let message = msg.reply(ctx, "잠시만 기다려주세요 . . .\n\n`기다려도 응답이 없나요?`\n`출력되는 글자수가 너무 많거나, 서버에 문제가 있을수도 있어요.`").await?;
+    let r = args
+        .rest()
+        .split("\n")
+        .filter(|x| match x {
+            &"```" | &"```go" | &"`" => false,
+            _ => true,
+        })
+        .map(|x| x.to_string() + "\\n")
+        .collect::<String>()
+        .replace("\"", "\\\"");
+    let a = reqwest::Client::new();
+    
+    let format = format!(
+        "
+        {}\"version\":2,
+        \"body\":\"{}\",
+        \"withVet\":true{}",
+        "{", r, "}"
+    );
+    let res = a
+        .post("https://play.golang.org/compile")
+        .header("content-type", "application/json")
+        .body(format.clone())
+        .send()
+        .await?;
+    let json = &json::parse(res.text().await?.as_str())?;
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(WHITE)
+                    .title("Go Playground")
+                    .url("https://play.golang.org/")
+                    .field("Errors", format!("```go\n{}\n```", json["Errors"]), false)
+                    .field("Stdout", format!("```go\n{}\n```", json["Events"][0]["Message"]), false)
+            })
+        })
+        .await?;
+
+    message.delete(ctx).await?;
+
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+
+    Ok(())
+}
