@@ -55,8 +55,7 @@ async fn kick(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     let r = args.rest();
 
     if let Some(e) = msg.guild_id {
-        e.kick_with_reason(ctx, user.clone(), r.clone())
-            .await?;
+        e.kick_with_reason(ctx, user.clone(), r.clone()).await?;
         msg.reply(
             ctx,
             format!(
