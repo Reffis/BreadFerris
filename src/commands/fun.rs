@@ -44,14 +44,6 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
 }
 
 #[command]
-#[aliases("빵암호화", "빵켓암호화")]
-async fn bce(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
-    msg.reply(ctx, to_bce::new(args.rest())).await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
-    Ok(())
-}
-
-#[command]
 #[aliases("say", "따라해")]
 async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     msg.channel_id
