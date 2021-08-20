@@ -46,7 +46,7 @@ struct General; // owner
 struct Utility;
 
 #[group]
-#[commands(shiba, fox, cat, meme, neko)]
+#[commands(shiba, fox, cat, meme, neko, corgi)]
 struct Image;
 
 #[group]
