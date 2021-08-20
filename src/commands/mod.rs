@@ -38,11 +38,11 @@ pub const HELP_UTIL: &str = r#"
 "#;
 
 pub const HELP_IMAGE: &str = r#"
-> `fox`, `shiba`, `cat`, `meme`, `neko [NekoType] (nsfw)` `corgi`
+> `fox`, `shiba`, `cat`, `meme`, `neko [NekoType] (nsfw)`, `corgi`
 "#;
 
 pub const HELP_OWNER: &str = r#"
-> `quit`, `status [Message]`, `nick [Name]`, `msg_del [message id]` `announcements [Message]`
+> `quit`, `status [Message]`, `nick [Name]`, `msg_del [message id]`, `announcements [Message]`
 "#;
 
 pub const HELP_MODER: &str = r#"
@@ -50,7 +50,7 @@ pub const HELP_MODER: &str = r#"
 "#;
 
 pub const HELP_FUN: &str = r#"
-> `nitro`, `choice [item, item, ...]`, `say [Text]` `avatar [mention or id]` `hangang` `bbangcat` `gunghab`
+> `nitro`, `choice [item, item, ...]`, `say [Text]`, `avatar [mention or id]`, `hangang`, `bbangcat`, `gunghab`
 "#;
 
 /*
