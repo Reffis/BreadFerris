@@ -1,7 +1,7 @@
 use super::embed_colors::*;
 use breadferris::cmdlog;
-use rand::Rng;
 use rand::prelude::SliceRandom;
+use rand::Rng;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
@@ -204,17 +204,19 @@ async fn gunghab(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
     let owo = args.single::<String>()?;
     let uwu = args.single::<String>()?;
 
-    msg.channel_id.send_message(&ctx.http, |m| {
-        m.embed(|e| {
-            e.colour(PURPLE)
-            .title(format!("**{}** 와, **{}** 의 궁합", owo, uwu))
-            .description(format!("**{}%**", rand::thread_rng().gen_range(0..100)))
-            .footer(|f| {
-                f.text(msg.author.id)
-                    .icon_url(msg.author.avatar_url().unwrap_or_default())
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(PURPLE)
+                    .title(format!("**{}** 와, **{}** 의 궁합", owo, uwu))
+                    .description(format!("**{}%**", rand::thread_rng().gen_range(0..100)))
+                    .footer(|f| {
+                        f.text(msg.author.id)
+                            .icon_url(msg.author.avatar_url().unwrap_or_default())
+                    })
             })
         })
-    }).await?;
+        .await?;
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
