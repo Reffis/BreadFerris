@@ -20,6 +20,6 @@ impl EventHandler for Handler {
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
-        log(Info,"Resumed".to_string());
+        log(Info, "Resumed".to_string());
     }
 }
