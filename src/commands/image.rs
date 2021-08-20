@@ -163,3 +163,29 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
+
+#[command]
+#[aliases("코기", "웰시코기", "애옹")]
+async fn corgi(ctx: &Context, msg: &Message) -> CommandResult {
+    let r = reqwest::get("https://dog.ceo/api/breed/pembroke/images/random")
+        .await?
+        .text()
+        .await?;
+    let image = &json::parse(r.as_str())?["message"];
+    msg.channel_id
+        .send_message(&ctx.http, |m| {
+            m.embed(|e| {
+                e.colour(YELLOW)
+                    .title("Corgi")
+                    .url(image)
+                    .image(image)
+                    .footer(|f| {
+                        f.text(format!("{}", msg.author.name));
+                        f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                    })
+            })
+        })
+        .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
