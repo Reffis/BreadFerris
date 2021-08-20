@@ -38,7 +38,7 @@ pub const HELP_UTIL: &str = r#"
 "#;
 
 pub const HELP_IMAGE: &str = r#"
-> `fox`, `shiba`, `cat`, `meme`, `neko [NekoType] (nsfw)`
+> `fox`, `shiba`, `cat`, `meme`, `neko [NekoType] (nsfw)` `corgi`
 "#;
 
 pub const HELP_OWNER: &str = r#"
