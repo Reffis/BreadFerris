@@ -64,7 +64,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
 }
 
 #[command]
-#[aliases("고양이", "야옹이", "애옹")]
+#[aliases("고양이", "야옹이", "애옹", "kitty")]
 async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
     let r = reqwest::get("https://api.thecatapi.com/v1/images/search")
         .await?
