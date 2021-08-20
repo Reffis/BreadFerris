@@ -58,7 +58,7 @@ struct Other;
 struct Moderator;
 
 #[group]
-#[commands(choice, nitro, say, avatar, hangang, bbangcat)]
+#[commands(choice, nitro, say, avatar, hangang, bbangcat, gunghab)]
 struct Fun;
 
 #[tokio::main]
