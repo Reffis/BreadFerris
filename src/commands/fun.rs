@@ -225,11 +225,12 @@ async fn gunghab(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
 #[command]
 #[aliases("uwu")]
 async fn owo(ctx: &Context, msg: &Message) -> CommandResult {
+    let e = UWU.split(", ").collect::<Vec<&str>>();
     msg.reply(
         ctx,
         format!(
             "`{}`",
-            UWU.choose(&mut rand::thread_rng()).unwrap_or_else(|| &"")
+            e.choose(&mut rand::thread_rng()).unwrap_or_else(|| &"")
         ),
     )
     .await?;
