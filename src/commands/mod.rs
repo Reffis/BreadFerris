@@ -110,3 +110,7 @@ pub const NEKOTYPE: &str = r#"
 `neko`, `spank`, `cuddle`, `erok`, `fox_girl`, `boobs`, `random_hentai_gif`,
 `smallboobs`, `hug`, `ero`, `smug`, `goose`, `baka`, `woof`
 "#;
+
+pub const UWU: [&str; 10] = [
+    "OwO", "UwU", "0w0", ":>", ";)", ":)", ";(", ":<", ":(", ">_<",
+];
