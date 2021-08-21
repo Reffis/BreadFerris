@@ -1,4 +1,5 @@
 use super::embed_colors::*;
+use super::UWU;
 use breadferris::cmdlog;
 use rand::prelude::SliceRandom;
 use rand::Rng;
@@ -217,6 +218,21 @@ async fn gunghab(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
             })
         })
         .await?;
+    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    Ok(())
+}
+
+#[command]
+#[aliases("uwu")]
+async fn owo(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.reply(
+        ctx,
+        format!(
+            "`{}`",
+            UWU.choose(&mut rand::thread_rng()).unwrap_or_else(|| &"")
+        ),
+    )
+    .await?;
     cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
