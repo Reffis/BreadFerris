@@ -111,6 +111,4 @@ pub const NEKOTYPE: &str = r#"
 `smallboobs`, `hug`, `ero`, `smug`, `goose`, `baka`, `woof`
 "#;
 
-pub const UWU: [&str; 10] = [
-    "OwO", "UwU", "0w0", ":>", ";)", ":)", ";(", ":<", ":(", ">_<",
-];
+pub const UWU: &str = "OwO, UwU, 0w0, :>, ;), :), ;(, :<, :(, >_<";
