@@ -33,7 +33,7 @@ async fn ban(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         )
         .await?;
     }
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -67,7 +67,7 @@ async fn kick(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         )
         .await?;
     }
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -91,6 +91,6 @@ async fn unban(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         )
         .await?;
     }
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
