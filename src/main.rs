@@ -78,7 +78,7 @@ async fn main() {
         Err(why) => {
             log(
                 Error,
-                format!("Could not access application info: {:?}", why),
+                &format!("Could not access application info: {:?}", why),
             );
             exit(1);
         }
