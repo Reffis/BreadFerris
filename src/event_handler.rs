@@ -14,7 +14,7 @@ pub struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, ctx: Context, ready: Ready) {
-        log(Info, format!("Connected as {}", ready.user.name));
+        log(Info, &format!("Connected as {}", ready.user.name));
         ctx.set_activity(Activity::playing(format!(
             "ferris help / {} Servers",
             ready.guilds.len()
@@ -23,7 +23,7 @@ impl EventHandler for Handler {
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
-        log(Info, "Resumed".to_string());
+        log(Info, "Resumed");
     }
 
     async fn message(&self, ctx: Context, msg: Message) {
@@ -48,7 +48,7 @@ impl EventHandler for Handler {
                     .thumbnail("https://cdn.discordapp.com/attachments/850930041487622197/878290746912960542/bot.png")
                 })
             }).await {
-                log(Error, "ferris / Failed to send message".to_string());
+                log(Error, "ferris / Failed to send message");
             }
         }
     }
