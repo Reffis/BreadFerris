@@ -59,7 +59,7 @@ async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -87,7 +87,7 @@ async fn avatar(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -110,7 +110,7 @@ async fn hangang(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -218,7 +218,7 @@ async fn gunghab(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
