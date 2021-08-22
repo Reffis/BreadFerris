@@ -28,7 +28,7 @@ impl TypeMapKey for ShardManagerContainer {
 
 #[group]
 #[commands(quit, status, nick, msg_del, announcements)]
-struct General; // owner
+struct Owner;
 
 #[group]
 #[commands(
@@ -92,7 +92,7 @@ async fn main() {
                 loadconfig("prefix2".to_string()),
             ])
         })
-        .group(&GENERAL_GROUP)
+        .group(&OWNER_GROUP)
         .group(&UTILITY_GROUP)
         .group(&OTHER_GROUP)
         .group(&IMAGE_GROUP)
