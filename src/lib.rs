@@ -1,5 +1,5 @@
 use chrono::prelude::*;
-use std::io::Read;
+use std::{fmt::Debug, io::Read};
 use LogType::*;
 
 /*
@@ -13,35 +13,35 @@ pub enum LogType {
 }
 
 /// log(LogType, format!("Text"))
-pub fn log(logtype: LogType, text: String) {
+pub fn log<T: ?Sized + Debug>(logtype: LogType, text: &T) {
     match logtype {
         Info => {
             println!(
-                "[Info] [{}]: {}",
+                "[Info] [{}]: {:?}",
                 Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
-                text
+                &text
             );
         }
         Warn => {
             println!(
-                "[Warn] [{}]: {}",
+                "[Warn] [{}]: {:?}",
                 Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
-                text
+                &text
             );
         }
         Error => {
             println!(
-                "[Error] [{}]: {}",
+                "[Error] [{}]: {:?}",
                 Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
-                text
+                &text
             );
         }
     }
 }
 
-pub fn cmdlog(author: String, cmd: String) {
+pub fn cmdlog<T, E>(author: &T, cmd: &E) where T: ?Sized + Debug, E: ?Sized + Debug {
     println!(
-        "[Command] [{}] [{}]: {}",
+        "[Command] [{}] [{:?}]: {:?}",
         Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
         author,
         cmd
