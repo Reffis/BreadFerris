@@ -23,8 +23,8 @@ async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
         return Ok(());
     }
 
-    log(Info, format!("Shutdown. . ."));
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    log(Info, "Shutdown. . .");
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -35,7 +35,7 @@ async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     ctx.set_activity(Activity::playing(args.rest())).await;
     msg.reply(ctx, format!("```diff\n+ Text: {}\n```", args.rest()))
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -100,6 +100,6 @@ async fn announcements(ctx: &Context, msg: &Message, args: Args) -> CommandResul
             }
         }
     }
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
