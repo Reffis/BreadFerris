@@ -33,7 +33,7 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -59,7 +59,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -85,7 +85,7 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -128,7 +128,11 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     if let Some(c) = msg.channel(&ctx.cache).await {
         if c.is_nsfw() {
             if args.rest().is_empty() {
-                msg.reply(ctx, "`ferris neko help` 를 입력하여, 도움말을 확인해주세요.").await?;
+                msg.reply(
+                    ctx,
+                    "`ferris neko help` 를 입력하여, 도움말을 확인해주세요.",
+                )
+                .await?;
             } else if args.rest() == "help" {
                 msg.reply(ctx, NEKOTYPE).await?;
             } else {
@@ -188,6 +192,6 @@ async fn corgi(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
