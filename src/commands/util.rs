@@ -245,7 +245,7 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -409,7 +409,7 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         })
         .await?;
 
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
