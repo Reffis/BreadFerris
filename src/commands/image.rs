@@ -33,7 +33,7 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -59,7 +59,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -85,7 +85,7 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -118,7 +118,7 @@ async fn meme(ctx: &Context, msg: &Message) -> CommandResult {
             })
             .await?;
     }
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -127,7 +127,9 @@ async fn meme(ctx: &Context, msg: &Message) -> CommandResult {
 async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     if let Some(c) = msg.channel(&ctx.cache).await {
         if c.is_nsfw() {
-            if args.rest() == "help" {
+            if args.rest().is_empty() {
+                msg.reply(ctx, "`ferris neko help` 를 입력하여, 도움말을 확인해주세요.").await?;
+            } else if args.rest() == "help" {
                 msg.reply(ctx, NEKOTYPE).await?;
             } else {
                 let r = reqwest::get(format!("https://nekos.life/api/v2/img/{}", args.rest()))
@@ -160,7 +162,7 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             msg.reply(ctx, "해당채널에서는 사용할 수 없는 명령어입니다.\n사용을 원한다면, `nsfw` 채널로 설정해주세요.").await?;
         }
     }
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -186,6 +188,6 @@ async fn corgi(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
