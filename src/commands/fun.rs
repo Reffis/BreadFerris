@@ -11,7 +11,7 @@ use serenity::prelude::*;
 #[aliases("랜덤", "골라", "random")]
 async fn choice(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let r = args.rest().split(", ").collect::<Vec<_>>();
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     msg.reply(
         ctx,
         format!(
@@ -40,7 +40,7 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
     });
     msg.reply(ctx, format!("`discord.gift/{}`\n\n`주의!`: `해당 코드는 작동되지 않는 코드입니다. 그냥 재미로만 해주세요 :)`", v)).await?;
 
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -59,7 +59,7 @@ async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -87,7 +87,7 @@ async fn avatar(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -110,7 +110,7 @@ async fn hangang(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -195,7 +195,7 @@ async fn bbangcat(ctx: &Context, msg: &Message) -> CommandResult {
         }
     }
     m.delete(&ctx.http).await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -218,7 +218,7 @@ async fn gunghab(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -234,6 +234,6 @@ async fn owo(ctx: &Context, msg: &Message) -> CommandResult {
         ),
     )
     .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
