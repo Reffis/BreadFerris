@@ -39,7 +39,11 @@ pub fn log<T: ?Sized + Debug>(logtype: LogType, text: &T) {
     }
 }
 
-pub fn cmdlog<T, E>(author: &T, cmd: &E) where T: ?Sized + Debug, E: ?Sized + Debug {
+pub fn cmdlog<T, E>(author: &T, cmd: &E)
+where
+    T: ?Sized + Debug,
+    E: ?Sized + Debug,
+{
     println!(
         "[Command] [{}] [{:?}]: {:?}",
         Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
