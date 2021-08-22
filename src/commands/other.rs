@@ -7,6 +7,6 @@ use breadferris::cmdlog;
 #[command]
 #[aliases("샍", "샌즈", "샍즈", "샌주", "샍주")]
 async fn sans(_ctx: &Context, msg: &Message) -> CommandResult {
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
