@@ -20,7 +20,7 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
         }),
     )
     .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -207,8 +207,8 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 .unwrap_or_default();
         }
     }
+    cmdlog(&msg.author.id, &msg.content);
     m.delete(&ctx).await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
     Ok(())
 }
 
@@ -245,7 +245,7 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -290,7 +290,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
                 .await?;
         }
     }
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -342,7 +342,7 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 
     message.delete(ctx).await?;
 
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
 
     Ok(())
 }
@@ -409,7 +409,7 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         })
         .await?;
 
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+        cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -502,7 +502,7 @@ async fn go(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 
     message.delete(ctx).await?;
 
-    cmdlog(msg.author.id.to_string(), msg.content.clone());
+    cmdlog(&msg.author.id, &msg.content);
 
     Ok(())
 }
