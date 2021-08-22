@@ -35,7 +35,7 @@ async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     ctx.set_activity(Activity::playing(args.rest())).await;
     msg.reply(ctx, format!("```diff\n+ Text: {}\n```", args.rest()))
         .await?;
-        cmdlog(&msg.author.id, &msg.content);
+    cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
 
