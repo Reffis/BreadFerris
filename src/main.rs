@@ -87,7 +87,7 @@ async fn main() {
     let framework = StandardFramework::new()
         .configure(|c| {
             c.owners(owners)
-                .prefixes([loadconfig().prefix1.unwrap(), loadconfig().prefix2.unwrap()])
+                .prefixes(loadconfig().prefix.unwrap())
         })
         .group(&OWNER_GROUP)
         .group(&UTILITY_GROUP)
