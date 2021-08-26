@@ -16,14 +16,7 @@ $ git clone https://github.com/Reffis/BreadFerris.git
 $ cd BreadFerris
 ```
 ---
-`config/config.json`를 생성한다음, `config/config.json.example`을 참고하여 설정을 완료합니다. 
-```shell
-$ python create_config.py
-
-# or
-
-$ python3 create_config.py
-```
+`config/config.toml`를 생성한다음, `config/config.toml.example`을 참고하여 설정을 완료합니다. 
 ---
 ```shell
 $ ./build.bat
