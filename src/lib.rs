@@ -53,6 +53,14 @@ where
     );
 }
 
+pub fn textlog(text: &str) {
+    println!(
+        "[Text] [{}]: {}",
+        Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
+        text
+    );
+}
+
 #[derive(Debug, Deserialize)]
 pub struct Config {
     config: Option<BotConfig>,
