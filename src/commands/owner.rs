@@ -68,7 +68,12 @@ async fn msg_del(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
 async fn announcements(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     for guild in ctx.cache.guilds().await {
         for channel in guild.channels(&ctx.http).await? {
-            if channel.1.topic.unwrap_or_default().contains("-FerrisAnnouncements") {
+            if channel
+                .1
+                .topic
+                .unwrap_or_default()
+                .contains("-FerrisAnnouncements")
+            {
                 channel
                     .0
                     .send_message(&ctx.http, |m| {
