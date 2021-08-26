@@ -30,6 +30,41 @@ impl EventHandler for Handler {
         if msg.author.bot {
             return;
         }
+        let x = ctx
+            .http
+            .get_channels(msg.guild_id.unwrap_or_default().0)
+            .await
+            .unwrap_or_default();
+        let re = regex::Regex::new(r"(.{0,}?discord.gg/.{1,})|(.{0,}?discord.com/invite/.{1,})|(.{0,}?discordapp.com/invite/.{1,})").unwrap();
+        for c in x {
+            if c.id == msg.channel_id {
+                if c.topic.unwrap_or_default().contains("-NoInviteLink") {
+                    if re.is_match(&msg.content) {
+                        msg.delete(&ctx.http).await.unwrap_or_default();
+                        if let Err(_) = msg
+                            .channel_id
+                            .send_message(&ctx.http, |f| {
+                                f.embed(|e| {
+                                    e.title("서버 초대 링크 감지됨")
+                                        .author(|a| {
+                                            a.name(&msg.author.tag()).icon_url(
+                                                &msg.author.avatar_url().unwrap_or_default(),
+                                            )
+                                        })
+                                        .description(
+                                            r#"
+해당 채널에서는 초대 링크를 보낼 수 없습니다.
+채널 주제에서 `-NoInviteLink`를 제거하면, 해당 기능이 비활성화됩니다.
+                                "#,
+                                        )
+                                })
+                            })
+                            .await
+                        {}
+                    }
+                }
+            }
+        }
         if msg.content.to_lowercase() == "ferris" {
             if let Err(_) = msg.channel_id.send_message(&ctx.http, |m| {
                 m.embed(|embed| {
