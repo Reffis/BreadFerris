@@ -34,7 +34,7 @@ eval은 로컬에서 코드가 실행됩니다. 그렇기때문에, 컴퓨터에
 */
 
 pub const HELP_UTIL: &str = r#"
-> `help`, `ping`, `support [Message]`, `dev`, `rust [Code]`,  `go [code]`, `userinfo [mention or id]`, `server_emoji`, `invite`
+> `help`, `ping`, `support [Message]`, `dev`, `rust [Code]`, `go [code]`, `userinfo [mention or id]`, `server_emoji`, `invite`
 "#;
 
 pub const HELP_IMAGE: &str = r#"
@@ -42,7 +42,7 @@ pub const HELP_IMAGE: &str = r#"
 "#;
 
 pub const HELP_OWNER: &str = r#"
-> `quit`, `status [Message]`, `nick [Name]`, `msg_del [message id]`, `announcements [Message]` `status_update`
+> `quit`, `status [Message]`, `nick [Name]`, `msg_del [message id]`, `announcements [Message]`, `status_update`
 "#;
 
 pub const HELP_MODER: &str = r#"
