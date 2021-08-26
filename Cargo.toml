@@ -13,6 +13,9 @@ json = "0.12.4"
 chrono = "0.4"
 rand = "0.8"
 regex = "1.5.4"
+toml = "0.5"
+serde_derive = "1.0"
+serde = "1.0"
 
 [profile.dev]
 opt-level = 0
