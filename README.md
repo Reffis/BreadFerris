@@ -18,6 +18,8 @@ $ cd BreadFerris
 ---
 `config/config.toml`를 생성한다음, `config/config.toml.example`을 참고하여 설정을 완료합니다. 
 ---
+**빌드:**
+
 ```shell
 $ ./build.bat
 
