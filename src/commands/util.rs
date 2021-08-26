@@ -85,6 +85,8 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
 
 채널 주제에 `-FerrisAnnouncements` 가 포함되어있다면, 해당 채널에 공지 메세지가 올라옵니다.
 
+채널 주제에 `-NoInviteLink` 가 포함되어있다면, 초대 링크를 보낼 수 없습니다. **(Beta)**
+
 ⚠ **명령어를 확인하셨으면, 반드시 `Delete` 버튼을 눌러주세요. (사용하지 않는다면, 60초후 자동으로 삭제됩니다.)**
 "#,
                     )
