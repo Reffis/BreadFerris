@@ -61,8 +61,7 @@ pub struct Config {
 #[derive(Debug, Deserialize)]
 pub struct BotConfig {
     pub token: Option<String>,
-    pub prefix1: Option<String>,
-    pub prefix2: Option<String>,
+    pub prefix: Option<Vec<String>>,
     pub support_channel: Option<u64>,
     pub application_id: Option<u64>,
 }
