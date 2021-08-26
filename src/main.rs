@@ -62,7 +62,7 @@ struct Fun;
 
 #[tokio::main]
 async fn main() {
-    let token = loadconfig("token".to_string());
+    let token = loadconfig().token.unwrap();
 
     let (owners, _bot_id) = match Http::new_with_token(&token)
         .get_current_application_info()
@@ -86,10 +86,8 @@ async fn main() {
     // Create the framework
     let framework = StandardFramework::new()
         .configure(|c| {
-            c.owners(owners).prefixes([
-                loadconfig("prefix".to_string()),
-                loadconfig("prefix2".to_string()),
-            ])
+            c.owners(owners)
+                .prefixes([loadconfig().prefix1.unwrap(), loadconfig().prefix2.unwrap()])
         })
         .group(&OWNER_GROUP)
         .group(&UTILITY_GROUP)
@@ -101,11 +99,7 @@ async fn main() {
     let mut client = Client::builder(&token)
         .framework(framework)
         .event_handler(event_handler::Handler)
-        .application_id(
-            loadconfig("application_id".to_string())
-                .parse::<u64>()
-                .unwrap(),
-        )
+        .application_id(loadconfig().application_id.unwrap())
         .await
         .expect("Err creating client");
 
