@@ -43,9 +43,12 @@ async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 #[aliases("상태업데이트")]
 #[owners_only]
 async fn status_update(ctx: &Context, msg: &Message) -> CommandResult {
-    ctx.set_activity(Activity::playing(format!("ferris help / {} Servers", ctx.cache.guilds().await.len()))).await;
-    msg.reply(ctx, "상태를 업데이트 하였습니다.")
-        .await?;
+    ctx.set_activity(Activity::playing(format!(
+        "ferris help / {} Servers",
+        ctx.cache.guilds().await.len()
+    )))
+    .await;
+    msg.reply(ctx, "상태를 업데이트 하였습니다.").await?;
     cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
