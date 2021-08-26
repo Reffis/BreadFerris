@@ -1,4 +1,4 @@
-use breadferris::{log, LogType::*};
+use breadferris::{log, textlog, LogType::*};
 use serenity::model::channel::Message;
 use serenity::model::gateway::Activity;
 use serenity::{
@@ -14,7 +14,41 @@ pub struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, ctx: Context, ready: Ready) {
-        log(Info, &format!("Connected as {}", ready.user.name));
+        let args = std::env::args().collect::<Vec<_>>();
+        if args.len() < 2 {
+            log(Info, &format!("Connected as {}", ready.user.name));
+        } else {
+            if args[1] == "--readylog" {
+                let mut guildaa = String::new();
+                for guild in ready.guilds.clone() {
+                    let g = ctx.http.get_guild(guild.id().0).await.unwrap();
+                    let o = ctx.http.get_user(g.owner_id.0).await.unwrap();
+                    guildaa.push_str(&format!(
+                        r#"
+Name: {} ID: ({}) | Channel: {} | Owner: {} ({})
+            "#,
+                        g.name,
+                        g.id.0,
+                        g.channels(&ctx.http).await.unwrap().len(),
+                        o.tag(),
+                        o.id.0
+                    ));
+                }
+
+                textlog(&format!(
+                    r#"
+| User Name: {} ({})
+| Guilds: [{}]
+
+{}
+"#,
+                    ready.user.tag(),
+                    ready.user.id,
+                    ready.guilds.len(),
+                    guildaa
+                ));
+            }
+        }
         ctx.set_activity(Activity::playing(format!(
             "ferris help / {} Servers",
             ready.guilds.len()
