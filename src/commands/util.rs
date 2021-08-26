@@ -446,13 +446,26 @@ async fn invite(ctx: &Context, msg: &Message) -> CommandResult {
            e.colour(WHITE)
                .title("봇 초대 & 오픈소스")
                .description(r#"
-**봇 초대 (관리자) [(클릭)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=8&scope=bot)**
-**봇 초대 (권한 없음) [(클릭)](https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=0&scope=bot)**
-
-**오픈소스 [(클릭)](https://github.com/Reffis/BreadFerris)**
+**아래의 `버튼`을 클릭하여 봇을 초대하세요.**
                "#)
+        }).components(|b| {
+            b.create_action_row(|a| {
+                a.create_button(|b| {
+                b.label("봇 초대 (관리자 권한)")
+                .style(ButtonStyle::Link)
+                .url("https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=8&scope=bot")
+            }).create_button(|b| {
+                b.label("봇 초대")
+                .style(ButtonStyle::Link)
+                .url("https://discord.com/api/oauth2/authorize?client_id=785702034388287518&permissions=0&scope=bot")
+            }).create_button(|b| {
+                b.label("오픈소스 (Github)")
+                .style(ButtonStyle::Link)
+                .url("https://github.com/Reffis/BreadFerris")
+            })
         })
-    }).await?;
+        })
+    }).await.unwrap();
     Ok(())
 }
 
