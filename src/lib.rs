@@ -1,4 +1,5 @@
 use chrono::prelude::*;
+use serde_derive::Deserialize;
 use std::{fmt::Debug, io::Read};
 use LogType::*;
 
@@ -52,9 +53,25 @@ where
     );
 }
 
-pub fn loadconfig(name: String) -> String {
-    let mut file = std::fs::File::open("config/config.json").unwrap();
+#[derive(Debug, Deserialize)]
+pub struct Config {
+    config: Option<BotConfig>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct BotConfig {
+    pub token: Option<String>,
+    pub prefix1: Option<String>,
+    pub prefix2: Option<String>,
+    pub support_channel: Option<u64>,
+    pub application_id: Option<u64>,
+}
+
+pub fn loadconfig() -> BotConfig {
+    let mut file = std::fs::File::open("config/config.toml").unwrap();
     let mut c = String::new();
     file.read_to_string(&mut c).unwrap();
-    json::parse(c.as_str()).unwrap()[name].to_string()
+
+    let decoded: Config = toml::from_str(c.as_str()).unwrap();
+    decoded.config.unwrap()
 }
