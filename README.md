@@ -26,10 +26,11 @@ $ ./build.bat
 or
 
 $ cargo run
+
+$ cargo run -- --readylog # 실행시, 다양한 로그를 표시합니다.
 ```
 ---
 > env 사용시, `src/main.rs` 수정 바람. 
-
 
 # 사용법
 
