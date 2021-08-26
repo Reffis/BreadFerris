@@ -1,6 +1,5 @@
 [config]
 token = "Token Here!"
-prefix1 = "ferris "
-prefix2 = "페리스 "
+prefix = ["접두사1", "접두사2" ..]
 support_channel = 873747323266666497
 application_id = 670790679798087725
