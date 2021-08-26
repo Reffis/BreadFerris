@@ -261,7 +261,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         _ => {
             let channel = ctx
                 .http
-                .get_channel(loadconfig("support_channel".to_string()).parse::<u64>()?)
+                .get_channel(loadconfig().support_channel.unwrap())
                 .await?;
             channel
                 .id()
