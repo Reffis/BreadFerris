@@ -1,18 +1,17 @@
-```json
-{
-  "token": "Token Here!",
-  "prefix": "ferris ",
-  "prefix2": "페리스 ",
-  "support_channel": 100000000000000000,
-  "application_id": 100000000000000000
-}
+```toml
+[config]
+token = "Token Here!"
+prefix1 = "ferris "
+prefix2 = "페리스 "
+support_channel = 873747323266666497
+application_id = 670790679798087725
 ```
 
 `token`: 본인의 봇 토큰을 입력합니다.
 
-`prefix`: 봇의 메인 접두사를 입력합니다.
+`prefix1`: 봇의 메인 접두사를 입력합니다.
 
-`prefix`: 봇의 서브 접두사를 입력합니다.
+`prefix2`: 봇의 서브 접두사를 입력합니다.
 
 `support_channel`: 문의가 전송되는 채널의 id를 입력합니다.
 
