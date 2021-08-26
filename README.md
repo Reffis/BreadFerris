@@ -76,6 +76,8 @@ $ cargo run
 
 `ferris announcements [Message]`: 채널 주제에 `-FerrisAnnouncements` 가 포함되어있다면, 해당 채널에 공지 메세지를 보냅니다.
 
+`ferris status_update`: 상태를 업데이트 합니다.
+
 **Image**
 ---
 
