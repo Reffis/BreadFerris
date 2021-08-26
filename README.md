@@ -74,7 +74,7 @@ $ cargo run
 
 `ferris msg_del [id]`: 해당 채널에 있는 봇의 메세지를 삭제합니다.
 
-`ferris announcements [Message]`: 채널 주제가 `-페리스공지-` 라면, 해당 채널에 공지 메세지를 보냅니다.
+`ferris announcements [Message]`: 채널 주제에 `-FerrisAnnouncements` 가 포함되어있다면, 해당 채널에 공지 메세지를 보냅니다.
 
 **Image**
 ---
@@ -102,6 +102,13 @@ $ cargo run
 
 **Fun** 카테고리는 입력하지 않을예정입니다.
 * 명령어를 확인하려면, `src/commandss/mod.rs`를 참고해주세요.
+---
+
+**기타** (명령어가 아닌, 채널 주제 등으로 사용하는 기능) **(Betas)**
+---
+
+`-NoInviteLink`: 초대 링크를 보내면, 자동으로 삭제합니다.
+
 ---
 > (더 추가될 예정)
 
