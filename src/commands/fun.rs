@@ -237,3 +237,17 @@ async fn owo(ctx: &Context, msg: &Message) -> CommandResult {
     cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
+
+#[command]
+#[aliases("스포일러")]
+async fn spoiler(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    let result = args
+        .rest()
+        .chars()
+        .map(|x| format!("||{}||", x.to_string()))
+        .collect::<String>();
+    msg.reply(ctx, format!("{result}\n`{result}`", result = result))
+        .await?;
+    cmdlog(&msg.author.id, &msg.content);
+    Ok(())
+}
