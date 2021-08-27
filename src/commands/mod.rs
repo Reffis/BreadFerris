@@ -50,7 +50,7 @@ pub const HELP_MODER: &str = r#"
 "#;
 
 pub const HELP_FUN: &str = r#"
-> `nitro`, `choice [item, item, ...]`, `say [Text]`, `avatar [mention or id]`, `hangang`, `bbangcat`, `gunghab`, `owo`
+> `nitro`, `choice [item, item, ...]`, `say [Text]`, `avatar [mention or id]`, `hangang`, `bbangcat`, `gunghab [user1] [user2]`, `owo`, `spoiler [Text]`
 "#;
 
 /*
