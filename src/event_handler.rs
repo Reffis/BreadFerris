@@ -119,6 +119,12 @@ Name: {} ID: ({}) | Channel: {} | Owner: {} ({})
             }).await {
                 log(Error, "ferris / Failed to send message");
             }
+        } else if msg.content.to_lowercase() == "never gonna give you up" {
+            if let Err(_) = msg
+                .channel_id
+                .send_message(&ctx.http, |m| m.content("https://youtu.be/dQw4w9WgXcQ"))
+                .await
+            {}
         }
     }
 }
