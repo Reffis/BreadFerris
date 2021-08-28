@@ -251,3 +251,10 @@ async fn spoiler(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
+
+#[command]
+async fn nevergonnagiveyouup(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.reply(ctx, "https://youtu.be/dQw4w9WgXcQ").await?;
+    cmdlog(&msg.author.id, &msg.content);
+    Ok(())
+}
