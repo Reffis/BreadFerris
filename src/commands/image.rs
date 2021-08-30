@@ -1,6 +1,6 @@
 use super::embed_colors::*;
 use crate::commands::NEKOTYPE;
-use breadferris::cmdlog;
+use bbanglog::info;
 use json;
 use json::JsonValue;
 use reqwest;
@@ -33,7 +33,7 @@ async fn fox(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -59,7 +59,7 @@ async fn shiba(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -85,7 +85,7 @@ async fn cat(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -118,7 +118,7 @@ async fn meme(ctx: &Context, msg: &Message) -> CommandResult {
             })
             .await?;
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -166,7 +166,7 @@ async fn neko(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             msg.reply(ctx, "해당채널에서는 사용할 수 없는 명령어입니다.\n사용을 원한다면, `nsfw` 채널로 설정해주세요.").await?;
         }
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -192,6 +192,6 @@ async fn corgi(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
