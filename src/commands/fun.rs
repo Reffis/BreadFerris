@@ -258,3 +258,37 @@ async fn nevergonnagiveyouup(ctx: &Context, msg: &Message) -> CommandResult {
     cmdlog(&msg.author.id, &msg.content);
     Ok(())
 }
+
+#[command]
+#[aliases("아이피", "IP")]
+async fn ip(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
+    let r = reqwest::get(format!("https://ipinfo.io/{}/json", args.rest()))
+        .await?
+        .text()
+        .await?;
+    let json = &json::parse(r.as_str())?;
+    if json["status"] == "404" {
+        msg.reply(ctx, "잘못된 아이피입니다.").await?;
+    } else {
+        msg.channel_id
+            .send_message(&ctx.http, |m| {
+                m.embed(|e| {
+                    e.colour(random_color())
+                        .title(json["ip"].clone())
+                        .url(format!("https://{}", json["ip"].clone()))
+                        .field("국가", json["country"].clone(), true)
+                        .field("도시", json["city"].clone(), true)
+                        .field("위치", json["loc"].clone(), true)
+                        .field("우편번호", json["postal"].clone(), true)
+                        .field("timezone", json["timezone"].clone(), true)
+                        .footer(|f| {
+                            f.text(format!("{}", msg.author.tag()));
+                            f.icon_url(msg.author.avatar_url().unwrap_or_default())
+                        })
+                })
+            })
+            .await?;
+    }
+    cmdlog(&msg.author.id, &msg.content);
+    Ok(())
+}
