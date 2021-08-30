@@ -1,4 +1,4 @@
-pub use breadferris::{loadconfig, log, LogType::*};
+pub use breadferris::loadconfig;
 
 /*
 image: 다양한 api를 이용하여, 이미지를 가져오는 명령어를 모아둔 카테고리입니다.
@@ -110,5 +110,3 @@ pub const NEKOTYPE: &str = r#"
 `neko`, `spank`, `cuddle`, `erok`, `fox_girl`, `boobs`, `random_hentai_gif`,
 `smallboobs`, `hug`, `ero`, `smug`, `goose`, `baka`, `woof`
 "#;
-
-pub const UWU: &str = "OwO, UwU, 0w0, :>, ;), :), ;(, :<, :(, >_<";

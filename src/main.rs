@@ -1,15 +1,17 @@
+pub extern crate bbanglog;
+
 mod commands;
 mod event_handler;
 
-use std::{collections::HashSet, sync::Arc};
-
-use breadferris::{loadconfig, log, LogType::*};
+use bbanglog::*;
+use breadferris::loadconfig;
 use commands::fun::*;
 use commands::image::*;
 use commands::moderator::*;
 use commands::other::*;
 use commands::owner::*;
 use commands::util::*;
+use std::{collections::HashSet, sync::Arc};
 
 use serenity::{
     client::bridge::gateway::ShardManager,
@@ -37,7 +39,7 @@ struct Owner;
     dev,
     run,
     opensource,
-    info,
+    uinfo,
     server_emoji,
     invite,
     go
@@ -87,10 +89,7 @@ async fn main() {
             (owners, info.id)
         }
         Err(why) => {
-            log(
-                Error,
-                &format!("Could not access application info: {:?}", why),
-            );
+            error!("Could not access application info: {:?}", why);
             exit(1);
         }
     };
