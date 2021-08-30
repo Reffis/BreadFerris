@@ -1,4 +1,4 @@
-use breadferris::{log, textlog, LogType::*};
+use bbanglog::{error, info};
 use serenity::model::channel::Message;
 use serenity::model::gateway::Activity;
 use serenity::{
@@ -16,7 +16,7 @@ impl EventHandler for Handler {
     async fn ready(&self, ctx: Context, ready: Ready) {
         let args = std::env::args().collect::<Vec<_>>();
         if args.len() < 2 {
-            log(Info, &format!("Connected as {}", ready.user.name));
+            info!("Connected as {}", ready.user.name);
         } else {
             if args[1] == "--readylog" {
                 let mut guildaa = String::new();
@@ -35,7 +35,7 @@ Name: {} ID: ({}) | Channel: {} | Owner: {} ({})
                     ));
                 }
 
-                textlog(&format!(
+                info!(
                     r#"
 | User Name: {} ({})
 | Guilds: [{}]
@@ -46,7 +46,7 @@ Name: {} ID: ({}) | Channel: {} | Owner: {} ({})
                     ready.user.id,
                     ready.guilds.len(),
                     guildaa
-                ));
+                );
             }
         }
         ctx.set_activity(Activity::playing(format!(
@@ -57,7 +57,7 @@ Name: {} ID: ({}) | Channel: {} | Owner: {} ({})
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
-        log(Info, "Resumed");
+        info!("Resumed");
     }
 
     async fn message(&self, ctx: Context, msg: Message) {
@@ -117,7 +117,7 @@ Name: {} ID: ({}) | Channel: {} | Owner: {} ({})
                     .thumbnail("https://cdn.discordapp.com/attachments/850930041487622197/878290746912960542/bot.png")
                 })
             }).await {
-                log(Error, "ferris / Failed to send message");
+                error!("ferris / Failed to send message");
             }
         } else if msg.content.to_lowercase() == "never gonna give you up" {
             if let Err(_) = msg
