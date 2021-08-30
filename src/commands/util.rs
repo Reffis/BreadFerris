@@ -1,7 +1,7 @@
-//use super::image_lib::*;
 use super::embed_colors::*;
 use crate::commands::*;
-use breadferris::{cmdlog, loadconfig};
+use bbanglog::info;
+use breadferris::loadconfig;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::interactions::message_component::ButtonStyle;
 use serenity::model::prelude::*;
@@ -20,7 +20,7 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
         }),
     )
     .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -209,7 +209,7 @@ async fn help(ctx: &Context, msg: &Message) -> CommandResult {
                 .unwrap_or_default();
         }
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     m.delete(&ctx).await?;
     Ok(())
 }
@@ -247,7 +247,7 @@ async fn dev(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -292,7 +292,7 @@ async fn support(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
                 .await?;
         }
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -344,7 +344,7 @@ async fn run(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 
     message.delete(ctx).await?;
 
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
 
     Ok(())
 }
@@ -362,7 +362,7 @@ async fn opensource(ctx: &Context, msg: &Message) -> CommandResult {
 
 #[command]
 #[aliases("userinfo", "유저정보")]
-async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
+async fn uinfo(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     let user = ctx
         .http
         .get_user(
@@ -411,7 +411,7 @@ async fn info(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         })
         .await?;
 
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -517,7 +517,7 @@ async fn go(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
 
     message.delete(ctx).await?;
 
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
 
     Ok(())
 }
