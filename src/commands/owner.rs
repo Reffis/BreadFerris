@@ -1,11 +1,10 @@
+use bbanglog::info;
 use serenity::framework::standard::Args;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 
 use super::embed_colors::*;
-use breadferris::LogType::Info;
-use breadferris::{cmdlog, log};
 
 use crate::ShardManagerContainer;
 
@@ -23,8 +22,8 @@ async fn quit(ctx: &Context, msg: &Message) -> CommandResult {
         return Ok(());
     }
 
-    log(Info, "Shutdown. . .");
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Shutdown. . .");
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -35,7 +34,7 @@ async fn status(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     ctx.set_activity(Activity::playing(args.rest())).await;
     msg.reply(ctx, format!("```diff\n+ Text: {}\n```", args.rest()))
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -49,7 +48,7 @@ async fn status_update(ctx: &Context, msg: &Message) -> CommandResult {
     )))
     .await;
     msg.reply(ctx, "상태를 업데이트 하였습니다.").await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -119,6 +118,6 @@ async fn announcements(ctx: &Context, msg: &Message, args: Args) -> CommandResul
             }
         }
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
