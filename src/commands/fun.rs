@@ -1,6 +1,5 @@
 use super::embed_colors::*;
-use super::UWU;
-use breadferris::cmdlog;
+use bbanglog::info;
 use rand::prelude::SliceRandom;
 use rand::Rng;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
@@ -11,7 +10,7 @@ use serenity::prelude::*;
 #[aliases("랜덤", "골라", "random")]
 async fn choice(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let r = args.rest().split(", ").collect::<Vec<_>>();
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     msg.reply(
         ctx,
         format!(
@@ -40,7 +39,7 @@ async fn nitro(ctx: &Context, msg: &Message) -> CommandResult {
     });
     msg.reply(ctx, format!("`discord.gift/{}`\n\n`주의!`: `해당 코드는 작동되지 않는 코드입니다. 그냥 재미로만 해주세요 :)`", v)).await?;
 
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -59,7 +58,7 @@ async fn say(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -87,7 +86,7 @@ async fn avatar(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -110,7 +109,7 @@ async fn hangang(ctx: &Context, msg: &Message) -> CommandResult {
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -195,7 +194,7 @@ async fn bbangcat(ctx: &Context, msg: &Message) -> CommandResult {
         }
     }
     m.delete(&ctx.http).await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -218,14 +217,16 @@ async fn gunghab(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult 
             })
         })
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
 #[command]
 #[aliases("uwu")]
 async fn owo(ctx: &Context, msg: &Message) -> CommandResult {
-    let e = UWU.split(", ").collect::<Vec<&str>>();
+    let e = "OwO, UwU, 0w0, :>, ;), :), ;(, :<, :(, >_<"
+        .split(", ")
+        .collect::<Vec<&str>>();
     msg.reply(
         ctx,
         format!(
@@ -234,7 +235,7 @@ async fn owo(ctx: &Context, msg: &Message) -> CommandResult {
         ),
     )
     .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -248,14 +249,14 @@ async fn spoiler(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         .collect::<String>();
     msg.reply(ctx, format!("{result}\n`{result}`", result = result))
         .await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
 #[command]
 async fn nevergonnagiveyouup(ctx: &Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, "https://youtu.be/dQw4w9WgXcQ").await?;
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -289,6 +290,6 @@ async fn ip(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
             })
             .await?;
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
