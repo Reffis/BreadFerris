@@ -67,7 +67,8 @@ struct Moderator;
     gunghab,
     owo,
     spoiler,
-    nevergonnagiveyouup
+    nevergonnagiveyouup,
+    ip
 )]
 struct Fun;
 
