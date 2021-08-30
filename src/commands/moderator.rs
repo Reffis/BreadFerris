@@ -1,4 +1,4 @@
-use breadferris::cmdlog;
+use bbanglog::info;
 use serenity::framework::standard::{macros::command, Args, CommandResult};
 use serenity::model::channel::Message;
 use serenity::model::misc::Mentionable;
@@ -33,7 +33,7 @@ async fn ban(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         )
         .await?;
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -67,7 +67,7 @@ async fn kick(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         )
         .await?;
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
 
@@ -91,6 +91,6 @@ async fn unban(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         )
         .await?;
     }
-    cmdlog(&msg.author.id, &msg.content);
+    info!("Command: [{}] {}", &msg.author.id, &msg.content);
     Ok(())
 }
