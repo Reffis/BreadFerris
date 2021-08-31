@@ -11,6 +11,9 @@ use commands::moderator::*;
 use commands::other::*;
 use commands::owner::*;
 use commands::util::*;
+use serenity::framework::standard::macros::hook;
+use serenity::framework::standard::DispatchError;
+use serenity::model::channel::Message;
 use std::{collections::HashSet, sync::Arc};
 
 use serenity::{
@@ -102,7 +105,8 @@ async fn main() {
         .group(&OTHER_GROUP)
         .group(&IMAGE_GROUP)
         .group(&MODERATOR_GROUP)
-        .group(&FUN_GROUP);
+        .group(&FUN_GROUP)
+        .on_dispatch_error(dispatch_error);
 
     let mut client = Client::builder(&token)
         .framework(framework)
@@ -126,4 +130,12 @@ async fn main() {
     });
 
     client.start().await.unwrap();
+}
+
+#[hook]
+async fn dispatch_error(_: &Context, msg: &Message, error: DispatchError) {
+    error!(
+        "Message: [{}], Author: [{}]: [{:?}]",
+        msg.id, msg.author.id, error
+    );
 }
