@@ -47,6 +47,8 @@ Name: {} ID: ({}) | Channel: {} | Owner: {} ({})
                     ready.guilds.len(),
                     guildaa
                 );
+            } else {
+                info!("Connected as {}", ready.user.name);
             }
         }
         ctx.set_activity(Activity::playing(format!(
