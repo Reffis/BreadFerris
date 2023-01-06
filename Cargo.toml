@@ -24,7 +24,7 @@ opt-level = 0
 opt-level = 3
 
 [dependencies.tokio]
-version = "1.0"
+version = "1.16"
 features = ["macros", "signal", "rt-multi-thread"]
 
 [dependencies.serenity]
